@@ -1,25 +1,11 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Coins, Copy, Check, ArrowRightLeft, RefreshCw } from "lucide-react"
+import { Coins, Copy, Check, ArrowRightLeft, RefreshCw, Loader2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-
-// Static exchange rates (in production, these would come from an API)
-const exchangeRates: Record<string, number> = {
-    TRY: 1,
-    USD: 34.25,
-    EUR: 37.10,
-    GBP: 43.50,
-    CHF: 39.80,
-    JPY: 0.23,
-    AUD: 22.15,
-    CAD: 24.80,
-    SAR: 9.13,
-    AED: 9.33
-}
 
 const currencyNames: Record<string, string> = {
     TRY: "Türk Lirası",
@@ -47,12 +33,83 @@ const currencySymbols: Record<string, string> = {
     AED: "AED"
 }
 
+// Fallback rates in case API fails
+const fallbackRates: Record<string, number> = {
+    TRY: 1,
+    USD: 35.50,
+    EUR: 38.20,
+    GBP: 44.80,
+    CHF: 41.00,
+    JPY: 0.24,
+    AUD: 23.50,
+    CAD: 25.80,
+    SAR: 9.45,
+    AED: 9.66
+}
+
 export function CurrencyConverter() {
     const [amount, setAmount] = useState<string>("1")
     const [fromCurrency, setFromCurrency] = useState<string>("USD")
     const [toCurrency, setToCurrency] = useState<string>("TRY")
     const [result, setResult] = useState<number | null>(null)
     const [copied, setCopied] = useState(false)
+    const [rates, setRates] = useState<Record<string, number>>(fallbackRates)
+    const [loading, setLoading] = useState(true)
+    const [lastUpdate, setLastUpdate] = useState<string>("")
+    const [error, setError] = useState<string | null>(null)
+
+    // Fetch exchange rates from API
+    const fetchRates = useCallback(async () => {
+        setLoading(true)
+        setError(null)
+
+        try {
+            // Using exchangerate.host API (free, no key required)
+            const response = await fetch(
+                `https://api.exchangerate.host/latest?base=TRY&symbols=USD,EUR,GBP,CHF,JPY,AUD,CAD,SAR,AED`
+            )
+
+            if (!response.ok) {
+                throw new Error("API yanıt vermedi")
+            }
+
+            const data = await response.json()
+
+            if (data.success === false) {
+                throw new Error("Kur bilgisi alınamadı")
+            }
+
+            // API returns rates relative to TRY, we need to invert them
+            const newRates: Record<string, number> = { TRY: 1 }
+
+            if (data.rates) {
+                Object.keys(data.rates).forEach((currency) => {
+                    // Invert the rate: if 1 TRY = 0.028 USD, then 1 USD = 1/0.028 = ~35.7 TRY
+                    newRates[currency] = 1 / data.rates[currency]
+                })
+
+                setRates(newRates)
+                setLastUpdate(new Date().toLocaleString("tr-TR"))
+            } else {
+                throw new Error("Kur verisi bulunamadı")
+            }
+        } catch (err) {
+            console.error("Kur API hatası:", err)
+            setError("Güncel kurlar alınamadı, tahmini kurlar gösteriliyor")
+            // Keep using fallback rates
+            setRates(fallbackRates)
+            setLastUpdate("Tahmini kurlar")
+        } finally {
+            setLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchRates()
+        // Refresh rates every 5 minutes
+        const interval = setInterval(fetchRates, 5 * 60 * 1000)
+        return () => clearInterval(interval)
+    }, [fetchRates])
 
     const convert = useCallback(() => {
         const numAmount = parseFloat(amount.replace(/,/g, "."))
@@ -63,11 +120,11 @@ export function CurrencyConverter() {
         }
 
         // Convert to TRY first, then to target currency
-        const inTRY = numAmount * exchangeRates[fromCurrency]
-        const converted = inTRY / exchangeRates[toCurrency]
+        const inTRY = numAmount * rates[fromCurrency]
+        const converted = inTRY / rates[toCurrency]
 
         setResult(Math.round(converted * 10000) / 10000)
-    }, [amount, fromCurrency, toCurrency])
+    }, [amount, fromCurrency, toCurrency, rates])
 
     useEffect(() => {
         convert()
@@ -90,32 +147,53 @@ export function CurrencyConverter() {
         }
     }
 
-    const formatNumber = (value: number, currency: string): string => {
+    const formatNumber = (value: number): string => {
         return new Intl.NumberFormat("tr-TR", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 4
         }).format(value)
     }
 
-    const currencies = Object.keys(exchangeRates)
+    const currencies = Object.keys(currencyNames)
 
     return (
         <div className="w-full max-w-2xl mx-auto space-y-6">
             <Card className="shadow-lg border-slate-200 dark:border-slate-800">
                 <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-t-lg">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-white/20 rounded-lg">
-                            <Coins className="h-6 w-6" />
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-white/20 rounded-lg">
+                                <Coins className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <CardTitle className="text-xl">Döviz Çevirici</CardTitle>
+                                <CardDescription className="text-amber-100">
+                                    Güncel kurlar ile döviz çevirisi
+                                </CardDescription>
+                            </div>
                         </div>
-                        <div>
-                            <CardTitle className="text-xl">Döviz Çevirici</CardTitle>
-                            <CardDescription className="text-amber-100">
-                                Döviz kurları arasında hızlı çeviri yapın
-                            </CardDescription>
-                        </div>
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={fetchRates}
+                            disabled={loading}
+                            className="text-white hover:bg-white/20"
+                        >
+                            {loading ? (
+                                <Loader2 className="h-5 w-5 animate-spin" />
+                            ) : (
+                                <RefreshCw className="h-5 w-5" />
+                            )}
+                        </Button>
                     </div>
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
+                    {error && (
+                        <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-sm">
+                            ⚠️ {error}
+                        </div>
+                    )}
+
                     <div className="grid gap-4">
                         {/* From Currency */}
                         <div className="space-y-2">
@@ -175,7 +253,7 @@ export function CurrencyConverter() {
                                     <Input
                                         type="text"
                                         readOnly
-                                        value={result ? formatNumber(result, toCurrency) : ""}
+                                        value={result ? formatNumber(result) : ""}
                                         className="pl-10 h-12 text-lg font-medium bg-slate-50 dark:bg-slate-800 border-slate-300"
                                     />
                                 </div>
@@ -200,7 +278,7 @@ export function CurrencyConverter() {
                                 <div>
                                     <p className="text-sm text-amber-100">Sonuç</p>
                                     <p className="text-2xl font-bold">
-                                        {currencySymbols[fromCurrency]}{amount} = {currencySymbols[toCurrency]}{formatNumber(result, toCurrency)}
+                                        {currencySymbols[fromCurrency]}{amount} = {currencySymbols[toCurrency]}{formatNumber(result)}
                                     </p>
                                 </div>
                                 <Button
@@ -220,10 +298,17 @@ export function CurrencyConverter() {
             {/* Exchange Rates Table */}
             <Card className="border-slate-200 dark:border-slate-800">
                 <CardHeader>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                        <RefreshCw className="h-5 w-5 text-amber-500" />
-                        Güncel Döviz Kurları (TRY Karşılığı)
-                    </CardTitle>
+                    <div className="flex items-center justify-between">
+                        <CardTitle className="text-lg flex items-center gap-2">
+                            <RefreshCw className="h-5 w-5 text-amber-500" />
+                            Güncel Döviz Kurları (TRY)
+                        </CardTitle>
+                        {lastUpdate && (
+                            <span className="text-xs text-slate-500">
+                                {lastUpdate}
+                            </span>
+                        )}
+                    </div>
                 </CardHeader>
                 <CardContent>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
@@ -233,14 +318,14 @@ export function CurrencyConverter() {
                                     {currencySymbols[currency]}1
                                 </p>
                                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                                    = ₺{exchangeRates[currency].toFixed(2)}
+                                    = ₺{rates[currency]?.toFixed(2) || "—"}
                                 </p>
                                 <p className="text-xs text-slate-500 mt-1">{currency}</p>
                             </div>
                         ))}
                     </div>
                     <p className="text-xs text-slate-500 mt-4 text-center">
-                        * Bu kurlar örnek amaçlıdır. Güncel kurlar için bankanıza danışın.
+                        * Kurlar gösterge niteliğindedir. İşlem kurları için bankanıza danışın.
                     </p>
                 </CardContent>
             </Card>
