@@ -3,6 +3,7 @@ import { ArrowRight, Calculator, Zap, Shield, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { categories } from "@/config/site-data"
+import { ScientificCalculator } from "@/components/calculators/scientific-calculator"
 
 export default function HomePage() {
   const features = [
@@ -55,6 +56,19 @@ export default function HomePage() {
             </Link>
           </Button>
         </div>
+      </section>
+
+      {/* Scientific Calculator */}
+      <section>
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl mb-2">
+            Bilimsel Hesap Makinesi
+          </h2>
+          <p className="text-slate-600 dark:text-slate-400">
+            Trigonometri, logaritma ve daha fazlası için kullanışlı hesap makinesi
+          </p>
+        </div>
+        <ScientificCalculator />
       </section>
 
       {/* Features */}
