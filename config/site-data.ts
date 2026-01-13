@@ -102,6 +102,12 @@ export const categories: Category[] = [
         slug: "enflasyon-hesaplama",
         description: "Paranızın enflasyona göre değer kaybını hesaplayın",
         icon: Banknote
+      },
+      {
+        name: "İşsizlik Maaşı Hesaplama",
+        slug: "issizlik-maasi-hesaplama",
+        description: "İşsizlik ödeneği tutarınızı hesaplayın",
+        icon: Banknote
       }
     ]
   },
@@ -147,6 +153,18 @@ export const categories: Category[] = [
         slug: "maliyet-hesaplama",
         description: "Ürün ve hizmet maliyetlerini hesaplayın",
         icon: ClipboardList
+      },
+      {
+        name: "MTV Hesaplama 2025",
+        slug: "mtv-hesaplama",
+        description: "Motorlu taşıtlar vergisi hesaplayın",
+        icon: Receipt
+      },
+      {
+        name: "Engelli Araç İndirimi",
+        slug: "engelli-arac-indirimi",
+        description: "ÖTV ve KDV muafiyeti hesaplayın",
+        icon: Receipt
       }
     ]
   },
@@ -192,6 +210,12 @@ export const categories: Category[] = [
         slug: "makro-hesaplama",
         description: "Protein, karbonhidrat ve yağ ihtiyacınızı hesaplayın",
         icon: Apple
+      },
+      {
+        name: "Cinsiyet Hesaplama",
+        slug: "cinsiyet-hesaplama",
+        description: "Çin takvimi ile bebek cinsiyeti tahmini",
+        icon: Heart
       }
     ]
   },
@@ -236,6 +260,24 @@ export const categories: Category[] = [
         name: "Ortalama Hesaplama",
         slug: "ortalama-hesaplama",
         description: "Sayıların ortalamasını hesaplayın",
+        icon: BarChart3
+      },
+      {
+        name: "TYT Net Hesaplama",
+        slug: "tyt-net-hesaplama",
+        description: "TYT doğru yanlış netinizi hesaplayın",
+        icon: GraduationCap
+      },
+      {
+        name: "AYT Net Hesaplama",
+        slug: "ayt-net-hesaplama",
+        description: "AYT alan testleri netinizi hesaplayın",
+        icon: GraduationCap
+      },
+      {
+        name: "GPA Hesaplama",
+        slug: "gpa-hesaplama",
+        description: "Genel not ortalaması hesaplayın",
         icon: BarChart3
       }
     ]
