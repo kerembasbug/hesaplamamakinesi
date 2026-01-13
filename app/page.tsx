@@ -160,8 +160,9 @@ export default function HomePage() {
             En çok kullanılan hesaplama araçlarımız
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {[
+            { category: "matematik-egitim", tool: "lgs-puan-hesaplama", name: "LGS Puan Hesaplama 2026", icon: "🎓" },
             { category: "vergi-muhasebe", tool: "kdv-hesaplama", name: "KDV Hesaplama", icon: "💰" },
             { category: "finans", tool: "kredi-hesaplama", name: "Kredi Hesaplama", icon: "🏦" },
             { category: "saglik-spor", tool: "vki-hesaplama", name: "VKİ Hesaplama", icon: "⚖️" },

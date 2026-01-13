@@ -1,9 +1,9 @@
-import { 
-  Calculator, 
-  Landmark, 
-  Heart, 
-  GraduationCap, 
-  Calendar, 
+import {
+  Calculator,
+  Landmark,
+  Heart,
+  GraduationCap,
+  Calendar,
   ArrowRightLeft,
   Percent,
   Banknote,
@@ -203,10 +203,22 @@ export const categories: Category[] = [
     icon: GraduationCap,
     tools: [
       {
+        name: "LGS Puan Hesaplama 2026",
+        slug: "lgs-puan-hesaplama",
+        description: "LGS sınavı puan ve yüzdelik dilim hesaplayın",
+        icon: GraduationCap
+      },
+      {
         name: "Yüzde Hesaplama",
         slug: "yuzde-hesaplama",
         description: "Yüzde değerlerini kolayca hesaplayın",
         icon: Percent
+      },
+      {
+        name: "Karekök Hesaplama",
+        slug: "karekok-hesaplama",
+        description: "Sayıların karekökünü hesaplayın",
+        icon: FunctionSquare
       },
       {
         name: "Oran & Orantı",
@@ -221,22 +233,10 @@ export const categories: Category[] = [
         icon: Square
       },
       {
-        name: "Hacim Hesaplama",
-        slug: "hacim-hesaplama",
-        description: "3D cisimlerin hacmini hesaplayın",
-        icon: Box
-      },
-      {
         name: "Ortalama Hesaplama",
         slug: "ortalama-hesaplama",
         description: "Sayıların ortalamasını hesaplayın",
         icon: BarChart3
-      },
-      {
-        name: "Denklem Çözücü",
-        slug: "denklem-cozucu",
-        description: "Basit denklemleri çözün",
-        icon: FunctionSquare
       }
     ]
   },
@@ -353,7 +353,7 @@ export function getToolBySlug(categorySlug: string, toolSlug: string): Tool | un
 }
 
 export function getAllTools(): { tool: Tool; category: Category }[] {
-  return categories.flatMap(category => 
+  return categories.flatMap(category =>
     category.tools.map(tool => ({ tool, category }))
   )
 }
