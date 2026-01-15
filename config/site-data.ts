@@ -465,20 +465,14 @@ export const categories: Category[] = [
     icon: Sparkles,
     tools: [
       {
-        name: "Güneş Burcu Hesaplama",
-        slug: "astroloji",
-        description: "Güneş burcu ve temel karakter analizi",
-        icon: Sun
-      },
-      {
         name: "Juno Burç Hesaplama",
-        slug: "astroloji/juno-hesaplama",
+        slug: "juno-hesaplama",
         description: "Ruh eşi ve evlilik burcu hesaplayın",
         icon: Star
       },
       {
         name: "Lilith Burcu Hesaplama",
-        slug: "astroloji/lilith-hesaplama",
+        slug: "lilith-hesaplama",
         description: "Kara Ay Lilith yerleşimini bulun",
         icon: Moon
       }
