@@ -54,7 +54,67 @@ export default function ZamanTakvimPage() {
 
             <article className="prose prose-slate dark:prose-invert max-w-none">
                 <h2>Zaman ve Takvim Hesaplamaları</h2>
-                <p>Tarih ve zaman hesaplama araçlarımız, iki tarih arası gün sayısı, yaş hesaplama, gebelik takibi gibi hesaplamaları kolaylaştırır.</p>
+                <p>
+                    Tarih ve zaman hesaplama araçlarımız, iki tarih arası gün sayısı, yaş hesaplama,
+                    gebelik takibi, çalışma günleri hesaplama gibi hesaplamaları kolaylaştırır.
+                </p>
+
+                <h3>Popüler Zaman Hesaplayıcıları</h3>
+
+                <h4>Yaş Hesaplama</h4>
+                <p>
+                    Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak öğrenin. Bir sonraki
+                    doğum gününüze kaç gün kaldığını da görebilirsiniz.
+                </p>
+
+                <h4>Tarih Farkı (Gün Farkı) Hesaplama</h4>
+                <p>
+                    İki tarih arasındaki farkı gün, hafta, ay veya yıl olarak hesaplayın. Proje
+                    planlaması, kira süresi veya önemli günler için kullanışlıdır.
+                </p>
+
+                <h4>Gebelik Hesaplama</h4>
+                <p>
+                    Son adet tarihinize göre gebelik haftanızı, tahmini doğum tarihinizi (DKT) ve
+                    bebeğin gelişim aşamasını öğrenin.
+                </p>
+
+                <h4>Çalışma Günleri Hesaplama</h4>
+                <p>
+                    İki tarih arasındaki iş günü sayısını hesaplayın. Hafta sonları ve resmi tatiller
+                    hariç tutularak hesaplama yapılır.
+                </p>
+
+                <h4>Zaman Dilimi Çevirici</h4>
+                <p>
+                    Farklı ülkelerdeki saat dilimlerini karşılaştırın. Uluslararası toplantılar veya
+                    seyahat planlaması için idealdir.
+                </p>
+
+                <h4>Kronometre</h4>
+                <p>
+                    Online kronometre ile süre ölçün. Tur kaydetme ve detaylı zaman tutma özellikleri mevcuttur.
+                </p>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>Artık yıl nasıl hesaplanır?</h4>
+                <p>
+                    Bir yıl 4&apos;e tam bölünüyorsa artık yıldır. Ancak 100&apos;e bölünüyorsa artık yıl değildir,
+                    400&apos;e de bölünüyorsa yeniden artık yıldır. 2024 artık yıldır (366 gün).
+                </p>
+
+                <h4>Gebelik kaç hafta sürer?</h4>
+                <p>
+                    Normal gebelik süresi son adet tarihinden itibaren 40 hafta (280 gün) olarak kabul edilir.
+                    Doğum genellikle 37-42 hafta arasında gerçekleşir.
+                </p>
+
+                <h4>Türkiye hangi zaman diliminde?</h4>
+                <p>
+                    Türkiye, 2016&apos;dan beri kalıcı olarak UTC+3 (TRT - Türkiye Saati) zaman dilimini
+                    kullanmaktadır. Yaz/kış saati uygulaması yapılmamaktadır.
+                </p>
             </article>
         </div>
     )

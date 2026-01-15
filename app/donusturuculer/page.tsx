@@ -54,15 +54,78 @@ export default function DonusturuculerPage() {
 
             <article className="prose prose-slate dark:prose-invert max-w-none">
                 <h2>Birim Dönüştürme Araçları</h2>
-                <p>Birim dönüştürücülerimiz metre-feet, kilogram-pound, litre-galon gibi birim dönüşümlerini kolaylaştırır.</p>
+                <p>
+                    Birim dönüştürücülerimiz metre-feet, kilogram-pound, litre-galon gibi birim dönüşümlerini
+                    kolaylaştırır. Metrik ve emperyal sistemler arasında hızlı çeviri yapın.
+                </p>
 
-                <h2>Desteklenen Birim Türleri</h2>
-                <ul>
-                    <li><strong>Uzunluk:</strong> Metre, kilometre, mil, feet, inç</li>
-                    <li><strong>Ağırlık:</strong> Kilogram, gram, pound, ons</li>
-                    <li><strong>Alan:</strong> Metrekare, hektar, dönüm, feet kare</li>
-                    <li><strong>Hacim:</strong> Litre, mililitre, galon, barel</li>
-                </ul>
+                <h3>Desteklenen Birim Türleri</h3>
+
+                <h4>Uzunluk Dönüştürücü</h4>
+                <p>
+                    Metre, kilometre, santimetre, milimetre, mil, yard, feet ve inç arasında dönüşüm yapın.
+                    İnşaat, spor ve günlük hayatta sıkça kullanılan ölçü birimleri.
+                </p>
+
+                <h4>Ağırlık Dönüştürücü</h4>
+                <p>
+                    Kilogram, gram, miligram, ton, pound, ons ve karat arasında çeviri. Gıda, kuyumculuk
+                    ve lojistik sektörleri için önemli dönüşümler.
+                </p>
+
+                <h4>Sıcaklık Dönüştürücü</h4>
+                <p>
+                    Celsius, Fahrenheit ve Kelvin arasında dönüşüm. Hava durumu, yemek tarifleri ve
+                    bilimsel çalışmalar için sıcaklık çevirisi.
+                </p>
+
+                <h4>Alan Dönüştürücü</h4>
+                <p>
+                    Metrekare, hektar, dönüm, ar ve feet kare arasında dönüşüm. Türkiye&apos;de yaygın
+                    kullanılan dönüm birimi de dahil.
+                </p>
+
+                <h4>Hız Dönüştürücü</h4>
+                <p>
+                    km/saat, mil/saat (mph), m/saniye ve knot arasında dönüşüm. Trafik, havacılık
+                    ve denizcilik için önemli hız birimleri.
+                </p>
+
+                <h4>Veri Boyutu Dönüştürücü</h4>
+                <p>
+                    Byte, KB, MB, GB, TB ve PB arasında çeviri. Bilgisayar ve internet kullanıcıları
+                    için veri depolama birimleri dönüşümü.
+                </p>
+
+                <h3>Metrik ve Emperyal Sistem</h3>
+                <p>
+                    Dünyada iki ana ölçü sistemi kullanılır: Metrik sistem (SI) çoğu ülkede standarttır
+                    ve 10&apos;luk tabana dayanır. Emperyal sistem ise ABD, İngiltere ve birkaç ülkede
+                    kullanılır. Türkiye metrik sistemi resmi olarak kullanmaktadır.
+                </p>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>1 mil kaç kilometre?</h4>
+                <p>
+                    1 mil = 1.60934 kilometre. Tersine, 1 kilometre = 0.621371 mil.
+                </p>
+
+                <h4>1 pound kaç kilogram?</h4>
+                <p>
+                    1 pound (lb) = 0.453592 kilogram. Tersine, 1 kilogram = 2.20462 pound.
+                </p>
+
+                <h4>Fahrenheit&apos;ı Celsius&apos;a nasıl çevirim?</h4>
+                <p>
+                    Formül: °C = (°F - 32) × 5/9. Örneğin, 77°F = (77-32) × 5/9 = 25°C.
+                </p>
+
+                <h4>1 dönüm kaç metrekare?</h4>
+                <p>
+                    Türkiye&apos;de 1 dönüm = 1000 metrekare olarak kabul edilir. Bazı bölgelerde
+                    eski (yerel) dönüm ölçüleri farklı olabilir.
+                </p>
             </article>
         </div>
     )

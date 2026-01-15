@@ -54,7 +54,69 @@ export default function MatematikPage() {
 
             <article className="prose prose-slate dark:prose-invert max-w-none">
                 <h2>Matematik Hesaplama Araçları</h2>
-                <p>Matematik hesaplama araçlarımız eğitim, iş ve günlük hayatta karşılaşılan hesaplamaları kolaylaştırır. Yüzde hesaplamadan karekök almaya, ortalama hesaplamadan not hesaplamaya kadar çeşitli araçlar mevcuttur.</p>
+                <p>
+                    Matematik hesaplama araçlarımız eğitim, iş ve günlük hayatta karşılaşılan hesaplamaları
+                    kolaylaştırır. Yüzde hesaplamadan karekök almaya, ortalama hesaplamadan not hesaplamaya
+                    kadar çeşitli araçlar mevcuttur.
+                </p>
+
+                <h3>Popüler Matematik Hesaplayıcıları</h3>
+
+                <h4>Yüzde Hesaplama</h4>
+                <p>
+                    Bir sayının yüzdesini bulma, yüzde artış/azalış hesaplama ve iki sayı arasındaki yüzdelik
+                    farkı hesaplayın. Alışverişten iş dünyasına kadar en sık ihtiyaç duyulan hesaplama.
+                </p>
+
+                <h4>Karekök Hesaplama</h4>
+                <p>
+                    Herhangi bir sayının karekökünü anında hesaplayın. Negatif sayılar için sanal karekök
+                    sonuçları da gösterilir.
+                </p>
+
+                <h4>TYT ve AYT Net Hesaplama</h4>
+                <p>
+                    YKS sınavları için TYT ve AYT net hesaplama araçlarımız ile doğru ve yanlış sayılarınızı
+                    girerek net puanınızı hesaplayın. Her 4 yanlış 1 doğruyu götürür kuralı uygulanır.
+                </p>
+
+                <h4>LGS Puan Hesaplama 2026</h4>
+                <p>
+                    Liselere Geçiş Sistemi (LGS) için güncel puan hesaplama. Sözel ve sayısal puanlarınızı
+                    girerek yerleştirme puanınızı öğrenin.
+                </p>
+
+                <h4>GPA Hesaplama</h4>
+                <p>
+                    Üniversite not ortalaması (GPA) hesaplama. 4&apos;lük veya 100&apos;lük sisteme göre genel not
+                    ortalamanızı hesaplayın.
+                </p>
+
+                <h3>Eğitim Hesaplayıcıları Hakkında</h3>
+                <p>
+                    Eğitim hesaplayıcılarımız MEB ve ÖSYM&apos;nin güncel puan hesaplama sistemlerine uygun
+                    olarak hazırlanmıştır. Ancak resmi sonuçlar için ilgili kurumların açıklamalarını takip edin.
+                </p>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>Yüzde nasıl hesaplanır?</h4>
+                <p>
+                    Bir sayının yüzdesi = (Sayı × Yüzde) / 100 formülü ile hesaplanır. Örneğin, 200&apos;ün
+                    %15&apos;i = (200 × 15) / 100 = 30&apos;dur.
+                </p>
+
+                <h4>TYT&apos;de net nasıl hesaplanır?</h4>
+                <p>
+                    TYT Net = Doğru Sayısı - (Yanlış Sayısı / 4) formülü ile hesaplanır. Boş bırakılan
+                    sorular net hesaplamasına dahil edilmez.
+                </p>
+
+                <h4>GPA 4&apos;lük sisteme nasıl çevrilir?</h4>
+                <p>
+                    100&apos;lük sistemdeki notlar genellikle şu şekilde çevrilir: 90-100 = 4.0, 85-89 = 3.5,
+                    80-84 = 3.0, 75-79 = 2.5 gibi. Her üniversitenin kendi dönüşüm tablosu olabilir.
+                </p>
             </article>
         </div>
     )

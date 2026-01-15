@@ -84,6 +84,72 @@ export default function FinansPage() {
                     <li><strong>Yatırım Analizi:</strong> ROI hesaplama ile yatırımlarınızın performansını ölçün</li>
                     <li><strong>Enflasyon Koruması:</strong> Paranızın reel değerini korumak için enflasyon etkisini anlayın</li>
                 </ul>
+
+                <h3>Popüler Finans Hesaplayıcılarımız</h3>
+
+                <h4>Kredi Hesaplama</h4>
+                <p>
+                    Konut kredisi, taşıt kredisi veya ihtiyaç kredisi başvurusu yapmadan önce kredi hesaplama aracımızı kullanın.
+                    Faiz oranı, vade süresi ve kredi tutarını girerek aylık taksit miktarınızı, toplam ödeyeceğiniz tutarı ve
+                    toplam faiz maliyetini anında öğrenebilirsiniz. Bu sayede farklı banka tekliflerini karşılaştırabilir ve
+                    bütçenize en uygun seçeneği belirleyebilirsiniz.
+                </p>
+
+                <h4>Mevduat Faizi Hesaplama</h4>
+                <p>
+                    Vadeli mevduat hesabı açmayı düşünüyorsanız, mevduat faizi hesaplama aracımız ile yatıracağınız paranın
+                    vade sonunda ne kadar getiri sağlayacağını hesaplayabilirsiniz. Brüt ve net getiri tutarlarını, stopaj
+                    kesintisini görebilir ve farklı vade seçeneklerini karşılaştırabilirsiniz.
+                </p>
+
+                <h4>Bileşik Faiz Hesaplama</h4>
+                <p>
+                    Uzun vadeli yatırımların gücünü keşfedin! Bileşik faiz hesaplama aracımız, düzenli olarak yatırım
+                    yaptığınızda paranızın zaman içinde nasıl büyüyeceğini gösterir. Einstein&apos;ın &quot;dünyanın sekizinci
+                    harikası&quot; olarak tanımladığı bileşik faizin etkisini hesaplayın.
+                </p>
+
+                <h4>Döviz Çevirici</h4>
+                <p>
+                    Güncel döviz kurları ile anlık çeviri yapın. Dolar, Euro, Sterlin ve diğer para birimleri arasında
+                    hızlı dönüşüm sağlayın. Kurlar birden fazla kaynaktan alınarak güncellenir.
+                </p>
+
+                <h3>Finansal Planlama İpuçları</h3>
+                <ul>
+                    <li><strong>50/30/20 Kuralı:</strong> Gelirinizin %50&apos;sini ihtiyaçlara, %30&apos;unu isteklere, %20&apos;sini tasarrufa ayırın</li>
+                    <li><strong>Acil Durum Fonu:</strong> En az 3-6 aylık giderinizi karşılayacak bir acil durum fonu oluşturun</li>
+                    <li><strong>Borç Yönetimi:</strong> Yüksek faizli borçlardan kurtulmaya öncelik verin</li>
+                    <li><strong>Bileşik Faiz:</strong> Erken yaşta yatırıma başlayın, bileşik faizin gücünden yararlanın</li>
+                </ul>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>Kredi faiz oranları nasıl belirlenir?</h4>
+                <p>
+                    Kredi faiz oranları, Merkez Bankası politika faizi, piyasa koşulları, kredi türü, vade süresi ve
+                    müşterinin kredi geçmişi gibi faktörlere göre belirlenir. Düşük faiz oranı için kredi notunuzu
+                    yüksek tutmanız önemlidir.
+                </p>
+
+                <h4>Mevduat faizi stopajı nedir?</h4>
+                <p>
+                    Mevduat faizi stopajı, vadeli mevduat getirisi üzerinden kesilen vergidir. 2024 yılı itibarıyla
+                    TL mevduatlarda %15, döviz mevduatlarında %25 oranında stopaj uygulanmaktadır.
+                </p>
+
+                <h4>ROI (Yatırım Getirisi) nasıl hesaplanır?</h4>
+                <p>
+                    ROI = ((Yatırımdan Elde Edilen Gelir - Yatırım Maliyeti) / Yatırım Maliyeti) x 100 formülü ile
+                    hesaplanır. Pozitif ROI karlı bir yatırımı, negatif ROI zarar eden bir yatırımı ifade eder.
+                </p>
+
+                <h4>Enflasyon paranın değerini nasıl etkiler?</h4>
+                <p>
+                    Enflasyon, paranın satın alma gücünü düşürür. Örneğin yıllık %30 enflasyon ortamında, 100 TL&apos;nin
+                    reel değeri bir yıl sonra yaklaşık 77 TL&apos;ye düşer. Bu nedenle tasarruflarınızı enflasyonun
+                    üzerinde getiri sağlayan araçlara yatırmanız önemlidir.
+                </p>
             </article>
         </div>
     )

@@ -179,6 +179,95 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* SEO Content Section */}
+      <section className="mt-16">
+        <article className="prose prose-slate dark:prose-invert max-w-none">
+          <h2>HesaplamaMakinesi.com - Türkiye&apos;nin En Kapsamlı Online Hesaplama Platformu</h2>
+          <p>
+            HesaplamaMakinesi.com olarak, günlük hayatınızda ihtiyaç duyabileceğiniz tüm hesaplama araçlarını
+            tek bir platformda sunuyoruz. Finans hesaplamalarından sağlık hesaplayıcılarına, vergi hesaplamalarından
+            eğitim araçlarına kadar geniş bir yelpazede 100&apos;den fazla ücretsiz hesaplama aracı ile hizmetinizdeyiz.
+          </p>
+
+          <h3>Neden HesaplamaMakinesi.com?</h3>
+          <p>
+            Güncel verilerle çalışan hesaplama araçlarımız, doğru ve güvenilir sonuçlar sunar. Tüm hesaplayıcılarımız
+            mobil uyumlu tasarımı sayesinde telefon, tablet veya bilgisayarınızdan kolayca erişilebilir.
+            Hiçbir kayıt veya üyelik gerektirmeden, tamamen ücretsiz olarak kullanabilirsiniz.
+          </p>
+
+          <h3>Sunduğumuz Hesaplama Kategorileri</h3>
+
+          <h4>Finans Hesaplama Araçları</h4>
+          <p>
+            Kredi hesaplama, mevduat faizi hesaplama, bileşik faiz hesaplama, döviz çevirici, yatırım getirisi (ROI)
+            hesaplama, enflasyon hesaplama ve işsizlik maaşı hesaplama gibi finansal araçlarımız ile bütçenizi
+            planlamanıza yardımcı oluyoruz. Güncel faiz oranları ve döviz kurları ile anlık hesaplamalar yapabilirsiniz.
+          </p>
+
+          <h4>Vergi ve Muhasebe Hesaplayıcıları</h4>
+          <p>
+            KDV hesaplama, gelir vergisi hesaplama, MTV hesaplama, damga vergisi hesaplama, ÖTV hesaplama ve
+            kurumlar vergisi hesaplama araçlarımız ile vergi yükümlülüklerinizi kolayca hesaplayabilirsiniz.
+            2024 ve 2025 yılı güncel vergi dilimleri ve oranları ile çalışan hesaplayıcılarımız, hem bireysel
+            hem de kurumsal kullanıcılar için idealdir.
+          </p>
+
+          <h4>Sağlık ve Spor Hesaplayıcıları</h4>
+          <p>
+            Vücut Kitle İndeksi (VKİ) hesaplama, kalori hesaplama, ideal kilo hesaplama, su ihtiyacı hesaplama,
+            makro besin hesaplama ve bazal metabolizma hesaplama araçlarımız ile sağlıklı yaşam hedeflerinize
+            ulaşmanıza destek oluyoruz. Bilimsel formüllere dayanan hesaplayıcılarımız güvenilir sonuçlar sunar.
+          </p>
+
+          <h4>Matematik ve Eğitim Araçları</h4>
+          <p>
+            Yüzde hesaplama, karekök hesaplama, TYT net hesaplama, AYT net hesaplama, LGS puan hesaplama ve
+            GPA hesaplama gibi eğitim araçlarımız öğrenciler ve veliler için vazgeçilmezdir. 2026 yılı güncel
+            sınav sistemlerine uygun hesaplayıcılarımız ile sınav hazırlık sürecinizi destekliyoruz.
+          </p>
+
+          <h4>Zaman ve Takvim Hesaplayıcıları</h4>
+          <p>
+            Yaş hesaplama, tarih hesaplama, gebelik hesaplama, gün farkı hesaplama, çalışma günleri hesaplama
+            ve zaman dilimi çevirici araçlarımız ile zamanla ilgili tüm hesaplamalarınızı kolayca yapabilirsiniz.
+          </p>
+
+          <h4>Birim Dönüştürücüler</h4>
+          <p>
+            Uzunluk, ağırlık, sıcaklık, hız, alan ve veri boyutu dönüştürücülerimiz ile farklı ölçü birimleri
+            arasında hızlı çeviri yapabilirsiniz. Metrik ve emperyal sistemler arasında kolayca geçiş yapın.
+          </p>
+
+          <h3>Sıkça Sorulan Sorular (SSS)</h3>
+
+          <h4>HesaplamaMakinesi.com ücretsiz mi?</h4>
+          <p>
+            Evet, platformumuzdaki tüm hesaplama araçları tamamen ücretsizdir. Hiçbir gizli ücret veya
+            abonelik gerektirmez.
+          </p>
+
+          <h4>Hesaplama sonuçları güvenilir mi?</h4>
+          <p>
+            Tüm hesaplayıcılarımız güncel ve doğrulanmış formüller kullanır. Vergi oranları, faiz oranları ve
+            döviz kurları gibi değişken veriler düzenli olarak güncellenir. Ancak kritik finansal veya sağlık
+            kararları için profesyonel danışmanlık almanızı öneririz.
+          </p>
+
+          <h4>Mobil cihazlarda kullanabilir miyim?</h4>
+          <p>
+            Evet, HesaplamaMakinesi.com tamamen mobil uyumludur. Akıllı telefon, tablet veya bilgisayarınızdan
+            tüm hesaplama araçlarını sorunsuz kullanabilirsiniz.
+          </p>
+
+          <h4>Hesaplama geçmişim kaydediliyor mu?</h4>
+          <p>
+            Hayır, hesaplamalarınız sunucularımızda saklanmaz. Tüm işlemler tarayıcınızda gerçekleşir ve
+            sayfayı kapattığınızda silinir. Gizliliğiniz bizim için önemlidir.
+          </p>
+        </article>
+      </section>
     </div>
   )
 }

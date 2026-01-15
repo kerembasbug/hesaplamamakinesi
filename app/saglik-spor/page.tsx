@@ -77,6 +77,79 @@ export default function SaglikSporPage() {
                     <li><strong>Bilimsel Yaklaşım:</strong> Uluslararası kabul görmüş formüller ve standartlar</li>
                     <li><strong>Sağlık Farkındalığı:</strong> Risk faktörlerini erkenden belirleyin</li>
                 </ul>
+
+                <h3>Popüler Sağlık Hesaplayıcılarımız</h3>
+
+                <h4>Vücut Kitle İndeksi (VKİ) Hesaplama</h4>
+                <p>
+                    VKİ, boy ve kilonuza göre vücut yağ oranınızı tahmin eden bir ölçüdür. Dünya Sağlık Örgütü (WHO) tarafından
+                    kabul edilen sınıflandırmaya göre zayıf, normal, fazla kilolu veya obez kategorisinde olup olmadığınızı
+                    öğrenebilirsiniz. VKİ = Kilo (kg) / Boy² (m) formülü ile hesaplanır.
+                </p>
+
+                <h4>Kalori İhtiyacı Hesaplama</h4>
+                <p>
+                    Günlük kalori ihtiyacınız; yaş, cinsiyet, boy, kilo ve aktivite düzeyinize göre değişir. Kilo vermek,
+                    korumak veya almak istemenize bağlı olarak günlük kalori hedeflerinizi belirleyin. Harris-Benedict ve
+                    Mifflin-St Jeor formülleri gibi bilimsel yöntemlerle hesaplama yapıyoruz.
+                </p>
+
+                <h4>İdeal Kilo Hesaplama</h4>
+                <p>
+                    Boyunuza ve vücut yapınıza göre ideal kilonuzu öğrenin. Devine, Robinson, Miller ve Hamwi formülleri
+                    gibi farklı yöntemlerle hesaplama yapabilirsiniz. İdeal kilo, sağlıklı bir yaşam için hedef belirlemenize
+                    yardımcı olur.
+                </p>
+
+                <h4>Su İhtiyacı Hesaplama</h4>
+                <p>
+                    Vücudunuzun günlük su ihtiyacı kilonuza ve aktivite düzeyinize göre değişir. Yeterli su tüketimi,
+                    metabolizmanın düzgün çalışması, toksinlerin atılması ve cilt sağlığı için kritik öneme sahiptir.
+                </p>
+
+                <h4>Makro Besin Hesaplama</h4>
+                <p>
+                    Protein, karbonhidrat ve yağ oranlarınızı hesaplayın. Kas kazanımı, yağ kaybı veya genel sağlık
+                    hedeflerinize göre makro dağılımınızı optimize edin.
+                </p>
+
+                <h3>Sağlıklı Yaşam İpuçları</h3>
+                <ul>
+                    <li><strong>Düzenli Egzersiz:</strong> Haftada en az 150 dakika orta yoğunlukta aerobik aktivite yapın</li>
+                    <li><strong>Dengeli Beslenme:</strong> Her öğünde protein, karbonhidrat ve sağlıklı yağları dengeleyin</li>
+                    <li><strong>Yeterli Uyku:</strong> Günde 7-9 saat kaliteli uyku alın</li>
+                    <li><strong>Stres Yönetimi:</strong> Meditasyon, yoga veya hobi aktiviteleri ile stresi azaltın</li>
+                    <li><strong>Düzenli Kontrol:</strong> Yılda en az bir kez sağlık kontrolü yaptırın</li>
+                </ul>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>VKİ her zaman doğru mu?</h4>
+                <p>
+                    VKİ genel bir göstergedir ancak her durumda doğru sonuç vermez. Kas kütlesi yüksek sporcular,
+                    hamile kadınlar ve çocuklar için farklı değerlendirme yöntemleri gerekebilir. VKİ &apos;nin yanı sıra
+                    bel çevresi ölçümü de önemli bir sağlık göstergesidir.
+                </p>
+
+                <h4>Günde kaç litre su içmeliyim?</h4>
+                <p>
+                    Genel öneri günde 8 bardak (yaklaşık 2 litre) sudur, ancak ihtiyaç kişiye göre değişir.
+                    Kilonuzun her kilogramı için yaklaşık 30-35 ml su içmeniz önerilir. Egzersiz yapıyorsanız
+                    veya sıcak havada bu miktarı artırmalısınız.
+                </p>
+
+                <h4>Kilo vermek için günde kaç kalori almalıyım?</h4>
+                <p>
+                    Sağlıklı kilo kaybı için günlük kalori ihtiyacınızın 500-750 kalori altında kalmanız önerilir.
+                    Bu, haftada 0.5-0.75 kg kilo kaybına eşdeğerdir. Günlük 1200 kalorinin altına düşmemeniz önemlidir.
+                </p>
+
+                <h4>Bazal metabolizma hızı nedir?</h4>
+                <p>
+                    Bazal metabolizma hızı (BMR), vücudunuzun hiçbir aktivite yapmadan, sadece temel yaşamsal
+                    fonksiyonları sürdürmek için harcadığı kalori miktarıdır. Nefes alma, kalp atışı, hücre
+                    yenilenmesi gibi işlemler için gereken enerjidir.
+                </p>
             </article>
         </div>
     )
