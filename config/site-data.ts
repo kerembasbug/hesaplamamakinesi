@@ -40,6 +40,10 @@ import {
   Thermometer,
   Gauge,
   HardDrive,
+  Car,
+  Sparkles,
+  Star,
+  Moon,
   LucideIcon
 } from "lucide-react"
 
@@ -108,6 +112,30 @@ export const categories: Category[] = [
         slug: "issizlik-maasi-hesaplama",
         description: "İşsizlik ödeneği tutarınızı hesaplayın",
         icon: Banknote
+      },
+      {
+        name: "Rayiç Bedel Hesaplama",
+        slug: "rayic-bedel-hesaplama",
+        description: "Gayrimenkul resmi değer tahmini",
+        icon: Building2
+      },
+      {
+        name: "15 Günlük Maaş Farkı",
+        slug: "15-gunluk-maas-farki-hesaplama",
+        description: "Memur zam farkı hesaplayıcı",
+        icon: Banknote
+      },
+      {
+        name: "3600 Günle Emeklilik",
+        slug: "3600-gunle-emeklilik-hesaplama",
+        description: "Kısmi emeklilik şartları sorgulama",
+        icon: Landmark
+      },
+      {
+        name: "Asgari Ödeme Hesaplama",
+        slug: "asgari-odeme-hesaplama",
+        description: "Kredi kartı minimum ödeme tutarı",
+        icon: CreditCard
       }
     ]
   },
@@ -216,6 +244,30 @@ export const categories: Category[] = [
         slug: "cinsiyet-hesaplama",
         description: "Çin takvimi ile bebek cinsiyeti tahmini",
         icon: Heart
+      },
+      {
+        name: "1RM Hesaplama",
+        slug: "1rm-hesaplama",
+        description: "Tek tekrar maksimum güç hesaplayıcı",
+        icon: Dumbbell
+      },
+      {
+        name: "Promil Hesaplama",
+        slug: "alkol-promil-hesaplama",
+        description: "Alkol promil ve yasal sınır kontrolü",
+        icon: Activity
+      },
+      {
+        name: "Calpol Doz Hesaplama",
+        slug: "calpol-doz-hesaplama",
+        description: "Kiloya göre çocuk parasetamol dozu",
+        icon: Activity
+      },
+      {
+        name: "QTc Hesaplama",
+        slug: "qtc-hesaplama",
+        description: "Düzeltilmiş QT aralığı hesaplayıcı",
+        icon: Activity
       }
     ]
   },
@@ -279,6 +331,12 @@ export const categories: Category[] = [
         slug: "gpa-hesaplama",
         description: "Genel not ortalaması hesaplayın",
         icon: BarChart3
+      },
+      {
+        name: "İskonto Hesaplama",
+        slug: "iskonto-hesaplama",
+        description: "İndirimli fiyat ve tasarruf hesaplayın",
+        icon: Percent
       }
     ]
   },
@@ -324,6 +382,12 @@ export const categories: Category[] = [
         slug: "kronometre",
         description: "Online kronometre ve zamanlayıcı",
         icon: Timer
+      },
+      {
+        name: "Saat Hesaplama",
+        slug: "saat-hesaplama",
+        description: "İki saat arasındaki farkı hesaplayın",
+        icon: Clock
       }
     ]
   },
@@ -369,6 +433,54 @@ export const categories: Category[] = [
         slug: "veri-boyutu-donusturucu",
         description: "Byte, KB, MB, GB çevirisi",
         icon: HardDrive
+      }
+    ]
+  },
+  {
+    id: "seyahat",
+    name: "Seyahat",
+    slug: "seyahat",
+    description: "Taksi, yakıt ve gezi hesaplamaları",
+    icon: Plane,
+    tools: [
+      {
+        name: "Taksi Ücreti Hesaplama",
+        slug: "taksi-ucreti-hesaplama",
+        description: "İstanbul ve Ankara güncel taksi ücretleri",
+        icon: Car
+      },
+      {
+        name: "HYP Hesaplama",
+        slug: "hyp-hesaplama",
+        description: "Hız, yakıt ve para tasarrufu analizi",
+        icon: Gauge
+      }
+    ]
+  },
+  {
+    id: "astroloji",
+    name: "Astroloji",
+    slug: "astroloji",
+    description: "Burç, yükselen ve gökyüzü hesaplamaları",
+    icon: Sparkles,
+    tools: [
+      {
+        name: "Güneş Burcu Hesaplama",
+        slug: "astroloji",
+        description: "Güneş burcu ve temel karakter analizi",
+        icon: Sun
+      },
+      {
+        name: "Juno Burç Hesaplama",
+        slug: "astroloji/juno-hesaplama",
+        description: "Ruh eşi ve evlilik burcu hesaplayın",
+        icon: Star
+      },
+      {
+        name: "Lilith Burcu Hesaplama",
+        slug: "astroloji/lilith-hesaplama",
+        description: "Kara Ay Lilith yerleşimini bulun",
+        icon: Moon
       }
     ]
   }

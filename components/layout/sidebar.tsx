@@ -17,7 +17,7 @@ export function Sidebar() {
     const pathname = usePathname()
 
     return (
-        <aside className="hidden lg:block fixed left-0 top-16 z-30 h-[calc(100vh-4rem)] w-64 border-r border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
+        <aside className="hidden lg:block sticky top-16 z-30 h-[calc(100vh-4rem)] w-64 shrink-0 border-r border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900">
             <ScrollArea className="h-full py-6">
                 <div className="px-4">
                     <h2 className="mb-4 px-2 text-lg font-semibold text-slate-900 dark:text-white">

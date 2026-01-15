@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Coins, Copy, Check, ArrowRightLeft, RefreshCw, Loader2 } from "lucide-react"
+import { Coins, Copy, Check, ArrowRightLeft, RefreshCw, Loader2, AlertTriangle, CheckCircle } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,7 +17,17 @@ const currencyNames: Record<string, string> = {
     AUD: "Avustralya Doları",
     CAD: "Kanada Doları",
     SAR: "Suudi Riyali",
-    AED: "BAE Dirhemi"
+    AED: "BAE Dirhemi",
+    RUB: "Rus Rublesi",
+    CNY: "Çin Yuanı",
+    INR: "Hint Rupisi",
+    KRW: "Güney Kore Wonu",
+    BRL: "Brezilya Reali",
+    MXN: "Meksika Pesosu",
+    SEK: "İsveç Kronu",
+    NOK: "Norveç Kronu",
+    DKK: "Danimarka Kronu",
+    PLN: "Polonya Zlotisi"
 }
 
 const currencySymbols: Record<string, string> = {
@@ -30,7 +40,17 @@ const currencySymbols: Record<string, string> = {
     AUD: "A$",
     CAD: "C$",
     SAR: "SR",
-    AED: "AED"
+    AED: "AED",
+    RUB: "₽",
+    CNY: "¥",
+    INR: "₹",
+    KRW: "₩",
+    BRL: "R$",
+    MXN: "MX$",
+    SEK: "kr",
+    NOK: "kr",
+    DKK: "kr",
+    PLN: "zł"
 }
 
 // Fallback rates in case API fails
@@ -44,7 +64,17 @@ const fallbackRates: Record<string, number> = {
     AUD: 23.50,
     CAD: 25.80,
     SAR: 9.45,
-    AED: 9.66
+    AED: 9.66,
+    RUB: 0.38,
+    CNY: 4.95,
+    INR: 0.42,
+    KRW: 0.025,
+    BRL: 6.10,
+    MXN: 1.95,
+    SEK: 3.40,
+    NOK: 3.25,
+    DKK: 5.10,
+    PLN: 8.70
 }
 
 export function CurrencyConverter() {
@@ -57,17 +87,18 @@ export function CurrencyConverter() {
     const [loading, setLoading] = useState(true)
     const [lastUpdate, setLastUpdate] = useState<string>("")
     const [error, setError] = useState<string | null>(null)
+    const [source, setSource] = useState<string>("")
+    const [isLive, setIsLive] = useState(false)
 
-    // Fetch exchange rates from API
+    // Fetch exchange rates from our API
     const fetchRates = useCallback(async () => {
         setLoading(true)
         setError(null)
 
         try {
-            // Using exchangerate.host API (free, no key required)
-            const response = await fetch(
-                `https://api.exchangerate.host/latest?base=TRY&symbols=USD,EUR,GBP,CHF,JPY,AUD,CAD,SAR,AED`
-            )
+            const response = await fetch("/api/currency-rates", {
+                cache: "no-store"
+            })
 
             if (!response.ok) {
                 throw new Error("API yanıt vermedi")
@@ -75,30 +106,35 @@ export function CurrencyConverter() {
 
             const data = await response.json()
 
-            if (data.success === false) {
-                throw new Error("Kur bilgisi alınamadı")
-            }
+            if (data.success && data.rates) {
+                setRates(data.rates)
+                setSource(data.source)
+                setIsLive(data.source !== "fallback" && data.source !== "error-fallback")
 
-            // API returns rates relative to TRY, we need to invert them
-            const newRates: Record<string, number> = { TRY: 1 }
+                // Format last update time
+                if (data.lastUpdate) {
+                    const updateDate = new Date(data.lastUpdate)
+                    setLastUpdate(updateDate.toLocaleString("tr-TR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric"
+                    }))
+                }
 
-            if (data.rates) {
-                Object.keys(data.rates).forEach((currency) => {
-                    // Invert the rate: if 1 TRY = 0.028 USD, then 1 USD = 1/0.028 = ~35.7 TRY
-                    newRates[currency] = 1 / data.rates[currency]
-                })
-
-                setRates(newRates)
-                setLastUpdate(new Date().toLocaleString("tr-TR"))
+                if (data.error) {
+                    setError(data.error)
+                }
             } else {
-                throw new Error("Kur verisi bulunamadı")
+                throw new Error("Kur verisi alınamadı")
             }
         } catch (err) {
             console.error("Kur API hatası:", err)
             setError("Güncel kurlar alınamadı, tahmini kurlar gösteriliyor")
-            // Keep using fallback rates
             setRates(fallbackRates)
             setLastUpdate("Tahmini kurlar")
+            setIsLive(false)
         } finally {
             setLoading(false)
         }
@@ -120,8 +156,10 @@ export function CurrencyConverter() {
         }
 
         // Convert to TRY first, then to target currency
-        const inTRY = numAmount * rates[fromCurrency]
-        const converted = inTRY / rates[toCurrency]
+        const fromRate = rates[fromCurrency] || 1
+        const toRate = rates[toCurrency] || 1
+        const inTRY = numAmount * fromRate
+        const converted = inTRY / toRate
 
         setResult(Math.round(converted * 10000) / 10000)
     }, [amount, fromCurrency, toCurrency, rates])
@@ -167,8 +205,18 @@ export function CurrencyConverter() {
                             </div>
                             <div>
                                 <CardTitle className="text-xl">Döviz Çevirici</CardTitle>
-                                <CardDescription className="text-amber-100">
-                                    Güncel kurlar ile döviz çevirisi
+                                <CardDescription className="text-amber-100 flex items-center gap-2">
+                                    {isLive ? (
+                                        <>
+                                            <CheckCircle className="h-3 w-3" />
+                                            Canlı kurlar
+                                        </>
+                                    ) : (
+                                        <>
+                                            <AlertTriangle className="h-3 w-3" />
+                                            Tahmini kurlar
+                                        </>
+                                    )}
                                 </CardDescription>
                             </div>
                         </div>
@@ -178,6 +226,7 @@ export function CurrencyConverter() {
                             onClick={fetchRates}
                             disabled={loading}
                             className="text-white hover:bg-white/20"
+                            title="Kurları yenile"
                         >
                             {loading ? (
                                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -189,8 +238,9 @@ export function CurrencyConverter() {
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
                     {error && (
-                        <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-sm">
-                            ⚠️ {error}
+                        <div className="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-sm flex items-center gap-2">
+                            <AlertTriangle className="h-4 w-4 flex-shrink-0" />
+                            {error}
                         </div>
                     )}
 
@@ -300,7 +350,11 @@ export function CurrencyConverter() {
                 <CardHeader>
                     <div className="flex items-center justify-between">
                         <CardTitle className="text-lg flex items-center gap-2">
-                            <RefreshCw className="h-5 w-5 text-amber-500" />
+                            {isLive ? (
+                                <CheckCircle className="h-5 w-5 text-green-500" />
+                            ) : (
+                                <AlertTriangle className="h-5 w-5 text-amber-500" />
+                            )}
                             Güncel Döviz Kurları (TRY)
                         </CardTitle>
                         {lastUpdate && (
@@ -309,10 +363,13 @@ export function CurrencyConverter() {
                             </span>
                         )}
                     </div>
+                    {source && source !== "fallback" && source !== "error-fallback" && (
+                        <p className="text-xs text-slate-500">Kaynak: {source}</p>
+                    )}
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                        {currencies.filter(c => c !== "TRY").map((currency) => (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                        {currencies.filter(c => c !== "TRY" && rates[c]).map((currency) => (
                             <div key={currency} className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-center">
                                 <p className="text-lg font-bold text-slate-900 dark:text-white">
                                     {currencySymbols[currency]}1
