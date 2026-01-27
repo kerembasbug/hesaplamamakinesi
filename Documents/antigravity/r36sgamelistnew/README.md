@@ -1,0 +1,139 @@
+# R36S Game List
+
+R36S konsolu için desteklenen tüm oyunların SEO-optimize edilmiş web uygulaması.
+
+## Özellikler
+
+- ✅ **15,000+ oyun** - R36S konsolu için desteklenen tüm oyunlar (21 farklı konsol)
+- 🌍 **15 Dil Desteği** - İngilizce, Almanca, İspanyolca, Fransızca, İtalyanca, Portekizce, Japonca, Arapça, Hollandaca, İsveççe, Danca, Norveççe, Korece, Türkçe, Çince
+- 🔍 **Gelişmiş Arama** - Oyun adı, konsol ve arama terimlerine göre filtreleme
+- 🎮 **Konsol Filtreleme** - PSP, PlayStation 1, Dreamcast, SNES, Famicom, Arcade, Game Boy Advance, NES ve daha fazlası
+- 🎨 **Cyberpunk Tasarım** - Modern ve renkli kullanıcı arayüzü
+- 📱 **Responsive Tasarım** - Mobil ve masaüstü uyumlu
+- 🔎 **SEO Optimizasyonu** - Meta tags, structured data, sitemap, robots.txt, hreflang tags
+- 🌐 **Geolocation Bazlı Dil Algılama** - Kullanıcının konumuna göre otomatik dil seçimi
+- ⚡ **Hızlı Performans** - Next.js 14 App Router ile optimize edilmiş
+
+## Kurulum
+
+```bash
+# Bağımlılıkları yükle
+npm install
+
+# Oyun listesini parse et (HTML dosyasından)
+npm run parse
+
+# Geliştirme sunucusunu başlat
+npm run dev
+```
+
+## Kullanım
+
+1. HTML dosyasından oyunları parse etmek için:
+   ```bash
+   npm run parse
+   ```
+
+2. Geliştirme modunda çalıştırmak için:
+   ```bash
+   npm run dev
+   ```
+
+3. Production build için:
+   ```bash
+   npm run build
+   npm start
+   ```
+
+## Coolify Deployment
+
+Detaylı deployment rehberi için [COOLIFY_DEPLOYMENT.md](COOLIFY_DEPLOYMENT.md) dosyasına bakın.
+
+### Hızlı Başlangıç
+
+1. **Repository**: `https://github.com/kerembasbug/r36s-game-list`
+2. **Build Command**: `npm install && npm run build`
+3. **Start Command**: `sh start.sh` veya `node .next/standalone/server.js`
+4. **Port**: `3000` (Coolify otomatik ayarlar)
+
+### Environment Variables
+
+| Variable | Value | Açıklama |
+|----------|-------|----------|
+| `NODE_ENV` | `production` | Production modu (zorunlu) |
+| `NEXT_PUBLIC_SITE_URL` | `https://r36sgamelist.com` | Site URL'i (canonical URLs ve hreflang için) |
+
+**Not**: `NEXT_PUBLIC_SITE_URL` değişkenini kendi domain'inizle değiştirin.
+
+### Önemli Notlar
+
+- ✅ `output: 'standalone'` modu `next.config.mjs`'de ayarlı
+- ✅ `start.sh` script'i static files'ı doğru yere kopyalar
+- ✅ Coolify otomatik olarak PORT environment variable'ını ayarlar
+- ✅ Traefik/Caddy label'ları otomatik oluşturulur
+- ✅ SSL sertifikası Let's Encrypt ile otomatik oluşturulur
+
+## SEO Özellikleri
+
+- **Meta Tags**: Title, description, keywords, Open Graph
+- **Structured Data**: JSON-LD schema markup (çoklu dil desteği)
+- **Hreflang Tags**: 15 dil için hreflang etiketleri
+- **Content-Language Header**: Otomatik dil başlığı
+- **Sitemap**: Otomatik oluşturulan XML sitemap
+- **Robots.txt**: Arama motorları için optimize edilmiş
+- **Canonical URLs**: Duplicate content önleme
+- **Semantic HTML**: Erişilebilirlik ve SEO için optimize edilmiş
+- **Geolocation SEO**: Ülkeye özel içerik sunumu
+
+## Proje Yapısı
+
+```
+r36s-game-list/
+├── app/
+│   ├── layout.tsx               # Ana layout ve SEO meta tags
+│   ├── page.tsx                 # Ana sayfa (oyun listesi)
+│   ├── globals.css              # Global stiller
+│   ├── sitemap.ts               # XML sitemap
+│   ├── robots.ts                # Robots.txt
+│   ├── components/
+│   │   └── LanguageSelector.tsx # Dil seçici component
+│   ├── api/
+│   │   └── geo/
+│   │       └── route.ts         # Geolocation API
+│   └── game/
+│       └── [slug]/
+│           ├── page.tsx         # Oyun detay sayfaları
+│           └── GameDetailClient.tsx
+├── lib/
+│   └── i18n/
+│       ├── locales.ts           # Dil konfigürasyonu
+│       ├── translations.ts      # Tüm çeviriler (15 dil)
+│       └── LanguageContext.tsx  # React Context ve Provider
+├── src/
+│   └── data/
+│       └── games.json           # Parse edilmiş oyun listesi
+├── middleware.ts                # Content-Language header
+├── parse-games.js               # HTML'den oyun parse scripti
+├── README.md                    # Proje dokümantasyonu
+├── README_I18N.md               # i18n dokümantasyonu
+└── package.json
+```
+
+## Çoklu Dil Desteği (i18n)
+
+Bu proje 15 farklı dilde çalışmaktadır. Detaylı bilgi için [README_I18N.md](README_I18N.md) dosyasına bakın.
+
+### Desteklenen Diller
+🇬🇧 EN | 🇩🇪 DE | 🇪🇸 ES | 🇫🇷 FR | 🇮🇹 IT | 🇵🇹 PT | 🇯🇵 JA | 🇸🇦 AR | 🇳🇱 NL | 🇸🇪 SV | 🇩🇰 DA | 🇳🇴 NO | 🇰🇷 KO | 🇹🇷 TR | 🇨🇳 ZH
+
+### Özellikler
+- ✅ Geolocation bazlı otomatik dil algılama
+- ✅ Tarayıcı dili algılama
+- ✅ LocalStorage ile seçimi hatırlama
+- ✅ SEO optimize edilmiş (hreflang tags)
+- ✅ Sayfa yenileme olmadan dil değişimi
+
+## Lisans
+
+MIT
+
