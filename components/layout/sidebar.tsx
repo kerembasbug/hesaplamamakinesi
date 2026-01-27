@@ -48,13 +48,15 @@ export function Sidebar() {
                                     <AccordionContent className="pb-2 pt-0">
                                         <ul className="space-y-1 pl-4">
                                             {category.tools.map((tool) => {
-                                                const toolPath = `/${category.slug}/${tool.slug}`
-                                                const isActive = pathname === toolPath
+                                                const toolPath = tool.externalUrl || `/${category.slug}/${tool.slug}`
+                                                const isActive = !tool.externalUrl && pathname === `/${category.slug}/${tool.slug}`
 
                                                 return (
                                                     <li key={tool.slug}>
                                                         <Link
                                                             href={toolPath}
+                                                            target={tool.externalUrl ? "_blank" : undefined}
+                                                            rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                                                             className={cn(
                                                                 "flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors",
                                                                 isActive
@@ -67,6 +69,7 @@ export function Sidebar() {
                                                                 isActive ? "text-indigo-500" : "text-slate-400"
                                                             )} />
                                                             <span className="truncate">{tool.name}</span>
+                                                            {tool.externalUrl && <span className="text-xs text-slate-400">↗</span>}
                                                         </Link>
                                                     </li>
                                                 )

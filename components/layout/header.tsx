@@ -50,12 +50,15 @@ export function Header() {
                                                 <li key={tool.slug}>
                                                     <NavigationMenuLink asChild>
                                                         <Link
-                                                            href={`/${category.slug}/${tool.slug}`}
+                                                            href={tool.externalUrl || `/${category.slug}/${tool.slug}`}
+                                                            target={tool.externalUrl ? "_blank" : undefined}
+                                                            rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                                                             className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 hover:text-indigo-600 focus:bg-slate-100 dark:hover:bg-slate-800"
                                                         >
                                                             <div className="flex items-center gap-2 text-sm font-medium leading-none">
                                                                 <tool.icon className="h-4 w-4 text-indigo-500" />
                                                                 {tool.name}
+                                                                {tool.externalUrl && <span className="text-xs text-slate-400">↗</span>}
                                                             </div>
                                                             <p className="line-clamp-2 text-xs leading-snug text-slate-500 dark:text-slate-400">
                                                                 {tool.description}
@@ -137,11 +140,14 @@ export function Header() {
                                                 {category.tools.map((tool) => (
                                                     <li key={tool.slug}>
                                                         <Link
-                                                            href={`/${category.slug}/${tool.slug}`}
+                                                            href={tool.externalUrl || `/${category.slug}/${tool.slug}`}
+                                                            target={tool.externalUrl ? "_blank" : undefined}
+                                                            rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                                                             onClick={() => setMobileMenuOpen(false)}
                                                             className="block py-2 text-sm text-slate-600 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-400"
                                                         >
                                                             {tool.name}
+                                                            {tool.externalUrl && <span className="ml-1 text-xs">↗</span>}
                                                         </Link>
                                                     </li>
                                                 ))}

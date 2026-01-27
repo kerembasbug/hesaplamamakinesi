@@ -127,11 +127,14 @@ export default function HomePage() {
                   {category.tools.slice(0, 3).map((tool) => (
                     <Link
                       key={tool.slug}
-                      href={`/${category.slug}/${tool.slug}`}
+                      href={tool.externalUrl || `/${category.slug}/${tool.slug}`}
+                      target={tool.externalUrl ? "_blank" : undefined}
+                      rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                     >
                       <tool.icon className="h-4 w-4 text-slate-400" />
                       {tool.name}
+                      {tool.externalUrl && <span className="text-xs text-slate-400">↗</span>}
                     </Link>
                   ))}
                 </div>

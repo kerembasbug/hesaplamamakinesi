@@ -44,10 +44,12 @@ export function Footer() {
                                 {category.tools.slice(0, 5).map((tool) => (
                                     <li key={tool.slug}>
                                         <Link
-                                            href={`/${category.slug}/${tool.slug}`}
+                                            href={tool.externalUrl || `/${category.slug}/${tool.slug}`}
+                                            target={tool.externalUrl ? "_blank" : undefined}
+                                            rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                                             className="text-sm text-slate-400 hover:text-indigo-400 transition-colors"
                                         >
-                                            {tool.name}
+                                            {tool.name}{tool.externalUrl && " ↗"}
                                         </Link>
                                     </li>
                                 ))}
@@ -76,10 +78,12 @@ export function Footer() {
                                 {category.tools.map((tool) => (
                                     <li key={tool.slug}>
                                         <Link
-                                            href={`/${category.slug}/${tool.slug}`}
+                                            href={tool.externalUrl || `/${category.slug}/${tool.slug}`}
+                                            target={tool.externalUrl ? "_blank" : undefined}
+                                            rel={tool.externalUrl ? "noopener noreferrer" : undefined}
                                             className="text-sm text-slate-400 hover:text-indigo-400 transition-colors"
                                         >
-                                            {tool.name}
+                                            {tool.name}{tool.externalUrl && " ↗"}
                                         </Link>
                                     </li>
                                 ))}

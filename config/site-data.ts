@@ -52,6 +52,7 @@ export type Tool = {
   slug: string
   description: string
   icon: LucideIcon
+  externalUrl?: string
 }
 
 export type Category = {
@@ -535,6 +536,13 @@ export const categories: Category[] = [
         slug: "7-ev-hesaplama",
         description: "Evlilik ve ortaklık burcunuzu öğrenin",
         icon: Heart
+      },
+      {
+        name: "Kader Matrisi Hesaplama",
+        slug: "kader-matrisi",
+        description: "Kader matrisi ve yaşam haritanızı hesaplayın",
+        icon: Sparkles,
+        externalUrl: "https://matrix-destinychart.com/"
       }
     ]
   }

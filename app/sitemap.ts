@@ -41,14 +41,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.9,
     }))
 
-    // Tool pages - higher priority for calculators
+    // Tool pages - higher priority for calculators (exclude external links)
     const toolPages: MetadataRoute.Sitemap = categories.flatMap((category) =>
-        category.tools.map((tool) => ({
-            url: `${baseUrl}/${category.slug}/${tool.slug}`,
-            lastModified: currentDate,
-            changeFrequency: "weekly" as const,
-            priority: 0.8,
-        }))
+        category.tools
+            .filter((tool) => !tool.externalUrl)
+            .map((tool) => ({
+                url: `${baseUrl}/${category.slug}/${tool.slug}`,
+                lastModified: currentDate,
+                changeFrequency: "weekly" as const,
+                priority: 0.8,
+            }))
     )
 
     return [...staticPages, ...categoryPages, ...toolPages]
