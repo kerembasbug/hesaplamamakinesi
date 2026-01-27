@@ -31,53 +31,123 @@ export default function KaloriHesaplamaPage() {
             <CalorieCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Kalori Nedir ve Neden Önemlidir?</h2>
+                <h2>Kalori Nedir ve Günlük Kalori İhtiyacı Nasıl Belirlenir?</h2>
                 <p>
-                    Kalori, besinlerdeki enerji miktarının ölçü birimidir. Vücudumuz günlük faaliyetlerini
-                    sürdürmek için besinlerden aldığı kaloriyi yakıtına dönüştürür. Doğru miktarda kalori
-                    almak, sağlıklı kilo kontrolü için temel önkoşuldur.
+                    <strong>Kalori</strong>, besinlerdeki enerji miktarının ölçü birimidir. Vücudumuz nefes almak, kan dolaşımı, hücre yenilenmesi gibi temel
+                    yaşamsal fonksiyonlardan yürüme, koşma, düşünme gibi günlük aktivitelere kadar her şey için kalori harcar. Aldığımız kalori ile
+                    harcadığımız kalori arasındaki denge, kilo kontrolünün temel mekanizmasıdır.
+                </p>
+                <p>
+                    Günlük kalori ihtiyacınız; yaşınıza, cinsiyetinize, boyunuza, kilonuza ve fiziksel aktivite düzeyinize göre değişir.
+                    Aracımız, bilimsel olarak kabul görmüş <strong>Harris-Benedict</strong> ve <strong>Mifflin-St Jeor</strong> formüllerini kullanarak
+                    size kişiselleştirilmiş bir sonuç sunar.
                 </p>
 
-                <h2>BMR (Bazal Metabolizma Hızı) Nedir?</h2>
+                <h3>BMR (Bazal Metabolizma Hızı) Nedir?</h3>
                 <p>
-                    BMR, vücudunuzun tamamen dinlenme halindeyken (uyku sırasında bile) temel yaşamsal
-                    fonksiyonlarını sürdürmek için harcadığı minimum kalori miktarıdır. Bu fonksiyonlar
-                    arasında solunum, kan dolaşımı, hücre üretimi ve onarımı yer alır.
+                    BMR, vücudunuzun tamamen dinlenme halindeyken (uyku sırasında bile) temel yaşamsal fonksiyonları sürdürmek için harcadığı
+                    minimum kalori miktarıdır. Solunum, kalp atışı, sindirim, hücre onarımı gibi faaliyetler BMR&apos;ye dahildir.
                 </p>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Formül</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Erkek</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Kadın</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Harris-Benedict</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">66 + (13.7 × kg) + (5 × cm) - (6.8 × yaş)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">655 + (9.6 × kg) + (1.8 × cm) - (4.7 × yaş)</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Mifflin-St Jeor</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">(10 × kg) + (6.25 × cm) - (5 × yaş) + 5</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">(10 × kg) + (6.25 × cm) - (5 × yaş) - 161</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h2>TDEE (Günlük Toplam Enerji Harcaması) Nedir?</h2>
+                <h3>TDEE (Günlük Toplam Enerji Harcaması) Nedir?</h3>
                 <p>
-                    TDEE, BMR&apos;nin aktivite seviyenize göre çarpılmasıyla elde edilen günlük toplam
-                    kalori ihtiyacınızdır. Fiziksel olarak ne kadar aktif olursanız, o kadar fazla
-                    kaloriye ihtiyaç duyarsınız.
+                    TDEE, BMR değerinizin aktivite seviyenize göre çarpılmasıyla elde edilen, gün boyunca toplam harcadığınız kalori miktarıdır.
+                    Kilo vermek için TDEE&apos;nin altında, kilo almak için TDEE&apos;nin üstünde kalori almanız gerekir.
                 </p>
-
-                <h2>Kilo Yönetimi</h2>
                 <ul>
-                    <li><strong>Kilo Vermek:</strong> TDEE&apos;den 500 kalori eksiği = haftada ~0.5 kg kayıp</li>
-                    <li><strong>Kilo Korumak:</strong> TDEE kadar kalori almak</li>
-                    <li><strong>Kilo Almak:</strong> TDEE&apos;den 300-500 kalori fazlası = haftada ~0.3-0.5 kg artış</li>
+                    <li><strong>Hareketsiz (×1.2):</strong> Masa başı iş, hiç veya çok az egzersiz.</li>
+                    <li><strong>Az Aktif (×1.375):</strong> Haftada 1-3 gün hafif egzersiz veya spor.</li>
+                    <li><strong>Orta Aktif (×1.55):</strong> Haftada 3-5 gün orta yoğunlukta egzersiz.</li>
+                    <li><strong>Aktif (×1.725):</strong> Haftada 6-7 gün yoğun egzersiz.</li>
+                    <li><strong>Çok Aktif (×1.9):</strong> Profesyonel sporcu veya ağır fiziksel iş.</li>
                 </ul>
 
-                <h2>Aktivite Seviyeleri</h2>
-                <table>
-                    <thead><tr><th>Seviye</th><th>Açıklama</th><th>Çarpan</th></tr></thead>
-                    <tbody>
-                        <tr><td>Hareketsiz</td><td>Masa başı iş, az veya hiç egzersiz</td><td>×1.2</td></tr>
-                        <tr><td>Az Hareketli</td><td>Haftada 1-3 gün hafif egzersiz</td><td>×1.375</td></tr>
-                        <tr><td>Orta Aktif</td><td>Haftada 3-5 gün orta düzey egzersiz</td><td>×1.55</td></tr>
-                        <tr><td>Aktif</td><td>Haftada 6-7 gün yoğun egzersiz</td><td>×1.725</td></tr>
-                        <tr><td>Çok Aktif</td><td>Profesyonel sporcu veya ağır fiziksel iş</td><td>×1.9</td></tr>
-                    </tbody>
-                </table>
+                <h3>Makro Besin Öğeleri ve Kalori Değerleri</h3>
+                <p>
+                    Besinlerin kalorisi üç ana makro besin öğesinden gelir:
+                </p>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Makro Besin</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">1 gram = ? kalori</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Önerilen Günlük Oran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Karbonhidrat</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">4 kcal</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">%45-65</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Protein</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">4 kcal</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">%10-35</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Yağ</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">9 kcal</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">%20-35</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h2>Sağlıklı Kalori Tüketimi İpuçları</h2>
+                <h3>Kilo Yönetimi: Kalori Açığı ve Fazlası</h3>
                 <ul>
-                    <li>Öğünlerinizi atlamamaya çalışın</li>
-                    <li>İşlenmiş gıdalar yerine doğal besinleri tercih edin</li>
-                    <li>Protein, karbonhidrat ve yağ dengesine dikkat edin</li>
-                    <li>Porsiyonları kontrol altında tutun</li>
-                    <li>Bol su için, sıvı kalorilerden kaçının</li>
+                    <li><strong>Kilo Vermek:</strong> TDEE&apos;den günlük 500 kcal eksiği yaratmak, haftada yaklaşık 0.5 kg kayıp sağlar.</li>
+                    <li><strong>Kilo Korumak:</strong> TDEE kadar kalori almak kilonuzu sabit tutar.</li>
+                    <li><strong>Kilo Almak:</strong> TDEE&apos;den günlük 300-500 kcal fazlası, sağlıklı kilo artışı sağlar.</li>
+                </ul>
+
+                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+
+                <h4>Günde kaç kalori almalıyım?</h4>
+                <p>
+                    Bu tamamen yaşınıza, cinsiyetinize, kilonuza, boyunuza ve aktivite seviyenize bağlıdır. Ortalama olarak yetişkin bir kadın
+                    1800-2200 kcal, yetişkin bir erkek 2200-2800 kcal arasında ihtiyaç duyar. Aracımız size kişisel değerinizi hesaplar.
+                </p>
+
+                <h4>Egzersiz yapmadan kalori açığı yaratsam kilo verir miyim?</h4>
+                <p>
+                    Evet, kilo kaybı temel olarak kalori açığına bağlıdır. Ancak egzersiz hem kalori harcamanızı artırır hem de kas kütlenizi
+                    koruyarak metabolizmanızın yavaşlamasını önler.
+                </p>
+
+                <h3>Sağlıklı Kalori Tüketimi İçin 7 Altın Kural</h3>
+                <ul>
+                    <li>Öğün atlamayın; özellikle kahvaltı metabolizmayı harekete geçirir.</li>
+                    <li>İşlenmiş gıdalar yerine tam tahıllar, taze meyve ve sebzeyi tercih edin.</li>
+                    <li>Şekerli içeceklerden kaçının; bunlar &quot;boş kalori&quot; kaynaklarıdır.</li>
+                    <li>Porsiyon kontrolü uygulayın; küçük tabaklar psikolojik doygunluk sağlar.</li>
+                    <li>Bol su için; bazen açlık hissi aslında susuzluktur.</li>
+                    <li>Yavaş yiyin; tokluk sinyali beyine ulaşmak için 20 dakika gerektirir.</li>
+                    <li>Kalori saymayı bir saplantı haline getirmeyin; sağlıklı alışkanlıklar uzun vadede daha önemlidir.</li>
                 </ul>
             </article>
         </div>

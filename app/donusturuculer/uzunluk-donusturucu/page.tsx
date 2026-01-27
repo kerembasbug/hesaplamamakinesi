@@ -28,49 +28,118 @@ export default function UzunlukDonusturucuPage() {
             <LengthConverter />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Uzunluk Birimleri Nedir?</h2>
+                <h2>Uzunluk Dönüştürücü: Metre, İnç, Mil ve Daha Fazlası</h2>
                 <p>
-                    Uzunluk, bir nesnenin bir ucundan diğer ucuna olan mesafeyi ölçen fiziksel bir büyüklüktür.
-                    Günlük hayatta ve bilimsel çalışmalarda farklı uzunluk birimleri kullanılır.
+                    Dünyanın neresinde olursanız olun, mesafe ve uzunluk ölçüleri günlük hayatın ayrılmaz bir parçasıdır.
+                    Bir televizyonun ekran boyutuna bakarken inç (inch) birimini, bir yolculuk planlarken kilometre (km) birimini,
+                    veya bir mobilya ölçerken santimetre (cm) birimini kullanırız. <strong>Uzunluk dönüştürücü</strong> aracımız,
+                    tüm bu farklı birimler arasında hızlı ve hatasız geçiş yapmanızı sağlayarak hayatınızı kolaylaştırır.
                 </p>
 
-                <h2>Metrik ve Imperial Sistem</h2>
+                <h3>Ölçü Sistemlerinin Tarihçesi ve Farklılıkları</h3>
                 <p>
-                    Dünyada iki ana ölçü sistemi kullanılır: Metrik sistem (metre tabanlı) ve Imperial sistem (feet/inç tabanlı).
-                    Türkiye dahil çoğu ülke metrik sistemi kullanırken, ABD ve İngiltere&apos;de imperial sistem yaygındır.
+                    Günümüzde dünyada kullanılan iki ana ölçü sistemi bulunmaktadır: <strong>Metrik Sistem (SI)</strong> ve
+                    <strong>Imperial (İngiliz) Sistemi</strong>. Metrik sistem, 18. yüzyılın sonlarında Fransa&apos;da geliştirilmiş ve
+                    ondalık tabana dayalı olduğu için (10, 100, 1000) dünya genelinde standart kabul edilmiştir. Türkiye dahil çoğu ülke
+                    metrik sistemi kullanırken, Amerika Birleşik Devletleri, Liberya ve Myanmar hala ağırlıklı olarak Imperial sistemini kullanmaktadır.
                 </p>
 
-                <h2>Yaygın Uzunluk Dönüşümleri</h2>
-                <table>
-                    <thead><tr><th>Dönüşüm</th><th>Değer</th></tr></thead>
-                    <tbody>
-                        <tr><td>1 metre</td><td>3.28084 feet</td></tr>
-                        <tr><td>1 feet</td><td>30.48 cm</td></tr>
-                        <tr><td>1 inç</td><td>2.54 cm</td></tr>
-                        <tr><td>1 mil</td><td>1.60934 km</td></tr>
-                        <tr><td>1 yarda</td><td>0.9144 m</td></tr>
-                        <tr><td>1 deniz mili</td><td>1.852 km</td></tr>
-                    </tbody>
-                </table>
+                <h3>Hangi Birim Hangi Alanda Kullanılır?</h3>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Birim Türü</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Kullanım Alanı</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Örnek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">İnç (Inch)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Teknoloji ve Ekranlar</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">6.1 inç telefon ekranı</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Feet (Ayak)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Havacılık ve Yükseklik</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">30.000 feet uçuş irtifası</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Mil (Mile)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Kara ve Hava Mesafesi</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">60 mil/saat hız sınırı</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Mikrometre (µm)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Bilim ve Sanayi</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">İşlemci üretim teknolojisi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h2>Uzunluk Ölçülerinin Kullanım Alanları</h2>
+                <h3>Temel Uzunluk Dönüşüm Katsayıları</h3>
+                <p>
+                    Hesaplama yaparken temel aldığımız bazı sabit oranlar şunlardır:
+                </p>
                 <ul>
-                    <li><strong>İnşaat:</strong> Bina yükseklikleri, oda boyutları</li>
-                    <li><strong>Tekstil:</strong> Kumaş uzunlukları, beden ölçüleri</li>
-                    <li><strong>Ulaşım:</strong> Yol mesafeleri, araç boyutları</li>
-                    <li><strong>Bilim:</strong> Mikro ve nano ölçekli ölçümler</li>
+                    <li><strong>1 İnç (inch):</strong> 2.54 santimetredir.</li>
+                    <li><strong>1 Feet:</strong> 12 inç veya 30.48 santimetredir.</li>
+                    <li><strong>1 Yard:</strong> 3 feet veya 0.9144 metredir.</li>
+                    <li><strong>1 Kara Mili:</strong> 1.609.344 metredir.</li>
+                    <li><strong>1 Deniz Mili (Nautical Mile):</strong> 1.852 metredir.</li>
                 </ul>
 
-                <h2>Sıkça Sorulan Sorular</h2>
+                <h3>Uzunluk Dönüştürücü Nasıl Kullanılır?</h3>
+                <p>
+                    Online aracımız kullanımı son derece basittir:
+                    1. İlk kutuya dönüştürmek istediğiniz değeri girin.
+                    2. İkinci seçim menüsünden bu değerin hangi birimde olduğunu (örneğin İnç) seçin.
+                    3. Üçüncü seçim menüsünden hedef birimi (örneğin Sanimetre) seçin.
+                    4. Sonuç anında ekranınızda belirecek, hiçbir &quot;Hesapla&quot; butonuna basmanıza gerek kalmayacaktır.
+                </p>
 
-                <h3>1 feet kaç cm?</h3>
-                <p>1 feet = 30.48 santimetredir. Boy ölçümlerinde sıkça kullanılan bu dönüşüm, özellikle giysi ve ayakkabı alışverişlerinde önemlidir.</p>
+                <h3>Özel Alanlarda Uzunluk Birimleri</h3>
+                <h4>Denizcilik ve Havacılık</h4>
+                <p>
+                    Denizcilikte kara milinden farklı olarak &quot;Deniz Mili&quot; kullanılır. Bu birim, Dünya&apos;nın meridyen dairesi
+                    üzerindeki 1 dakikalık yayın uzunluğuna eşittir. Bu yüzden navigasyon hesaplamalarında standart kabul edilir.
+                </p>
 
-                <h3>1 inç kaç mm?</h3>
-                <p>1 inç = 25.4 milimetredir. Elektronik cihaz ekran boyutları genellikle inç cinsinden ifade edilir.</p>
+                <h4>Astronomi ve Uzay</h4>
+                <p>
+                    Kilometrelerin yetersiz kaldığı evrensel boyutlarda &quot;Işık Yılı&quot; veya &quot;Astronomik Birim (AU)&quot; kullanılır.
+                    Işık yılı, ışığın boşlukta 1 yılda aldığı mesafedir ve yaklaşık 9.46 trilyon kilometredir.
+                </p>
 
-                <h3>Deniz mili neden farklıdır?</h3>
-                <p>Deniz mili, dünya&apos;nın çevresine dayanan özel bir uzunluk birimidir. 1 deniz mili = 1.852 km&apos;dir ve havacılık ile denizcilikte kullanılır.</p>
+                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+
+                <h4>10 inç kaç cm eder?</h4>
+                <p>
+                    1 inç 2.54 cm olduğu için, 10 inç tam olarak 25.4 santimetre eder. Tablet ekranlarının boyutlarını bu yöntemle hesaplayabilirsiniz.
+                </p>
+
+                <h4>Ayak (Feet) birimi neden 30.48 cm&apos;dir?</h4>
+                <p>
+                    Tarihsel olarak bir yetişkin erkeğin ayak boyuna odaklı olan bu birim, modern standartlara göre sabitlenmiş ve
+                    metrik sistemle uyumlu hale getirilmiştir.
+                </p>
+
+                <h4>Kilometreyi mile nasıl çeviririm?</h4>
+                <p>
+                    Kilometre cinsinden değeri 0.62137 ile çarparak mil değerini elde edebilirsiniz. Örneğin 100 km, yaklaşık 62.1 mildir.
+                </p>
+
+                <h3>Neden Uzunluk Dönüştürücümüzü Kullanmalısınız?</h3>
+                <p>
+                    Hesaplama yaparken yapılabilecek küçük bir virgül hatası, inşaat projelerinden ders ödevlerine kadar büyük sorunlara yol açabilir.
+                    Aracımız, bilimsel hassasiyetle kodlanmış algoritmaları sayesinde size her zaman %100 doğru sonuçları sunar.
+                    Sadece ana birimler değil, nanometreden nanometreye, mikrondan ışık yılına kadar geniş bir skala ile yanınızdayız.
+                </p>
+                <p>
+                    Hemen yukarıdaki aracı kullanarak ilk dönüşümünüzü yapın ve zamandan tasarruf edin!
+                </p>
             </article>
         </div>
     )

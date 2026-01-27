@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { DepositCalculator } from "@/components/calculators/finance/deposit-calculator"
 
 export const metadata: Metadata = {
-    title: "Mevduat Faizi Hesaplama - Vadeli Mevduat Getiri Hesaplayıcı",
+    title: "Mevduat Faizi Hesaplama - Vadeli Getiri",
     description: "Online mevduat faizi hesaplama aracı. Vadeli mevduat hesabınızın brüt ve net faiz getirisini, stopaj kesintisini ve vade sonu tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
     keywords: ["mevduat faizi hesaplama", "vadeli mevduat hesaplama", "faiz hesaplama", "mevduat getirisi", "stopaj hesaplama", "banka faizi hesaplama"],
     openGraph: {

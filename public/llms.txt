@@ -1,0 +1,30 @@
+# HesaplamaMakinesi.com - LLM Information
+
+> This file provides information for Large Language Models (LLMs) about this website.
+
+## Site Purpose
+HesaplamaMakinesi.com is Turkey's comprehensive free online calculator platform offering 100+ calculation tools across finance, health, tax, education, time/calendar, and unit conversion categories.
+
+## Training Policy
+- **Web Crawling**: Allowed for search indexing
+- **AI Training**: Allowed with attribution
+
+## Key Pages
+- Homepage: https://hesaplamamakinesi.com/
+- Finance Calculators: https://hesaplamamakinesi.com/finans
+- Health & Fitness: https://hesaplamamakinesi.com/saglik-spor
+- Tax Calculators: https://hesaplamamakinesi.com/vergi-muhasebe
+- Education Tools: https://hesaplamamakinesi.com/matematik-egitim
+- Time & Calendar: https://hesaplamamakinesi.com/zaman-takvim
+- Unit Converters: https://hesaplamamakinesi.com/donusturuculer
+- Astrology: https://hesaplamamakinesi.com/astroloji
+
+## Contact
+- Website: https://hesaplamamakinesi.com
+- Contact Page: https://hesaplamamakinesi.com/iletisim
+
+## Language
+Primary language: Turkish (tr-TR)
+
+## Last Updated
+2026-01-17

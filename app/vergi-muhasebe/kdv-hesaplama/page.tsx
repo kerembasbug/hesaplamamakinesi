@@ -52,41 +52,98 @@ export default function KdvHesaplamaPage() {
 
             {/* SEO Content */}
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>KDV Nedir?</h2>
+                <h2>Katma Değer Vergisi (KDV) Nedir ve Nasıl Hesaplanır?</h2>
                 <p>
-                    Katma Değer Vergisi (KDV), mal ve hizmetlerin satışı üzerinden alınan dolaylı bir vergidir.
-                    Türkiye&apos;de üç farklı KDV oranı uygulanmaktadır: %1, %10 ve %20.
+                    <strong>KDV (Katma Değer Vergisi)</strong>, mal ve hizmetlerin her üretim veya dağıtım aşamasında eklenen değer üzerinden
+                    alınan dolaylı bir vergidir. Türkiye&apos;de 1985 yılından bu yana uygulanan KDV, devletin en önemli gelir kaynaklarından biridir.
+                    Tüketiciler olarak alışverişte ödediğimiz fiyatların içinde büyük bir paya sahiptir.
+                </p>
+                <p>
+                    KDV&apos;nin en önemli özelliği, her aşamada ödenen verginin bir sonraki aşamada mahsup edilebilmesidir. Yani işletmeler
+                    ödedikleri KDV&apos;yi (indirilecek KDV) sattıkları ürünlerdeki KDV&apos;den (hesaplanan KDV) düşer ve sadece aradaki farkı devlete öder.
                 </p>
 
-                <h2>KDV Oranları</h2>
+                <h3>Türkiye&apos;de Güncel KDV Oranları (2025)</h3>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">KDV Oranı</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Uygulama Alanları</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">%1</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Temel gıda (ekmek, un, pirinç, süt, yumurta), gazete, dergi</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">%10</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Gıda ürünleri, tekstil, konaklama, sağlık hizmetleri, tarım ürünleri</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">%20</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Genel oran - elektronik, otomobil, mobilya, profesyonel hizmetler</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>KDV Hesaplama Formülleri</h3>
+                <p>
+                    İki temel hesaplama yöntemi vardır:
+                </p>
                 <ul>
-                    <li><strong>%1 KDV:</strong> Temel gıda maddeleri (ekmek, un, pirinç, süt, yumurta vb.)</li>
-                    <li><strong>%10 KDV:</strong> Gıda ürünleri, tekstil, konaklama ve eğlence hizmetleri</li>
-                    <li><strong>%20 KDV:</strong> Genel oran - çoğu mal ve hizmet için uygulanan standart oran</li>
+                    <li><strong>KDV Hariç Fiyattan → Dahil Fiyata:</strong> Toplam = Net Fiyat × (1 + KDV Oranı)</li>
+                    <li><strong>KDV Dahil Fiyattan → Hariç Fiyata:</strong> Net Fiyat = Toplam Fiyat ÷ (1 + KDV Oranı)</li>
                 </ul>
-
-                <h2>KDV Nasıl Hesaplanır?</h2>
                 <p>
-                    <strong>KDV Hariç Fiyattan Dahil Fiyata:</strong><br />
-                    Toplam = Net Fiyat + (Net Fiyat × KDV Oranı)
+                    <strong>Örnek:</strong> 1.000 TL + %20 KDV = 1.000 × 1.20 = 1.200 TL (KDV Dahil)
                 </p>
                 <p>
-                    <strong>KDV Dahil Fiyattan Hariç Fiyata:</strong><br />
-                    Net Fiyat = Toplam Fiyat ÷ (1 + KDV Oranı)
+                    <strong>Tersi:</strong> 1.200 TL KDV dahil fiyattan net = 1.200 ÷ 1.20 = 1.000 TL
                 </p>
 
-                <h2>Sıkça Sorulan Sorular</h2>
-                <h3>KDV dahil fiyattan KDV nasıl çıkarılır?</h3>
+                <h3>KDV İndirimi Nedir?</h3>
                 <p>
-                    KDV dahil fiyatı (1 + KDV oranı) değerine bölerek net fiyatı bulabilirsiniz.
-                    Örneğin, %20 KDV dahil 120 TL&apos;lik bir ürünün net fiyatı: 120 ÷ 1.20 = 100 TL&apos;dir.
+                    İşletmeler, mal veya hizmet alırken ödedikleri KDV&apos;yi &quot;indirilecek KDV&quot; olarak kaydeder. Sattıkları ürünlerdeki
+                    &quot;hesaplanan KDV&quot;den bu tutarı düşerek sadece farkı vergi dairesine öder. Bu sistem, çifte vergilendirmeyi önler.
                 </p>
 
-                <h3>KDV beyannamesi ne zaman verilir?</h3>
+                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+
+                <h4>KDV dahil fiyattan KDV nasıl çıkarılır?</h4>
                 <p>
-                    Aylık KDV beyannameleri, izleyen ayın 26&apos;sına kadar verilmelidir.
-                    28&apos;ine kadar da ödeme yapılması gerekmektedir.
+                    KDV dahil fiyatı (1 + KDV oranı) değerine bölerek net fiyatı bulabilirsiniz. Örneğin, %20 KDV dahil 120 TL&apos;lik bir ürünün
+                    net fiyatı: 120 ÷ 1.20 = 100 TL&apos;dir. KDV tutarı ise 20 TL olur.
                 </p>
+
+                <h4>KDV beyannamesi ne zaman verilir?</h4>
+                <p>
+                    Aylık KDV beyannameleri, izleyen ayın 26&apos;sına kadar verilmelidir. 28&apos;ine kadar da ödeme yapılması gerekmektedir.
+                    Örneğin Ocak ayı KDV&apos;si en geç 26 Şubat&apos;ta beyan, 28 Şubat&apos;ta ödenir.
+                </p>
+
+                <h4>Hangi ürünler KDV&apos;den muaftır?</h4>
+                <p>
+                    İhracat (%0 KDV), diplomatik muafiyetler, küçük esnaf muafiyeti (belirli ciro altında), eğitim ve sağlık hizmetlerinin
+                    bir kısmı KDV&apos;den muaftır veya istisnadır.
+                </p>
+
+                <h4>E-faturada KDV nasıl gösterilir?</h4>
+                <p>
+                    E-faturada her kalem için KDV oranı ve tutarı ayrı ayrı gösterilir. Fatura toplamında ise KDV hariç tutar, KDV tutarı
+                    ve genel toplam (KDV dahil) açıkça belirtilmelidir.
+                </p>
+
+                <h3>İşletmeler İçin KDV Yönetimi İpuçları</h3>
+                <ul>
+                    <li>Her faturada KDV oranını doğru seçin; yanlış oran cezaya yol açabilir.</li>
+                    <li>İndirilecek KDV&apos;leri düzenli takip edin, nakit akışınızı etkiler.</li>
+                    <li>KDV iade süreçlerini (ihracat KDV iadesi) iyi planlayın.</li>
+                    <li>Elektronik defter (e-Defter) tutma zorunluluğunu takip edin.</li>
+                    <li>Vergi takvimini asla kaçırmayın; gecikme cezaları yüksektir.</li>
+                </ul>
             </article>
         </div>
     )

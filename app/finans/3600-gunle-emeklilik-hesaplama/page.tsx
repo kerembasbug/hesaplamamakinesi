@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { Pension3600Calculator } from "@/components/calculators/finance/pension-3600-calculator"
 
 export const metadata: Metadata = {
-    title: "3600 Günle Emeklilik Hesaplama Tablosu - Kısmi Emeklilik 2025",
+    title: "3600 Günle Emeklilik Hesaplama 2025",
     description: "3600 gün prim ile emeklilik şartları ve hesaplama tablosu. 15 yıl sigortalılık ve 3600 gün primle ne zaman emekli olunur?",
     keywords: ["3600 günle emeklilik hesaplama tablosu", "3600 günden emeklilik", "15 yıl 3600 gün emeklilik", "kısmi emeklilik hesaplama", "eyt 3600 gün"]
 }

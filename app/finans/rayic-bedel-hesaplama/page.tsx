@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { RayicBedelCalculator } from "@/components/calculators/finance/rayic-bedel-calculator"
 
 export const metadata: Metadata = {
-    title: "Rayiç Bedel Hesaplama - Gayrimenkul Rayiç Değeri Sorgulama",
+    title: "Rayiç Bedel Hesaplama - Gayrimenkul Değeri",
     description: "Ev, arsa ve konut için rayiç bedel hesaplama aracı. Piyasa değerine göre tahmini belediye rayiç bedelini ve emsal kira bedelini bulun.",
     keywords: ["rayiç bedel hesaplama", "rayiç bedeli hesaplama", "ev rayiç bedel sorgulama", "belediye rayiç bedel", "konut rayiç bedeli"]
 }

@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getCategoryBySlug } from "@/config/site-data"
 
 export const metadata: Metadata = {
-    title: "Birim Dönüştürücü Araçları - Uzunluk, Ağırlık, Alan, Hacim",
+    title: "Birim Dönüştürücü - Uzunluk, Ağırlık, Alan Çevirici",
     description: "Ücretsiz birim dönüştürücü araçları. Uzunluk, ağırlık, alan, hacim, sıcaklık ve veri birimi dönüştürme.",
     keywords: ["birim dönüştürücü", "uzunluk dönüştürme", "ağırlık dönüştürme", "alan dönüştürme", "hacim dönüştürme"]
 }

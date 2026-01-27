@@ -26,14 +26,66 @@ export default function AstrolojiPage() {
             <AstrologyCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Astrolojide Juno Nedir?</h2>
-                <p>Juno, doğum haritanızda ruh eşinizi, evlilik tarzınızı ve ikili ilişkilerde en çok aradığınız sadakat tipini temsil eder. "Kiminle evleneceğim?" sorusuna verilen en güçlü cevap Juno burcunuzda gizlidir.</p>
+                <h2>Astroloji Hesaplama Araçları: Gökyüzünün Rehberliği</h2>
+                <p>
+                    İnsanoğlu binlerce yıldır gökyüzündeki yıldızların ve gezegenlerin hareketlerini izleyerek hayatına yön vermeye çalışmıştır.
+                    Astroloji, sadece bir kehanet yöntemi değil, aynı zamanda derin bir sembolizm ve matematik içeren bir kadim ilimdir.
+                    Doğduğumuz anın gökyüzü haritası, karakterimize, ilişkilerimize ve potansiyelimize dair benzersiz ipuçları barındırır.
+                </p>
 
-                <h2>Lilith (Kara Ay) Nedir?</h2>
-                <p>Kara Ay Lilith, haritadaki en derin arzuları, bastırılmış duyguları ve içsel vahşi gücü simgeler. Kişinin sınırlarını nerede çizdiğini ve karanlık tarafıyla nasıl başa çıktığını anlatır.</p>
+                <h3>Ücretsiz Astroloji Hesaplayıcılarımız</h3>
+                <p>
+                    HesaplamaMakinesi.com olarak en güncel astronomik algoritmalı kullanarak, kişiye özel astrolojik analizler sunuyoruz.
+                    Şu an platformumuzda kullanabileceğiniz temel araçlar:
+                </p>
+                <ul>
+                    <li><strong>Juno Hesaplama:</strong> Ruh eşiniz, evlilik tarzınız ve uzun vadeli ilişkilerinizdeki kader planınızı keşfedin.</li>
+                    <li><strong>Lilith (Kara Ay) Hesaplama:</strong> Bilinçaltınızdaki en gizli arzuları, gölge yanlarınızı ve bağımsızlık alanlarınızı öğrenin.</li>
+                    <li><strong>Solar Harita (Güneş Dönüşü):</strong> Doğum gününüzden itibaren başlayan bir yıllık sürecin ana temalarını analiz edin (Çok Yakında!).</li>
+                </ul>
 
-                <h2>Solar Harita ve Güneş Burcu</h2>
-                <p>Güneş burcu, kimliğinizi ve temel karakterinizi belirlerken; Solar Harita analizi doğum gününüzden itibaren başlayan yeni bir yıllık süreci ifade eder.</p>
+                <h3>Astrolojide Burçların ve Gezegenlerin Rolü</h3>
+                <p>
+                    Bir astroloji analizi sadece Güneş burcundan ibaret değildir. Yükselen burcunuz (Ascendant), Ay burcunuz ve gezegenlerin (Merkür, Venüs, Mars,
+                    Jüpiter, Satürn) yerleşimleri bir bütün olarak karakterinizi oluşturur. Juno ve Lilith gibi asteroidler ve hesaplanan noktalar ise bu analizi
+                    derinleştirerek spesifik konularda (aşk, krizler, şans) daha net bilgiler verir.
+                </p>
+
+                <h3>Neden Bizim Araçlarımızı Seçmelisiniz?</h3>
+                <ul>
+                    <li><strong>Yüksek Hassasiyet:</strong> Astronomik efemeris verilerine dayanarak en doğru dereceleri hesaplıyoruz.</li>
+                    <li><strong>Kullanım Kolaylığı:</strong> Karmaşık haritalar yerine, doğrudan ihtiyacınız olan yorumları ve analizleri sunuyoruz.</li>
+                    <li><strong>Tamamen Ücretsiz:</strong> Hiçbir üyelik veya gizli ücret ödemeden tüm analizlerinize ulaşabilirsiniz.</li>
+                </ul>
+
+                <h3>Sıkça Sorulan Sorular</h3>
+
+                <h4>Doğum saatimi bilmiyorum, hesaplama yapabilir miyim?</h4>
+                <p>
+                    Güneş ve Juno gibi bazı göstergeler gün içinde yavaş hareket eder, bu nedenle doğum saatiniz olmasa bile burç yerleşimini doğru tahmin edebiliriz.
+                    Ancak Lilith ve özellikle Yükselen burç gibi göstergeler için dakikası dakikasına doğum saati çok önemlidir.
+                </p>
+
+                <h4>Astroloji bilim mi?</h4>
+                <p>
+                    Modern bilimsel sınıflamada astroloji bir &quot;sözdebilim&quot; (pseudoscience) olarak kabul edilse de, milyonlarca insan için
+                    psikolojik bir derinlik, sembolik bir dil ve anlam arayışında güçlü bir araçtır.
+                </p>
+
+                <h4>Burçlar değişti mi?</h4>
+                <p>
+                    Batı astrolojisinde &quot;Tropikal Zodyak&quot; kullanılır. Bu sistem mevsim geçişlerine (ekinokslara) dayalıdır, dolayısıyla takımyıldızların
+                    kayması bu sistemi ve burç tarihlerinizi değiştirmez.
+                </p>
+
+                <h3>Gelecekte Eklenecek Özellikler</h3>
+                <p>
+                    Platformumuzu sürekli geliştiriyoruz. Çok yakında eklenecek olan <strong>Sinastri (İlişki Uyumu) Hesaplama</strong> ve
+                    <strong>Transit Takvimi</strong> araçlarımızla gökyüzündeki anlık hareketlerin sizi nasıl etkilediğini de takip edebileceksiniz.
+                </p>
+                <p>
+                    Hemen yukarıdaki kategorilerden merak ettiğiniz hesaplayıcıyı seçin ve gökyüzünün sizin için çizdiği haritayı keşfetmeye başlayın!
+                </p>
             </article>
         </div>
     )

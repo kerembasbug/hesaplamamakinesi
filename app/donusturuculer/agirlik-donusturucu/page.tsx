@@ -28,42 +28,55 @@ export default function AgirlikDonusturucuPage() {
             <WeightConverter />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Ağırlık Birimleri Nedir?</h2>
+                <h2>Ağırlık ve Kütle Dönüştürücü: Gram, Kilogram, Libre ve Daha Fazlası</h2>
                 <p>
-                    Ağırlık (kütle), bir nesnenin madde miktarını ölçen fiziksel bir büyüklüktür.
-                    Günlük hayatta kilogram, ticarette ton, kuyumculukta gram ve karat gibi farklı birimler kullanılır.
+                    Ağırlık ve kütle ölçümleri, mutfaktaki tariflerden laboratuvardaki hassas deneylere, spor salonundaki antrenmanlardan
+                    lojistik sektöründeki devasa yüklere kadar hayatın her aşamasında karşımıza çıkar. <strong>Ağırlık dönüştürücü</strong> aracımız,
+                    Metrik ve Imperial (İngiliz) sistemleri arasındaki karmaşayı ortadan kaldırarak saniyeler içinde doğru sonuçlara ulaşmanızı sağlar.
                 </p>
 
-                <h2>Metrik ve Imperial Ağırlık Birimleri</h2>
+                <h3>Kütle mi, Ağırlık mı? Farkı Biliyor musunuz?</h3>
                 <p>
-                    Metrik sistemde kilogram temel birimken, Imperial sistemde pound (lb) ve ons (oz) kullanılır.
-                    Uluslararası ticaret ve bilimde genellikle metrik sistem tercih edilir.
+                    Günlük dilde &quot;ağırlık&quot; ve &quot;kütle&quot; kelimelerini birbirinin yerine kullansak da, fizikte aralarında önemli bir fark vardır.
+                    <strong>Kütle</strong>, bir cismin sahip olduğu madde miktarını temsil eder ve evrenin her yerinde sabittir.
+                    <strong>Ağırlık</strong> ise bu kütleye etki eden yerçekimi kuvvetidir. Yani Ay&apos;a giderseniz kütleniz aynı kalır ama ağırlığınız
+                    yaklaşık altıda birine iner. Aracımız, dünya standartlarındaki yerçekimi ivmesini baz alarak bu birimleri sizin için dönüştürür.
                 </p>
 
-                <h2>Yaygın Ağırlık Dönüşümleri</h2>
-                <table>
-                    <thead><tr><th>Dönüşüm</th><th>Değer</th></tr></thead>
-                    <tbody>
-                        <tr><td>1 kilogram</td><td>2.20462 pound</td></tr>
-                        <tr><td>1 pound</td><td>453.592 gram</td></tr>
-                        <tr><td>1 ons</td><td>28.3495 gram</td></tr>
-                        <tr><td>1 ton</td><td>1000 kilogram</td></tr>
-                        <tr><td>1 stone</td><td>6.35029 kilogram</td></tr>
-                        <tr><td>1 karat</td><td>0.2 gram</td></tr>
-                    </tbody>
-                </table>
+                <h3>Dünyada Kullanılan Temel Birim Sistemleri</h3>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Sistem</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Temel Birimler</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Yaygın Kullanım</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Metrik (SI)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Gram (g), Kilogram (kg), Ton (t)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Mutfak tartıları, market alışverişleri, sanayi.</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Imperial (İngiliz)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Libre (lb), Ons (oz), Stone (st)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Fitness (dumbbella), ABD mutfak tarifleri.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h2>Ağırlık Ölçülerinin Kullanım Alanları</h2>
+                <h3>Popüler Birimlerin Dönüşüm Oranları</h3>
                 <ul>
-                    <li><strong>Gıda:</strong> Yiyecek ve içecek ağırlıkları (gram, kilogram)</li>
-                    <li><strong>Sağlık:</strong> Vücut ağırlığı ölçümü</li>
-                    <li><strong>Kuyumculuk:</strong> Altın ve değerli taş ölçümü (gram, karat)</li>
-                    <li><strong>Lojistik:</strong> Kargo ve taşıma ağırlıkları (ton)</li>
+                    <li><strong>1 Kilogram (kg):</strong> Yaklaşık 2.20462 Libre (lb) eder.</li>
+                    <li><strong>1 Libre (lb):</strong> 453.592 grama eşittir.</li>
+                    <li><strong>1 Ons (oz):</strong> Yaklaşık 28.35 gramdır (altın ve mutfak tartılarında çok kullanılır).</li>
+                    <li><strong>1 Ton:</strong> 1.000 kilogramdır.</li>
+                    <li><strong>1 Miligram (mg):</strong> Gramın binde biridir (ilaç dozajlarında kritiktir).</li>
                 </ul>
 
-                <h2>Sıkça Sorulan Sorular</h2>
-
-                <h3>1 pound kaç kilogram?</h3>
                 <p>1 pound = 0.453592 kilogramdır. ABD&apos;den sipariş verirken veya yabancı sporcuların ağırlıklarını anlamak için bu dönüşüm önemlidir.</p>
 
                 <h3>1 ons kaç gram?</h3>

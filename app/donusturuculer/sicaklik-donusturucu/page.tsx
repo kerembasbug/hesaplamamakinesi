@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { TemperatureConverter } from "@/components/calculators/converter/temperature-converter"
 
 export const metadata: Metadata = {
-    title: "Sıcaklık Dönüştürücü - Celsius, Fahrenheit, Kelvin Çevirici",
+    title: "Sıcaklık Dönüştürücü - Celsius, Fahrenheit, Kelvin",
     description: "Online sıcaklık birim dönüştürücü. Celsius, Fahrenheit ve Kelvin arasında hızlı ve kolay çevirme. Hava durumu ve bilimsel hesaplamalar için.",
     keywords: ["sıcaklık dönüştürücü", "celsius fahrenheit çevirici", "derece çevirme", "kelvin çevirici", "sıcaklık birimi çevirme"]
 }
@@ -28,39 +28,6 @@ export default function SicaklikDonusturucuPage() {
             <TemperatureConverter />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Sıcaklık Birimleri Nedir?</h2>
-                <p>
-                    Sıcaklık, bir maddenin termal enerjisinin ölçüsüdür. Dünyada üç ana sıcaklık birimi kullanılır:
-                    Celsius (°C), Fahrenheit (°F) ve Kelvin (K).
-                </p>
-
-                <h2>Sıcaklık Dönüşüm Formülleri</h2>
-                <ul>
-                    <li><strong>Celsius → Fahrenheit:</strong> °F = (°C × 9/5) + 32</li>
-                    <li><strong>Fahrenheit → Celsius:</strong> °C = (°F - 32) × 5/9</li>
-                    <li><strong>Celsius → Kelvin:</strong> K = °C + 273.15</li>
-                    <li><strong>Kelvin → Celsius:</strong> °C = K - 273.15</li>
-                </ul>
-
-                <h2>Önemli Sıcaklık Değerleri</h2>
-                <table>
-                    <thead><tr><th>Durum</th><th>Celsius</th><th>Fahrenheit</th><th>Kelvin</th></tr></thead>
-                    <tbody>
-                        <tr><td>Suyun donma noktası</td><td>0°C</td><td>32°F</td><td>273.15 K</td></tr>
-                        <tr><td>Normal vücut sıcaklığı</td><td>37°C</td><td>98.6°F</td><td>310.15 K</td></tr>
-                        <tr><td>Suyun kaynama noktası</td><td>100°C</td><td>212°F</td><td>373.15 K</td></tr>
-                        <tr><td>Mutlak sıfır</td><td>-273.15°C</td><td>-459.67°F</td><td>0 K</td></tr>
-                    </tbody>
-                </table>
-
-                <h2>Hangi Ülkeler Hangi Birimi Kullanır?</h2>
-                <ul>
-                    <li><strong>Celsius:</strong> Türkiye dahil dünya genelinde yaygın</li>
-                    <li><strong>Fahrenheit:</strong> ABD, Bahamalar, Cayman Adaları</li>
-                    <li><strong>Kelvin:</strong> Bilimsel çalışmalarda evrensel standart</li>
-                </ul>
-
-                <h2>Sıkça Sorulan Sorular</h2>
 
                 <h3>0 derece Fahrenheit kaç Celsius?</h3>
                 <p>0°F = -17.78°C&apos;dir. Bu oldukça soğuk bir sıcaklıktır ve ABD&apos;de kışın sıkça görülür.</p>

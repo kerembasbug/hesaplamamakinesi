@@ -28,35 +28,59 @@ export default function HizDonusturucuPage() {
             <SpeedConverter />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Hız Birimleri Nedir?</h2>
+                <h2>Hız Dönüştürücü: Km/s, Mil/saat, Knot ve Mach Arasındaki İlişki</h2>
                 <p>
-                    Hız, birim zamanda kat edilen mesafeyi ifade eder. Farklı ülkeler ve sektörler
-                    farklı hız birimleri kullanır: karayollarında km/h veya mph, havacılıkta knot,
-                    bilimde m/s tercih edilir.
+                    Hız, bir nesnenin birim zamanda kat ettiği mesafeyi ifade eder. Ancak bu mesafeyi ve zamanı hangi birimle ölçtüğümüz,
+                    sonucu tamamen değiştirir. Bir araçta giderken kilometreyi, denizde seyrederken knotu, havacılıkta ise Mach değerini
+                    kullanırız. <strong>Hız dönüştürücü</strong> aracımız, tüm bu farklı dünyalar arasındaki hız limitlerini sizin için eşitler.
                 </p>
 
-                <h2>Yaygın Hız Dönüşümleri</h2>
-                <table>
-                    <thead><tr><th>Dönüşüm</th><th>Değer</th></tr></thead>
-                    <tbody>
-                        <tr><td>1 km/h</td><td>0.621371 mph</td></tr>
-                        <tr><td>1 mph</td><td>1.60934 km/h</td></tr>
-                        <tr><td>1 m/s</td><td>3.6 km/h</td></tr>
-                        <tr><td>1 knot</td><td>1.852 km/h</td></tr>
-                        <tr><td>Mach 1</td><td>1234.8 km/h (ses hızı)</td></tr>
-                    </tbody>
-                </table>
+                <h3>Ulaşım Türlerine Göre Hız Birimleri</h3>
+                <p>
+                    Farklı sektörlerin ve coğrafyaların kendine has hız standartları vardır. İşte en yaygın olanları:
+                </p>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Birim</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Kullanım Alanı</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Örnek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Kilometre/Saat (km/h)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Kara Yolu ve Günlük Hayat</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Türkiye&apos;de otoban hız sınırı: 120 km/h</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Mil/Saat (mph)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">ABD ve İngiltere Trafiği</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Şehir içi sınır genellikle 30 mph</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Knot (Deniz Mili/Sa)</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Denizcilik ve Havacılık</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Bir geminin seyir hızı: ~20 knot</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Mach</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Süpersonik Havacılık</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Ses hızını geçmek (Mach 1+)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <h2>Hız Birimleri Nerede Kullanılır?</h2>
+                <h3>Temel Hız Dönüşüm Katsayıları</h3>
                 <ul>
-                    <li><strong>km/h:</strong> Türkiye ve çoğu ülkede karayolu hız limitleri</li>
-                    <li><strong>mph:</strong> ABD ve İngiltere&apos;de karayolu hız limitleri</li>
-                    <li><strong>m/s:</strong> Fizik ve mühendislik hesaplamalarında</li>
-                    <li><strong>knot:</strong> Denizcilik ve havacılıkta</li>
-                    <li><strong>Mach:</strong> Süpersonik uçuşlarda (ses hızına göre)</li>
+                    <li><strong>1 mph:</strong> Yaklaşık 1.609 km/saat eder.</li>
+                    <li><strong>1 knot:</strong> Tam olarak 1.852 km/saat veya yaklaşık 1.15 mph eder.</li>
+                    <li><strong>1 m/s:</strong> 3.6 km/saat hızına eşittir (Fizik problemlerinde sık kullanılır).</li>
+                    <li><strong>Mach 1:</strong> Deniz seviyesinde ve 20°C sıcaklıkta yaklaşık 1.225 km/saat hızındadır.</li>
                 </ul>
 
-                <h2>Örnek Hız Değerleri</h2>
                 <table>
                     <thead><tr><th>Durum</th><th>km/h</th><th>mph</th></tr></thead>
                     <tbody>

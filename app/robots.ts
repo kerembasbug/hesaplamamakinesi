@@ -2,11 +2,13 @@ import { MetadataRoute } from "next"
 
 export default function robots(): MetadataRoute.Robots {
     return {
-        rules: {
-            userAgent: "*",
-            allow: "/",
-            disallow: ["/api/", "/private/"],
-        },
+        rules: [
+            {
+                userAgent: "*",
+                allow: "/",
+                disallow: ["/api/", "/_next/", "/static/"],
+            },
+        ],
         sitemap: "https://hesaplamamakinesi.com/sitemap.xml",
     }
 }

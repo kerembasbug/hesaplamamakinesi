@@ -28,48 +28,6 @@ export default function VeriBoyutuDonusturucuPage() {
             <DataSizeConverter />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Veri Boyutu Birimleri Nedir?</h2>
-                <p>
-                    Dijital verilerin boyutunu ölçmek için kullanılan birimlerdir. En küçük birim olan bit&apos;ten
-                    başlayarak byte, kilobyte, megabyte, gigabyte, terabyte ve petabyte&apos;a kadar uzanır.
-                </p>
-
-                <h2>Veri Boyutu Hiyerarşisi</h2>
-                <table>
-                    <thead><tr><th>Birim</th><th>Kısaltma</th><th>Byte Karşılığı</th></tr></thead>
-                    <tbody>
-                        <tr><td>Bit</td><td>b</td><td>1/8 Byte</td></tr>
-                        <tr><td>Byte</td><td>B</td><td>1 Byte</td></tr>
-                        <tr><td>Kilobyte</td><td>KB</td><td>1024 Byte</td></tr>
-                        <tr><td>Megabyte</td><td>MB</td><td>1.048.576 Byte</td></tr>
-                        <tr><td>Gigabyte</td><td>GB</td><td>1.073.741.824 Byte</td></tr>
-                        <tr><td>Terabyte</td><td>TB</td><td>1.099.511.627.776 Byte</td></tr>
-                    </tbody>
-                </table>
-
-                <h2>Günlük Kullanım Örnekleri</h2>
-                <table>
-                    <thead><tr><th>İçerik Türü</th><th>Ortalama Boyut</th></tr></thead>
-                    <tbody>
-                        <tr><td>Metin belgesi</td><td>10-100 KB</td></tr>
-                        <tr><td>MP3 şarkı (5 dk)</td><td>4-5 MB</td></tr>
-                        <tr><td>HD fotoğraf</td><td>2-10 MB</td></tr>
-                        <tr><td>HD film (2 saat)</td><td>4-8 GB</td></tr>
-                        <tr><td>4K film</td><td>20-100 GB</td></tr>
-                    </tbody>
-                </table>
-
-                <h2>KB vs KiB Farkı</h2>
-                <p>
-                    Geleneksel olarak 1 KB = 1024 Byte kabul edilir (ikili sistem). Ancak SI standardına göre
-                    1 KB = 1000 Byte&apos;tır. Bu karışıklığı önlemek için KiB (Kibibyte = 1024 Byte) terimi önerilir.
-                </p>
-
-                <h2>Internet Hızı ve Veri Boyutu</h2>
-                <p>
-                    Internet hızları genellikle Mbps (Megabit/saniye) cinsinden ifade edilir.
-                    8 Mbps = 1 MB/s demektir. Yani 100 Mbps bağlantıyla teorik olarak saniyede 12.5 MB indirebilirsiniz.
-                </p>
 
                 <h2>Sıkça Sorulan Sorular</h2>
 

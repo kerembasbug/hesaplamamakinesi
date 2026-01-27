@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { LoanCalculator } from "@/components/calculators/finance/loan-calculator"
 
 export const metadata: Metadata = {
-    title: "Kredi Hesaplama - Aylık Taksit ve Toplam Geri Ödeme Hesaplayıcı",
+    title: "Kredi Hesaplama - Aylık Taksit Hesaplayıcı",
     description: "Online kredi hesaplama aracı. Konut kredisi, ihtiyaç kredisi, taşıt kredisi için aylık taksit tutarı, toplam geri ödeme ve faiz tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
     keywords: ["kredi hesaplama", "kredi hesapla", "aylık taksit hesaplama", "konut kredisi hesaplama", "ihtiyaç kredisi hesaplama", "taşıt kredisi hesaplama", "kredi faiz hesaplama"],
     openGraph: {

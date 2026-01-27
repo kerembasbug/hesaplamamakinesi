@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getCategoryBySlug } from "@/config/site-data"
 
 export const metadata: Metadata = {
-    title: "Finans Hesaplama Araçları - Kredi, Faiz, Yatırım Hesaplayıcıları",
+    title: "Finans Hesaplayıcıları - Kredi, Faiz, Yatırım",
     description: "Ücretsiz finans hesaplama araçları. Kredi hesaplama, mevduat faizi, bileşik faiz, döviz çevirici, yatırım getirisi ve enflasyon hesaplama araçları.",
     keywords: ["finans hesaplama", "kredi hesaplama", "faiz hesaplama", "döviz çevirici", "yatırım hesaplama"]
 }

@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { AverageCalculator } from "@/components/calculators/math/average-calculator"
 
 export const metadata: Metadata = {
-    title: "Ortalama Hesaplama - Aritmetik Ortalama, Medyan, Mod Hesaplayıcı",
+    title: "Ortalama Hesaplama - Medyan, Mod Hesaplayıcı",
     description: "Online ortalama hesaplama aracı. Aritmetik ortalama, medyan (ortanca) ve mod (tepe değer) hesaplayın. İstatistik hesaplamalar için pratik araç.",
     keywords: ["ortalama hesaplama", "aritmetik ortalama", "medyan hesaplama", "mod hesaplama", "ortalama nedir", "ortanca değer"]
 }

@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { AreaCalculator } from "@/components/calculators/math/area-calculator"
 
 export const metadata: Metadata = {
-    title: "Alan Hesaplama - Dikdörtgen, Daire, Üçgen Alan Hesaplayıcı",
+    title: "Alan Hesaplama - Dikdörtgen, Daire, Üçgen",
     description: "Online geometrik alan hesaplama aracı. Dikdörtgen, daire, üçgen ve yamuk alanını kolayca hesaplayın. Formüller ve örneklerle detaylı rehber.",
     keywords: ["alan hesaplama", "dikdörtgen alan", "daire alan", "üçgen alan", "geometri hesaplama", "yamuk alan"]
 }

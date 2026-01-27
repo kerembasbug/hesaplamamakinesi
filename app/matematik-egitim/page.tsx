@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getCategoryBySlug } from "@/config/site-data"
 
 export const metadata: Metadata = {
-    title: "Matematik & Eğitim Hesaplama Araçları - Yüzde, Karekök, Ortalama",
+    title: "Matematik Hesaplayıcıları - Yüzde, Karekök, Ortalama",
     description: "Ücretsiz matematik ve eğitim hesaplama araçları. Yüzde hesaplama, karekök, ortalama hesaplama, not hesaplama ve denklem çözücü.",
     keywords: ["matematik hesaplama", "yüzde hesaplama", "karekök hesaplama", "ortalama hesaplama", "not hesaplama"]
 }

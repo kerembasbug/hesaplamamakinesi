@@ -181,91 +181,121 @@ export default function HomePage() {
       </section>
 
       {/* SEO Content Section */}
-      <section className="mt-16">
+      <section className="mt-16 bg-white dark:bg-slate-900 rounded-3xl p-8 lg:p-12 shadow-sm border border-slate-100 dark:border-slate-800">
         <article className="prose prose-slate dark:prose-invert max-w-none">
-          <h2>HesaplamaMakinesi.com - Türkiye&apos;nin En Kapsamlı Online Hesaplama Platformu</h2>
-          <p>
-            HesaplamaMakinesi.com olarak, günlük hayatınızda ihtiyaç duyabileceğiniz tüm hesaplama araçlarını
-            tek bir platformda sunuyoruz. Finans hesaplamalarından sağlık hesaplayıcılarına, vergi hesaplamalarından
-            eğitim araçlarına kadar geniş bir yelpazede 100&apos;den fazla ücretsiz hesaplama aracı ile hizmetinizdeyiz.
+          <h2 className="text-3xl font-bold mb-6">HesaplamaMakinesi.com - Türkiye&apos;nin En Kapsamlı Online Hesaplama ve Analiz Platformu</h2>
+          <p className="lead text-lg mb-8">
+            Günlük hayatın karmaşasında hız, doğruluk ve güvenilirlik her şeydir. HesaplamaMakinesi.com olarak, finansal kararlarınızdan
+            akademik hedeflerinize, sağlıklı yaşam planlarınızdan astrolojik meraklarınıza kadar her alanda yanınızdayız. 100&apos;den fazla
+            akıllı ve ücretsiz aracıyla Türkiye&apos;nin dijital yardımcı rehberi olmayı hedefliyoruz.
           </p>
 
-          <h3>Neden HesaplamaMakinesi.com?</h3>
-          <p>
-            Güncel verilerle çalışan hesaplama araçlarımız, doğru ve güvenilir sonuçlar sunar. Tüm hesaplayıcılarımız
-            mobil uyumlu tasarımı sayesinde telefon, tablet veya bilgisayarınızdan kolayca erişilebilir.
-            Hiçbir kayıt veya üyelik gerektirmeden, tamamen ücretsiz olarak kullanabilirsiniz.
-          </p>
+          <div className="grid md:grid-cols-2 gap-12 my-12">
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Neden Bizi Tercih Etmelisiniz?</h3>
+              <p>
+                İnternette binlerce hesaplama aracı bulabilirsiniz, ancak biz farkımızı &quot;kalite ve güncellik&quot; üzerine kuruyoruz.
+                Tüm vergi oranları, faiz hesaplamaları ve akademik puanlama sistemleri, resmi kurumların (TÜİK, TCMB, ÖSYM, MEB) yayınladığı
+                en son verilere göre anında güncellenir.
+              </p>
+              <ul>
+                <li><strong>Anlık Güncelleme:</strong> Vergi dilimleri veya faiz oranları değiştiği an algoritmalarımızı güncelliyoruz.</li>
+                <li><strong>Gizlilik Odaklı:</strong> Hiçbir verinizi sunucularımızda saklamıyoruz, tüm hesaplamalar tarayıcınızda güvenle yapılır.</li>
+                <li><strong>Reklam Dengesi:</strong> Kullanıcı deneyimini bozmayan, temiz bir arayüz sunuyoruz.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Her İhtiyaca Bir Çözüm</h3>
+              <p>
+                İster bir ev kredisi planlıyor olun, ister çocuğunuzun LGS puanını merak edin; her kategoride uzmanlaşmış araçlarımızla
+                en doğru sonuca ulaşmanızı sağlıyoruz. Sadece birer hesap makinesi değil, aynı zamanda o konuya dair ipuçları ve
+                rehberlik yazılarıyla da sizi bilgilendiriyoruz.
+              </p>
+            </div>
+          </div>
 
-          <h3>Sunduğumuz Hesaplama Kategorileri</h3>
+          <h3 className="text-2xl font-semibold mb-6">Öne Çıkan Hesaplama Kategorilerimiz</h3>
 
-          <h4>Finans Hesaplama Araçları</h4>
-          <p>
-            Kredi hesaplama, mevduat faizi hesaplama, bileşik faiz hesaplama, döviz çevirici, yatırım getirisi (ROI)
-            hesaplama, enflasyon hesaplama ve işsizlik maaşı hesaplama gibi finansal araçlarımız ile bütçenizi
-            planlamanıza yardımcı oluyoruz. Güncel faiz oranları ve döviz kurları ile anlık hesaplamalar yapabilirsiniz.
-          </p>
+          <div className="space-y-8">
+            <section>
+              <h4 className="text-xl font-medium mb-3">Finans ve Ekonomi Araçları</h4>
+              <p>
+                Bütçe yönetimi, tasarrufların değerlendirilmesi ve kredi maliyetlerinin analizi için profesyonel çözümler sunuyoruz.
+                <strong>Kredi Hesaplama</strong> aracımızla aylık taksitlerinizi görürken, <strong>Mevduat Faizi</strong> ile birikimlerinizin
+                getirisini hesaplayabilirsiniz. Ayrıca <strong>Döviz Çevirici</strong> ile global piyasalardaki son durumu anlık takip edebilirsiniz.
+              </p>
+            </section>
 
-          <h4>Vergi ve Muhasebe Hesaplayıcıları</h4>
-          <p>
-            KDV hesaplama, gelir vergisi hesaplama, MTV hesaplama, damga vergisi hesaplama, ÖTV hesaplama ve
-            kurumlar vergisi hesaplama araçlarımız ile vergi yükümlülüklerinizi kolayca hesaplayabilirsiniz.
-            2024 ve 2025 yılı güncel vergi dilimleri ve oranları ile çalışan hesaplayıcılarımız, hem bireysel
-            hem de kurumsal kullanıcılar için idealdir.
-          </p>
+            <section>
+              <h4 className="text-xl font-medium mb-3">Vergi, Mevzuat ve Muhasebe</h4>
+              <p>
+                Türkiye vergi mevzuatına tam uyumlu; <strong>KDV</strong>, <strong>Gelir Vergisi</strong>, <strong>MTV</strong> ve
+                <strong>ÖTV hesaplama</strong> araçlarımızla sürpriz maliyetlerden kurtulun. Uzman kadromuz tarafından hazırlanan bu araçlar,
+                hem muhasebeciler hem de bireysel mükellefler için idealdir.
+              </p>
+            </section>
 
-          <h4>Sağlık ve Spor Hesaplayıcıları</h4>
-          <p>
-            Vücut Kitle İndeksi (VKİ) hesaplama, kalori hesaplama, ideal kilo hesaplama, su ihtiyacı hesaplama,
-            makro besin hesaplama ve bazal metabolizma hesaplama araçlarımız ile sağlıklı yaşam hedeflerinize
-            ulaşmanıza destek oluyoruz. Bilimsel formüllere dayanan hesaplayıcılarımız güvenilir sonuçlar sunar.
-          </p>
+            <section>
+              <h4 className="text-xl font-medium mb-3">Sağlıklı Yaşam ve Fitness</h4>
+              <p>
+                Vücudunuzu tanıyın. <strong>Vücut Kitle İndeksi (VKİ)</strong>, <strong>Bazal Metabolizma Hızı (BMR)</strong> ve
+                <strong>Günlük Kalori İhtiyacı</strong> gibi araçlarımızla diyet ve spor programlarınızı daha bilimsel temellere oturtun.
+                Sağlık araçlarımız, genel kabul görmüş medikal formüllerle çalışmaktadır.
+              </p>
+            </section>
 
-          <h4>Matematik ve Eğitim Araçları</h4>
-          <p>
-            Yüzde hesaplama, karekök hesaplama, TYT net hesaplama, AYT net hesaplama, LGS puan hesaplama ve
-            GPA hesaplama gibi eğitim araçlarımız öğrenciler ve veliler için vazgeçilmezdir. 2026 yılı güncel
-            sınav sistemlerine uygun hesaplayıcılarımız ile sınav hazırlık sürecinizi destekliyoruz.
-          </p>
+            <section>
+              <h4 className="text-xl font-medium mb-3">Eğitim ve Akademik Başarı</h4>
+              <p>
+                Öğrenciler için sınav heyecanını veriye dönüştürüyoruz. <strong>TYT/AYT Net Hesaplama</strong>, <strong>LGS Puanı</strong> ve
+                <strong>Üniversite Not Ortalaması (GPA)</strong> hesaplayıcılarımızla akademik geleceğinizi daha net görün.
+              </p>
+            </section>
+          </div>
 
-          <h4>Zaman ve Takvim Hesaplayıcıları</h4>
-          <p>
-            Yaş hesaplama, tarih hesaplama, gebelik hesaplama, gün farkı hesaplama, çalışma günleri hesaplama
-            ve zaman dilimi çevirici araçlarımız ile zamanla ilgili tüm hesaplamalarınızı kolayca yapabilirsiniz.
-          </p>
+          <h3 className="text-2xl font-semibold mt-12 mb-6 text-center">Sıkça Sorulan Sorular (SSS) - Sizin İçin Yanıtladık</h3>
 
-          <h4>Birim Dönüştürücüler</h4>
-          <p>
-            Uzunluk, ağırlık, sıcaklık, hız, alan ve veri boyutu dönüştürücülerimiz ile farklı ölçü birimleri
-            arasında hızlı çeviri yapabilirsiniz. Metrik ve emperyal sistemler arasında kolayca geçiş yapın.
-          </p>
+          <div className="space-y-6">
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+              <h5 className="font-bold text-lg mb-2">Hesaplama sonuçları yasal olarak geçerli midir?</h5>
+              <p className="text-slate-600 dark:text-slate-400">
+                Araçlarımız en güncel resmi verileri kullansa da, sonuçlar bilgilendirme amaçlıdır. Bankacılık işlemleri,
+                vergi ödemeleri veya tıbbi müdahaleler için mutlaka ilgili kurumların profesyonel uzmanlarına danışmanız önerilir.
+              </p>
+            </div>
 
-          <h3>Sıkça Sorulan Sorular (SSS)</h3>
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+              <h5 className="font-bold text-lg mb-2">Sitenizde kişisel verilerim kaydediliyor mu?</h5>
+              <p className="text-slate-600 dark:text-slate-400">
+                Kesinlikle hayır. Gizliliğe en üst düzeyde önem veriyoruz. Girdiğiniz rakamlar, tarihler veya ölçümler sadece o anki
+                işleminiz için tarayıcınızda kullanılır. Sayfayı yenilediğinizde veya kapattığınızda tüm veriler temizlenir.
+              </p>
+            </div>
 
-          <h4>HesaplamaMakinesi.com ücretsiz mi?</h4>
-          <p>
-            Evet, platformumuzdaki tüm hesaplama araçları tamamen ücretsizdir. Hiçbir gizli ücret veya
-            abonelik gerektirmez.
-          </p>
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+              <h5 className="font-bold text-lg mb-2">Hangi tarayıcılarda en iyi sonuçları alırım?</h5>
+              <p className="text-slate-600 dark:text-slate-400">
+                Modern mimarimiz sayesinde Chrome, Safari, Firefox ve Edge gibi tüm güncel tarayıcılarda tam performanslı çalışıyoruz.
+                Ayrıca sitemiz &quot;Mobil Öncelikli&quot; tasarıma sahiptir, cebinizden de mükemmel görünür.
+              </p>
+            </div>
 
-          <h4>Hesaplama sonuçları güvenilir mi?</h4>
-          <p>
-            Tüm hesaplayıcılarımız güncel ve doğrulanmış formüller kullanır. Vergi oranları, faiz oranları ve
-            döviz kurları gibi değişken veriler düzenli olarak güncellenir. Ancak kritik finansal veya sağlık
-            kararları için profesyonel danışmanlık almanızı öneririz.
-          </p>
+            <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+              <h5 className="font-bold text-lg mb-2">Yeni bir hesaplama aracı ekleyebilir misiniz?</h5>
+              <p className="text-slate-600 dark:text-slate-400">
+                Elbette! Kullanıcılarımızın geri bildirimleri bizim için çok değerli. İletişim sayfasından bize ulaşarak ihtiyacınız olan
+                hesaplama aracını bildirebilirsiniz. Ekibimiz en kısa sürede değerlendirmeye alacaktır.
+              </p>
+            </div>
+          </div>
 
-          <h4>Mobil cihazlarda kullanabilir miyim?</h4>
-          <p>
-            Evet, HesaplamaMakinesi.com tamamen mobil uyumludur. Akıllı telefon, tablet veya bilgisayarınızdan
-            tüm hesaplama araçlarını sorunsuz kullanabilirsiniz.
-          </p>
-
-          <h4>Hesaplama geçmişim kaydediliyor mu?</h4>
-          <p>
-            Hayır, hesaplamalarınız sunucularımızda saklanmaz. Tüm işlemler tarayıcınızda gerçekleşir ve
-            sayfayı kapattığınızda silinir. Gizliliğiniz bizim için önemlidir.
-          </p>
+          <div className="mt-12 p-8 bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl text-center">
+            <h3 className="text-2xl font-bold mb-4">Ücretsiz Kullanıma Hemen Başlayın!</h3>
+            <p className="mb-6">
+              Vakit nakittir. Karışık Excel tablolarıyla veya karmaşık formüllerle uğraşmak yerine, HesaplamaMakinesi.com&apos;un
+              sizin için işi yapmasına izin verin. Doğru sonuç, hızlı erişim ve sınırsız kullanım tamamen ücretsiz.
+            </p>
+          </div>
         </article>
       </section>
     </div>

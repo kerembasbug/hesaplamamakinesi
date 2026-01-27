@@ -42,138 +42,103 @@ export default function VkiHesaplamaPage() {
             <BmiCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
-                <h2>Vücut Kitle İndeksi (VKİ) Nedir?</h2>
+                <h2>Vücut Kitle İndeksi (VKİ) Hesaplama ve Detaylı Sağlık Analizi</h2>
                 <p>
-                    Vücut Kitle İndeksi (VKİ) veya İngilizce adıyla Body Mass Index (BMI), kilonuzun
-                    boyunuza göre sağlıklı bir aralıkta olup olmadığını değerlendirmek için kullanılan
-                    uluslararası bir ölçüdür. 1840&apos;larda Belçikalı matematikçi Adolphe Quetelet
-                    tarafından geliştirilmiştir.
-                </p>
-                <p>
-                    Dünya Sağlık Örgütü (WHO), VKİ&apos;yi obezite ve zayıflık durumlarını
-                    değerlendirmek için standart bir araç olarak kabul etmektedir.
+                    Vücut Kitle İndeksi (VKİ) veya dünya genelindeki adıyla Body Mass Index (BMI), bir kişinin kilosunun boyuna göre ideal olup olmadığını belirlemek için kullanılan
+                    evrensel bir matematiksel formüldür. 1840&apos;larda geliştirilen bu sistem, günümüzde Dünya Sağlık Örgütü (WHO) tarafından obezite ve buna bağlı kronik hastalık
+                    risklerini öngörmek için temel bir tarama testi olarak kabul edilir. <strong>VKİ hesaplama</strong> aracımız, boy ve kilo verilerinizi saniyeler içinde analiz ederek
+                    size tıbbi standartlarda bir sonuç sunar.
                 </p>
 
-                <h2>VKİ Nasıl Hesaplanır?</h2>
+                <h3>VKİ Nasıl Hesaplanır? Formül ve Mantık</h3>
                 <p>
-                    VKİ hesaplama formülü oldukça basittir:
+                    VKİ hesaplama mantığı basittir: Vücut ağırlığınızın (kg), boyunuzun metrekare cinsinden karesine bölünmesiyle elde edilir.
                 </p>
+                <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 my-6">
+                    <p className="font-mono text-center">VKİ = Kilo (kg) / [Boy (m) x Boy (m)]</p>
+                </div>
                 <p>
-                    <strong>VKİ = Kilo (kg) / Boy² (m²)</strong>
+                    Bu formül, vücut kompozisyonu (yağ vs. kas) hakkında bilgi vermese de, vücut yoğunluğu ve genel kütle dengesi hakkında bilimsel bir tahmin yürütmeyi sağlar.
                 </p>
+
+                <h3>Yaş Gruplarına Göre İdeal VKİ Değerleri</h3>
                 <p>
-                    Örneğin, 75 kg ağırlığında ve 1.75 m boyunda bir kişi için:
+                    Meta-analiz çalışmaları, &quot;ideal&quot; kabul edilen 18.5-24.9 aralığının yaşlandıkça bir miktar kayabileceğini göstermektedir.
+                    Özellikle 65 yaş ve üzeri bireylerde bir miktar &quot;bolluk&quot; (22-27 aralığı), kemik erimesi ve enfeksiyon direnci açısından daha sağlıklı kabul edilebilmektedir.
+                    Ancak çocuklar ve ergenler için standart yetişkin tablosu kullanılmaz; bunun yerine <strong>Persentil Eğrileri</strong> baz alınır.
+                </p>
+
+                <h3>VKİ Kategorileri ve Olası Sağlık Riskleri</h3>
+                <div className="overflow-x-auto my-6">
+                    <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
+                        <thead>
+                            <tr className="bg-slate-100 dark:bg-slate-800">
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Kategori</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">VKİ Aralığı</th>
+                                <th className="p-3 border border-slate-200 dark:border-slate-700">Risk Analizi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Ciddi Zayıf</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Altı - 16.0</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Bağışıklık zayıflığı, vitamin eksikliği.</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Normal</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">18.5 - 24.9</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Düşük kronik hastalık riski.</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Fazla Kilolu</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">25.0 - 29.9</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Tansiyon ve Diyabet başlangıç riski.</td>
+                            </tr>
+                            <tr>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700 font-semibold">Obezite Sınıf I</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">30.0 - 34.9</td>
+                                <td className="p-3 border border-slate-200 dark:border-slate-700">Kalp ve damar yükünde artış.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>VKİ Tek Başına Yeterli mi? Alternatif Ölçümler</h3>
+                <p>
+                    VKİ&apos;nin en büyük sınırlaması, kas ve yağ ayrımı yapamamasıdır. Bu nedenle şu iki ölçüm de dikkate alınmalıdır:
                 </p>
                 <ul>
-                    <li>VKİ = 75 / (1.75 × 1.75)</li>
-                    <li>VKİ = 75 / 3.0625</li>
-                    <li>VKİ = 24.5</li>
-                </ul>
-                <p>
-                    Bu değer &quot;Normal&quot; kategorisine girmektedir.
-                </p>
-
-                <h2>VKİ Kategorileri ve Anlamları</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>VKİ Değeri</th>
-                            <th>Kategori</th>
-                            <th>Sağlık Durumu</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>&lt; 18.5</td>
-                            <td>Zayıf</td>
-                            <td>Yetersiz beslenme riski</td>
-                        </tr>
-                        <tr>
-                            <td>18.5 - 24.9</td>
-                            <td>Normal</td>
-                            <td>Sağlıklı kilo aralığı</td>
-                        </tr>
-                        <tr>
-                            <td>25 - 29.9</td>
-                            <td>Fazla Kilolu</td>
-                            <td>Kilo kontrolü önerilir</td>
-                        </tr>
-                        <tr>
-                            <td>30 - 34.9</td>
-                            <td>Obez (Sınıf 1)</td>
-                            <td>Sağlık riskleri artmıştır</td>
-                        </tr>
-                        <tr>
-                            <td>35 - 39.9</td>
-                            <td>Obez (Sınıf 2)</td>
-                            <td>Ciddi sağlık riskleri</td>
-                        </tr>
-                        <tr>
-                            <td>≥ 40</td>
-                            <td>Morbid Obez</td>
-                            <td>Acil tıbbi müdahale gerekebilir</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h2>VKİ&apos;nin Sınırlamaları</h2>
-                <p>
-                    VKİ yararlı bir tarama aracı olsa da bazı sınırlamaları vardır:
-                </p>
-                <ul>
-                    <li>
-                        <strong>Kas kütlesi:</strong> Sporcular ve vücut geliştiriciler kas kütlesi
-                        nedeniyle yüksek VKİ gösterebilir ancak obez olmayabilirler.
-                    </li>
-                    <li>
-                        <strong>Yaş faktörü:</strong> Yaşlı bireyler kas kaybı nedeniyle düşük VKİ
-                        gösterebilir ancak yağ oranları yüksek olabilir.
-                    </li>
-                    <li>
-                        <strong>Cinsiyet farklılıkları:</strong> Kadınlar doğal olarak erkeklerden
-                        daha yüksek yağ oranına sahiptir.
-                    </li>
-                    <li>
-                        <strong>Etnik farklılıklar:</strong> Bazı etnik gruplar için VKİ kesim
-                        noktaları farklı olabilir.
-                    </li>
+                    <li><strong>Bel Çevresi:</strong> Erkeklerde 102 cm, kadınlarda 88 cm üzeri &quot;abdominal obezite&quot; yani iç organ yağlanması sinyalidir.</li>
+                    <li><strong>Bel/Boy Oranı:</strong> Bel çevreniz boyunuzun yarısını geçmemelidir. Bu oran VKİ&apos;den daha hassas bir sağlık göstergesi olabilir.</li>
                 </ul>
 
-                <h2>Sıkça Sorulan Sorular</h2>
+                <h3>Sıkça Sorulan Sorular (SSS)</h3>
 
-                <h3>Çocuklar için VKİ hesaplaması nasıl yapılır?</h3>
+                <h4>Sporcuların VKİ değeri neden yanıltıcı olabilir?</h4>
                 <p>
-                    Çocuklar ve ergenler için VKİ, yaşa ve cinsiyete göre persentil değerleriyle
-                    yorumlanır. Yetişkin VKİ kategorileri çocuklara uygulanamaz.
+                    Kas dokusu yağ dokusundan çok daha yoğundur. Çok fit ve kaslı bir sporcu, yüksek kütlesi nedeniyle VKİ tablosunda &quot;Obez&quot; görünebilir.
+                    Bu durumda yağ oranı ölçümü yapmak daha doğrudur.
                 </p>
 
-                <h3>VKİ değerim yüksekse ne yapmalıyım?</h3>
+                <h4>VKİ değerimi nasıl düşürebilirim?</h4>
                 <p>
-                    VKİ değeriniz 25&apos;in üzerindeyse, bir sağlık uzmanına danışmanız önerilir.
-                    Dengeli beslenme ve düzenli egzersiz kilo kontrolünde temel faktörlerdir.
+                    VKİ&apos;yi düşürmenin yolu sağlıklı bir kalori açığı yaratmaktır. Günlük aldığınız enerjiden fazlasını yakmak için sürdürülebilir bir beslenme
+                    düzeni ve haftalık en az 150 dakikalık fiziksel aktivite (yürüyüş, yüzme vb.) uzmanlarca önerilir.
                 </p>
 
-                <h3>İdeal VKİ değeri nedir?</h3>
+                <h4>Gebelik döneminde VKİ hesaplanır mı?</h4>
                 <p>
-                    18.5-24.9 arası normal kabul edilir. Ancak kişisel sağlık hedefleriniz için
-                    doktorunuza danışmalısınız.
+                    Hayır, gebelik sırasında vücut kütle dengesi tamamen değiştiği için standart VKİ tabloları geçersizdir. Gebelikte kilo takibi doktor rehberliğinde yapılmalıdır.
                 </p>
 
-                <h3>VKİ tek başına yeterli mi?</h3>
+                <h3>Neden Bizim Hesabı Kullanmalısınız?</h3>
                 <p>
-                    Hayır, VKİ sadece bir tarama aracıdır. Bel çevresi, bel-kalça oranı,
-                    vücut yağ yüzdesi gibi ek ölçümler daha kapsamlı değerlendirme sağlar.
+                    İnternetteki birçok araç eski veya hatalı katsayılar kullanabilir. HesaplamaMakinesi.com olarak en güncel WHO (Dünya Sağlık Örgütü) protokollerini
+                    baz alan algoritmalarımızla size en güvenilir sonucu sunuyoruz. Verileriniz hiçbir yere kaydedilmez, tamamen anonim ve saniyeler içinde sonuçlanır.
                 </p>
-
-                <h2>Sağlıklı Kilo İpuçları</h2>
-                <ul>
-                    <li>Dengeli ve çeşitli beslenin</li>
-                    <li>Haftada en az 150 dakika orta yoğunlukta egzersiz yapın</li>
-                    <li>Bol su için</li>
-                    <li>Uyku kalitesine önem verin</li>
-                    <li>Stresi yönetmeyi öğrenin</li>
-                    <li>Ani diyetlerden kaçının</li>
-                </ul>
+                <p>
+                    Hemen yukarıdaki araca boy ve kilonuzu girerek sağlığınız için ilk adımı atın!
+                </p>
             </article>
         </div>
     )

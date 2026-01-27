@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { UnemploymentCalculator } from "@/components/calculators/finance/unemployment-calculator"
 
 export const metadata: Metadata = {
-    title: "İşsizlik Maaşı Hesaplama 2025 - İşsizlik Ödeneği Hesaplayıcı",
+    title: "İşsizlik Maaşı Hesaplama 2025",
     description: "2025 işsizlik maaşı hesaplama aracı. Brüt maaşınıza ve çalışma sürenize göre işsizlik ödeneği tutarınızı hesaplayın. Tavan ve taksit bilgileri.",
     keywords: ["işsizlik maaşı hesaplama 2025", "işsizlik ödeneği", "işsizlik maaşı", "işkur işsizlik maaşı", "2025 işsizlik"]
 }

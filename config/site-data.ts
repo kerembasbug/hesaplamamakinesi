@@ -136,6 +136,30 @@ export const categories: Category[] = [
         slug: "asgari-odeme-hesaplama",
         description: "Kredi kartı minimum ödeme tutarı",
         icon: CreditCard
+      },
+      {
+        name: "Tazminat Hesaplama",
+        slug: "tazminat-hesaplama",
+        description: "Kıdem ve ihbar tazminatı hesaplayın",
+        icon: Banknote
+      },
+      {
+        name: "Maaş Hesaplama",
+        slug: "maas-hesaplama",
+        description: "Brüt-net maaş dönüşümü yapın",
+        icon: Banknote
+      },
+      {
+        name: "Altın Hesaplama",
+        slug: "altin-hesaplama",
+        description: "Altın fiyatları ve gram çevirici",
+        icon: Coins
+      },
+      {
+        name: "Zekat Hesaplama",
+        slug: "zekat-hesaplama",
+        description: "Nisab ve zekat miktarı hesaplayıcı",
+        icon: Coins
       }
     ]
   },
@@ -268,6 +292,18 @@ export const categories: Category[] = [
         slug: "qtc-hesaplama",
         description: "Düzeltilmiş QT aralığı hesaplayıcı",
         icon: Activity
+      },
+      {
+        name: "Uyku Hesaplama",
+        slug: "uyku-hesaplama",
+        description: "İdeal yatma ve kalkma saatlerinizi hesaplayın",
+        icon: Moon
+      },
+      {
+        name: "Vücut Ölçümü Hesaplama",
+        slug: "vucut-olcumu-hesaplama",
+        description: "Vücut yağ oranı ve ölçüm hesaplayıcı",
+        icon: Ruler
       }
     ]
   },
@@ -337,6 +373,12 @@ export const categories: Category[] = [
         slug: "iskonto-hesaplama",
         description: "İndirimli fiyat ve tasarruf hesaplayın",
         icon: Percent
+      },
+      {
+        name: "DGS Puan Hesaplama",
+        slug: "dgs-puan-hesaplama",
+        description: "Dikey Geçiş Sınavı puan hesaplayın",
+        icon: GraduationCap
       }
     ]
   },
@@ -475,6 +517,24 @@ export const categories: Category[] = [
         slug: "lilith-hesaplama",
         description: "Kara Ay Lilith yerleşimini bulun",
         icon: Moon
+      },
+      {
+        name: "Doğum Haritası Hesaplama",
+        slug: "dogum-haritasi-hesaplama",
+        description: "Güneş, ay ve yükselen burcunuzu öğrenin",
+        icon: Sparkles
+      },
+      {
+        name: "Yükselen Burç Hesaplama",
+        slug: "yukselen-burc-hesaplama",
+        description: "Doğum saatinize göre yükselen burcunuz",
+        icon: Star
+      },
+      {
+        name: "7. Ev Hesaplama",
+        slug: "7-ev-hesaplama",
+        description: "Evlilik ve ortaklık burcunuzu öğrenin",
+        icon: Heart
       }
     ]
   }

@@ -4,7 +4,7 @@ import { ChevronRight, Home } from "lucide-react"
 import { LgsCalculator } from "@/components/calculators/education/lgs-calculator"
 
 export const metadata: Metadata = {
-    title: "LGS Puan Hesaplama 2026 - Liselere Geçiş Sistemi Hesaplayıcı",
+    title: "LGS Puan Hesaplama 2026",
     description: "2026 LGS puan hesaplama aracı. Türkçe, Matematik, Fen, Sosyal, Din Kültürü ve Yabancı Dil netlerinize göre LGS puanınızı hesaplayın. Yüzdelik dilim tahmini.",
     keywords: ["lgs puan hesaplama 2026", "lgs hesaplama", "lgs net hesaplama", "lgs puan hesaplayıcı", "liselere geçiş sistemi", "lgs 2026"],
     openGraph: {
