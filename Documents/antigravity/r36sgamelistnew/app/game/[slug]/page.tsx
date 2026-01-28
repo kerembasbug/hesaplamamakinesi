@@ -30,14 +30,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!game) {
     return {
-      title: 'Game Not Found - R36S Game List',
-      description: 'The requested game was not found in the R36S game library.',
+      title: 'Game Not Found | R36S Game Library',
+      description: 'The requested game was not found. Browse our complete library of 15,000+ retro games for R36S handheld console.',
     };
   }
 
   const gameInfo = getGameInfo(game.name, game.console);
-  const title = `${game.name} - Play on R36S | ${game.console} Game Guide`;
-  const description = `Play ${game.name} on R36S handheld console. This ${gameInfo.genre} game for ${game.console} features perfect emulation, save states, and HD upscaling. Complete game guide and info.`;
+
+  // SEO-optimized title (50-60 chars)
+  const title = `${game.name} | ${game.console} - R36S Games`;
+
+  // SEO-optimized description (150-160 chars)
+  const description = `Play ${game.name} on R36S handheld. ${gameInfo.genre} game for ${game.console} with save states, HD upscaling & perfect emulation. Download & play now!`;
+
+  const siteUrl = 'https://r36sgamelist.com';
+  const gameUrl = `${siteUrl}/game/${game.slug}`;
 
   return {
     title,
@@ -47,9 +54,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `${game.name} R36S`,
       `${game.name} ${game.console}`,
       `R36S ${game.console} games`,
-      `play ${game.name} on R36S`,
+      `play ${game.name}`,
       `${game.console} emulation`,
-      `${gameInfo.genre} games R36S`,
+      `${gameInfo.genre} games`,
       'R36S game list',
       'R36S supported games',
       'retro gaming handheld',
@@ -64,22 +71,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       googleBot: {
         index: true,
         follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
     openGraph: {
-      title: `${game.name} - R36S ${game.console} Game`,
-      description: `Play ${game.name} (${gameInfo.genre}) on your R36S handheld. Full ${game.console} emulation with save states and enhanced graphics.`,
+      title: `${game.name} - Play on R36S`,
+      description: `Play ${game.name} (${gameInfo.genre}) on R36S handheld console. Full ${game.console} emulation with enhanced graphics.`,
       type: 'article',
       siteName: 'R36S Game Library',
+      url: gameUrl,
       locale: 'en_US',
-      images: [
-        {
-          url: '/og-game-image.jpg',
-          width: 1200,
-          height: 630,
-          alt: `${game.name} - ${game.console} game on R36S`,
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
@@ -87,7 +90,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: `Play this classic ${gameInfo.genre} game on R36S handheld console.`,
     },
     alternates: {
-      canonical: `/game/${game.slug}`,
+      canonical: gameUrl,
     },
     category: 'Gaming',
   };
@@ -102,10 +105,68 @@ export default async function GamePage({ params }: PageProps) {
     notFound();
   }
 
+  const gameInfo = getGameInfo(game.name, game.console);
+
   // Get related games from the same console
   const relatedGames = games
     .filter((g) => g.console === game.console && g.slug !== game.slug)
     .slice(0, 10);
 
-  return <GameDetailClient game={game} relatedGames={relatedGames} />;
+  // JSON-LD Structured Data for VideoGame
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoGame',
+    name: game.name,
+    description: gameInfo.description,
+    gamePlatform: game.console,
+    genre: gameInfo.genre,
+    applicationCategory: 'Game',
+    operatingSystem: 'R36S',
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  };
+
+  // Breadcrumb JSON-LD
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://r36sgamelist.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: game.console,
+        item: `https://r36sgamelist.com?console=${encodeURIComponent(game.console)}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: game.name,
+        item: `https://r36sgamelist.com/game/${game.slug}`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <GameDetailClient game={game} relatedGames={relatedGames} />
+    </>
+  );
 }

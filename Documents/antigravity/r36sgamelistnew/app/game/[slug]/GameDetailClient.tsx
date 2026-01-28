@@ -35,7 +35,7 @@ export default function GameDetailClient({ game, relatedGames }: GameDetailClien
         setImageError(false);
 
         const response = await fetch(
-          `/api/game-image?name=${encodeURIComponent(game.name)}&console=${encodeURIComponent(game.console)}`
+          `/api/game-image?slug=${encodeURIComponent(game.slug)}&name=${encodeURIComponent(game.name)}`
         );
         const data = await response.json();
 
@@ -313,6 +313,43 @@ export default function GameDetailClient({ game, relatedGames }: GameDetailClien
             )}
           </div>
         </div>
+
+        {/* SEO Content Section - Additional content for search engines */}
+        <section className="mt-12 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-xl p-6 md:p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            Why Play {game.name} on R36S?
+          </h2>
+
+          <div className="prose dark:prose-invert max-w-none">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              {game.name} is one of the standout titles in the {game.console} library, and the R36S handheld console provides the perfect way to experience this classic {gameInfo.genre} game. With its powerful emulation capabilities, the R36S delivers authentic gameplay while adding modern conveniences that enhance your gaming experience.
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mt-6 mb-3">
+              R36S Emulation Benefits for {game.name}
+            </h3>
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2 mb-4">
+              <li><strong>Save States:</strong> Save your progress in {game.name} anywhere, anytime - no need to find save points</li>
+              <li><strong>HD Upscaling:</strong> Experience {game.name} in enhanced resolution on the R36S display</li>
+              <li><strong>Button Mapping:</strong> Customize controls to match your preferred playstyle</li>
+              <li><strong>Fast Forward:</strong> Speed through repetitive sections of {game.name}</li>
+              <li><strong>Rewind:</strong> Made a mistake? Rewind and try again instantly</li>
+            </ul>
+
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mt-6 mb-3">
+              {game.console} Games on R36S
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              The R36S supports the entire {game.console} library, including classics like {game.name}. Whether you&apos;re a retro gaming enthusiast or discovering {game.console} games for the first time, the R36S offers perfect compatibility and excellent performance. With thousands of {game.console} titles available, {game.name} is just the beginning of your retro gaming journey.
+            </p>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mt-6">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                <strong>Game Info:</strong> {game.name} is a {gameInfo.genre} game originally released for the {game.console}. It is fully compatible with the R36S handheld console and can be played with enhanced features including save states, display filters, and customizable controls.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Back Button */}
         <div className="mt-12 text-center">
