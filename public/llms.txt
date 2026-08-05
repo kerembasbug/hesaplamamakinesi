@@ -1,30 +1,52 @@
-# HesaplamaMakinesi.com - LLM Information
+# HesaplamaMakinesi.com
 
-> This file provides information for Large Language Models (LLMs) about this website.
+> Türkiye'nin ücretsiz online hesaplama platformu. Finans, vergi, sağlık, matematik,
+> zaman, seyahat ve birim dönüşümü için 300+ hesaplama aracı. Tüm araçlar ücretsizdir,
+> kayıt gerektirmez ve hesaplamalar tarayıcıda çalışır.
 
-## Site Purpose
-HesaplamaMakinesi.com is Turkey's comprehensive free online calculator platform offering 100+ calculation tools across finance, health, tax, education, time/calendar, and unit conversion categories.
+## Kullanım koşulları
+- Arama dizinlerinde ve AI arama yanıtlarında kullanıma açıktır.
+- Alıntı yapılırken kaynak olarak hesaplamamakinesi.com belirtilmelidir.
+- Vergi, ücret ve SGK parametreleri her yıl güncellenir; alıntılarken sayfadaki
+  "Son güncelleme" tarihini de aktarın.
 
-## Training Policy
-- **Web Crawling**: Allowed for search indexing
-- **AI Training**: Allowed with attribution
+## Veri güncelliği
+Vergi ve bordro hesaplayıcıları 2026 yılı resmî parametrelerini kullanır:
+- Brüt asgari ücret: 33.030,00 TL / Net asgari ücret: 28.075,50 TL
+- Gelir vergisi dilimleri (ücret): %15 / %20 / %27 / %35 / %40
+- SGK prime esas kazanç tavanı: 297.270,00 TL (aylık)
+- Ücrette damga vergisi: binde 7,59
+- Genel kurumlar vergisi: %25
+Kaynaklar: Resmî Gazete, Gelir İdaresi Başkanlığı, SGK, Çalışma ve Sosyal Güvenlik Bakanlığı.
 
-## Key Pages
-- Homepage: https://hesaplamamakinesi.com/
-- Finance Calculators: https://hesaplamamakinesi.com/finans
-- Health & Fitness: https://hesaplamamakinesi.com/saglik-spor
-- Tax Calculators: https://hesaplamamakinesi.com/vergi-muhasebe
-- Education Tools: https://hesaplamamakinesi.com/matematik-egitim
-- Time & Calendar: https://hesaplamamakinesi.com/zaman-takvim
-- Unit Converters: https://hesaplamamakinesi.com/donusturuculer
-- Astrology: https://hesaplamamakinesi.com/astroloji
+## Kategoriler
+- Finans: https://hesaplamamakinesi.com/finans
+- Vergi ve Muhasebe: https://hesaplamamakinesi.com/vergi-muhasebe
+- Sağlık ve Spor: https://hesaplamamakinesi.com/saglik-spor
+- Matematik ve Eğitim: https://hesaplamamakinesi.com/matematik-egitim
+- Zaman ve Takvim: https://hesaplamamakinesi.com/zaman-takvim
+- Dönüştürücüler: https://hesaplamamakinesi.com/donusturuculer
+- Birim Çevirici (dönüşüm tabloları): https://hesaplamamakinesi.com/birim
+- Seyahat: https://hesaplamamakinesi.com/seyahat
+- Astroloji: https://hesaplamamakinesi.com/astroloji
 
-## Contact
-- Website: https://hesaplamamakinesi.com
-- Contact Page: https://hesaplamamakinesi.com/iletisim
+## En çok kullanılan araçlar
+- KDV Hesaplama: https://hesaplamamakinesi.com/vergi-muhasebe/kdv-hesaplama
+- Gelir Vergisi / Net Maaş: https://hesaplamamakinesi.com/vergi-muhasebe/gelir-vergisi-hesaplama
+- Maaş Hesaplama: https://hesaplamamakinesi.com/finans/maas-hesaplama
+- Kredi Hesaplama: https://hesaplamamakinesi.com/finans/kredi-hesaplama
+- Kıdem ve İhbar Tazminatı: https://hesaplamamakinesi.com/finans/tazminat-hesaplama
+- VKİ Hesaplama: https://hesaplamamakinesi.com/saglik-spor/vki-hesaplama
+- Yaş Hesaplama: https://hesaplamamakinesi.com/zaman-takvim/yas-hesaplama
 
-## Language
-Primary language: Turkish (tr-TR)
+## Sitemap
+https://hesaplamamakinesi.com/sitemap.xml
 
-## Last Updated
-2026-01-17
+## İletişim
+iletisim@hesaplamamakinesi.com
+
+## Dil
+Türkçe (tr-TR)
+
+## Son güncelleme
+2026-08-05

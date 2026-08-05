@@ -1,34 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { IncomeTaxCalculator } from "@/components/calculators/tax/income-tax-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { GuncellemeNotu, SgkParametreleri, UcretDisiVergiDilimleri, UcretVergiDilimleri } from "@/components/content/vergi-tablolari"
 
-export const metadata: Metadata = {
-    title: "Gelir Vergisi Hesaplama - Net Maaş Hesaplayıcı 2024",
-    description: "Online gelir vergisi hesaplama aracı. Brüt maaştan net maaş hesaplayın. SGK, işsizlik sigortası, damga vergisi ve gelir vergisi kesintilerini görün. 2024 vergi dilimleri.",
+export const metadata = buildMetadata({
+    title: "Gelir Vergisi Hesaplama 2026",
+    description: "2026 gelir vergisi hesaplama aracı. Brüt maaştan net maaşı, SGK ve damga vergisi kesintilerini ve asgari ücret istisnasını güncel dilimlerle görün.",
     keywords: ["gelir vergisi hesaplama", "net maaş hesaplama", "brüt net maaş", "vergi dilimi", "sgk kesintisi", "maaş hesaplama"],
-    openGraph: {
-        title: "Gelir Vergisi Hesaplama - Net Maaş Hesaplayıcı",
-        description: "Brüt maaştan net maaş ve vergi kesintilerini hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/vergi-muhasebe/gelir-vergisi-hesaplama",
+})
 
 export default function GelirVergisiHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">
-                    Vergi & Muhasebe
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Gelir Vergisi Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Gelir Vergisi Hesaplama",
+                    description: "Online gelir vergisi hesaplama aracı. Brüt maaştan net maaş hesaplayın. SGK, işsizlik sigortası, damga vergisi ve gelir vergisi kesintilerini görün. 2024 vergi dilimleri.",
+                    path: "/vergi-muhasebe/gelir-vergisi-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "Gelir Vergisi Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -54,44 +52,39 @@ export default function GelirVergisiHesaplamaPage() {
                     Çalışanların ayrıca beyanname vermesi gerekmez (istisnai durumlar hariç).
                 </p>
 
-                <h2>2024 Gelir Vergisi Dilimleri</h2>
+                <h2>2026 Gelir Vergisi Dilimleri</h2>
                 <p>
-                    2024 yılı için geçerli gelir vergisi dilimleri şöyledir:
+                    2026 yılı ücret gelirleri için geçerli gelir vergisi tarifesi şöyledir. Bu tablo, sitedeki
+                    tüm hesaplayıcıların kullandığı merkezî veri dosyasından üretilir; mevzuat değiştiğinde
+                    tablo ve hesaplama birlikte güncellenir.
                 </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Gelir Aralığı (Yıllık)</th>
-                            <th>Vergi Oranı</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0 - 110.000 TL</td>
-                            <td>%15</td>
-                        </tr>
-                        <tr>
-                            <td>110.000 - 230.000 TL</td>
-                            <td>%20</td>
-                        </tr>
-                        <tr>
-                            <td>230.000 - 580.000 TL</td>
-                            <td>%27</td>
-                        </tr>
-                        <tr>
-                            <td>580.000 - 3.000.000 TL</td>
-                            <td>%35</td>
-                        </tr>
-                        <tr>
-                            <td>3.000.000 TL üzeri</td>
-                            <td>%40</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <UcretVergiDilimleri />
                 <p>
-                    Vergi dilimleri kümülatif olarak uygulanır. Yani yıllık geliriniz 150.000 TL ise,
-                    ilk 110.000 TL&apos;ye %15, kalan 40.000 TL&apos;ye %20 uygulanır.
+                    Vergi dilimleri kümülatif olarak uygulanır: yıllık matrahınız 250.000 TL ise ilk 190.000 TL&apos;ye
+                    %15, kalan 60.000 TL&apos;ye %20 uygulanır. Ücret dışı gelirlerde (kira, serbest meslek, ticari
+                    kazanç) üçüncü dilimin üst sınırı farklıdır:
                 </p>
+                <UcretDisiVergiDilimleri />
+
+                <h2>Asgari Ücret Gelir Vergisi İstisnası</h2>
+                <p>
+                    2022&apos;de asgari geçim indirimi (AGİ) kaldırıldı ve yerine tüm çalışanları kapsayan bir istisna
+                    getirildi: ücretinizin <strong>asgari ücrete denk gelen kısmı gelir vergisinden ve damga
+                    vergisinden muaftır</strong>. Bu istisna yalnızca asgari ücretlilere değil, herkese uygulanır.
+                    Yüksek maaşlı bir çalışan da her ay asgari ücretlinin ödeyeceği kadar vergiyi düşer.
+                </p>
+                <p>
+                    Pratik sonucu şudur: brüt maaşınız ne olursa olsun, aylık gelir verginizden asgari ücretlinin
+                    o ayki gelir vergisi kadar indirim yapılır. Yukarıdaki hesaplayıcı bu istisnayı otomatik
+                    uygular ve düşülen tutarı ayrı satırda gösterir.
+                </p>
+
+                <h2>Prime Esas Kazanç Tavanı</h2>
+                <p>
+                    SGK ve işsizlik primleri sınırsız değildir. Prime esas kazanç üst sınırını aşan maaşlarda
+                    prim, brüt maaşın tamamı üzerinden değil tavan tutarı üzerinden hesaplanır. 2026 parametreleri:
+                </p>
+                <SgkParametreleri />
 
                 <h2>Maaş Kesintileri Nelerdir?</h2>
                 <ul>
@@ -103,7 +96,7 @@ export default function GelirVergisiHesaplamaPage() {
                         <strong>İşsizlik Sigortası (%1):</strong> İşsizlik durumunda maaş desteği almanızı sağlar.
                     </li>
                     <li>
-                        <strong>Damga Vergisi (%0.759):</strong> Brüt maaş üzerinden alınan sabit oranlı bir vergidir.
+                        <strong>Damga Vergisi (binde 7,59):</strong> Brüt maaş üzerinden alınan sabit oranlı bir vergidir.
                     </li>
                     <li>
                         <strong>Gelir Vergisi (%15-40):</strong> SGK kesintileri düşüldükten sonraki matrah
@@ -121,15 +114,16 @@ export default function GelirVergisiHesaplamaPage() {
                     <li><strong>İşsizlik Sigortası</strong> = Brüt × %1</li>
                     <li><strong>Gelir Vergisi Matrahı</strong> = Brüt - SGK - İşsizlik</li>
                     <li><strong>Gelir Vergisi</strong> hesaplanır (kümülatif dilim sistemi)</li>
-                    <li><strong>Damga Vergisi</strong> = Brüt × %0.759</li>
+                    <li><strong>Damga Vergisi</strong> = Brüt × binde 7,59 (asgari ücrete isabet eden kısmı istisna)</li>
                     <li><strong>Net Maaş</strong> = Brüt - SGK - İşsizlik - Gelir Vergisi - Damga Vergisi</li>
                 </ol>
 
-                <h2>Asgari Geçim İndirimi (AGİ)</h2>
+                <h2>Asgari Geçim İndirimi (AGİ) Hâlâ Var mı?</h2>
                 <p>
-                    AGİ, çalışanların medeni durumuna ve çocuk sayısına göre uygulanan bir vergi indirimidir.
-                    2024 itibarıyla AGİ uygulaması kaldırılmış ve yerine engelli indirimi gibi özel indirimler
-                    korunmuştur. Güncel mevzuatı takip etmeniz önerilir.
+                    Hayır. AGİ 2022 yılında kaldırıldı; medeni durum ve çocuk sayısına göre değişen o indirim
+                    artık uygulanmıyor. Yerine yukarıda anlatılan asgari ücret istisnası geldi. Bu yüzden bekâr
+                    ve evli bir çalışan aynı brüt maaşta aynı neti alır; net maaşı değiştiren tek etken kümülatif
+                    vergi matrahıdır.
                 </p>
 
                 <h2>Sıkça Sorulan Sorular</h2>
@@ -150,9 +144,10 @@ export default function GelirVergisiHesaplamaPage() {
 
                 <h3>İşveren maliyeti nedir?</h3>
                 <p>
-                    İşveren, brüt maaşın üzerine SGK işveren payı (%15.5), işsizlik işveren payı (%2) ve
-                    diğer yükümlülükleri de öder. Bu nedenle işverenin toplam maliyeti brüt maaştan
-                    yaklaşık %20-22 daha fazladır.
+                    İşveren, brüt maaşın üzerine SGK işveren payını (%20,5; 5 puanlık teşvikten yararlanan
+                    işyerlerinde %15,5) ve işsizlik işveren payını (%2) da öder. Teşviksiz durumda işverenin
+                    toplam maliyeti brüt maaştan yaklaşık %22,5 daha fazladır; hesaplayıcı bu tutarı ayrıca
+                    gösterir.
                 </p>
 
                 <h3>Emekli maaşımdan da kesinti yapılır mı?</h3>
@@ -168,6 +163,7 @@ export default function GelirVergisiHesaplamaPage() {
                     <li>Engelli indirimi uygulanabilir</li>
                     <li>Bağış ve yardımlar matrahtan düşülebilir</li>
                 </ul>
+                <GuncellemeNotu kaynakAdi="Gelir İdaresi Başkanlığı" kaynakUrl="https://www.gib.gov.tr/" />
             </article>
         </div>
     )

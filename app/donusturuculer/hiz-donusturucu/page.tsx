@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { SpeedConverter } from "@/components/calculators/converter/speed-converter"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Hız Dönüştürücü - km/h, mph, m/s, Knot Çevirici",
-    description: "Online hız birim dönüştürücü. Kilometre/saat, mil/saat, metre/saniye, knot ve mach arasında hızlı çevirme.",
-    keywords: ["hız dönüştürücü", "km/h mph çevirici", "hız birimi çevirme", "knot çevirici", "mach hesaplama"]
-}
+export const metadata = buildMetadata({
+    title: "Hız Dönüştürücü - km/s, mph, m/s, Knot",
+    description: "Ücretsiz hız birimi dönüştürücü. Kilometre/saat, mil/saat, metre/saniye, knot ve mach arasında anında çevirin; araç ve havacılık hesapları için.",
+    keywords: ["hız dönüştürücü", "km/h mph çevirici", "hız birimi çevirme", "knot çevirici", "mach hesaplama"],
+    path: "/donusturuculer/hiz-donusturucu",
+})
 
 export default function HizDonusturucuPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/donusturuculer" className="hover:text-indigo-600 transition-colors">Dönüştürücüler</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Hız Dönüştürücü</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Hız Dönüştürücü",
+                    description: "Online hız birim dönüştürücü. Kilometre/saat, mil/saat, metre/saniye, knot ve mach arasında hızlı çevirme.",
+                    path: "/donusturuculer/hiz-donusturucu",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Dönüştürücüler", path: "/donusturuculer" },
+                { name: "Hız Dönüştürücü" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Hız Dönüştürücü</h1>
@@ -35,7 +42,7 @@ export default function HizDonusturucuPage() {
                     kullanırız. <strong>Hız dönüştürücü</strong> aracımız, tüm bu farklı dünyalar arasındaki hız limitlerini sizin için eşitler.
                 </p>
 
-                <h3>Ulaşım Türlerine Göre Hız Birimleri</h3>
+                <h2>Ulaşım Türlerine Göre Hız Birimleri</h2>
                 <p>
                     Farklı sektörlerin ve coğrafyaların kendine has hız standartları vardır. İşte en yaygın olanları:
                 </p>
@@ -73,7 +80,7 @@ export default function HizDonusturucuPage() {
                     </table>
                 </div>
 
-                <h3>Temel Hız Dönüşüm Katsayıları</h3>
+                <h2>Temel Hız Dönüşüm Katsayıları</h2>
                 <ul>
                     <li><strong>1 mph:</strong> Yaklaşık 1.609 km/saat eder.</li>
                     <li><strong>1 knot:</strong> Tam olarak 1.852 km/saat veya yaklaşık 1.15 mph eder.</li>

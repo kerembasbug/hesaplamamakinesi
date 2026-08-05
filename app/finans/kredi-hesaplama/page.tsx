@@ -1,35 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { LoanCalculator } from "@/components/calculators/finance/loan-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Kredi Hesaplama - Aylık Taksit Hesaplayıcı",
-    description: "Online kredi hesaplama aracı. Konut kredisi, ihtiyaç kredisi, taşıt kredisi için aylık taksit tutarı, toplam geri ödeme ve faiz tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
+export const metadata = buildMetadata({
+    title: "Kredi Hesaplama - Aylık Taksit Aracı",
+    description: "Konut, ihtiyaç ve taşıt kredisi için aylık taksit tutarını, toplam geri ödemeyi ve faiz maliyetini hesaplayın. Ücretsiz ve anlık sonuç veren araç.",
     keywords: ["kredi hesaplama", "kredi hesapla", "aylık taksit hesaplama", "konut kredisi hesaplama", "ihtiyaç kredisi hesaplama", "taşıt kredisi hesaplama", "kredi faiz hesaplama"],
-    openGraph: {
-        title: "Kredi Hesaplama - Aylık Taksit Hesaplayıcı",
-        description: "Kredi taksit ve toplam ödeme tutarını kolayca hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/kredi-hesaplama",
+})
 
 export default function KrediHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Kredi Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Kredi Hesaplama",
+                    description: "Online kredi hesaplama aracı. Konut kredisi, ihtiyaç kredisi, taşıt kredisi için aylık taksit tutarı, toplam geri ödeme ve faiz tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
+                    path: "/finans/kredi-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Kredi Hesaplama" },
+            ]} />
 
             {/* Page Title */}
             <div className="mb-8">

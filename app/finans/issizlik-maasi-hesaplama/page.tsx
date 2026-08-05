@@ -1,24 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { UnemploymentCalculator } from "@/components/calculators/finance/unemployment-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { TarifeUyarisi } from "@/components/content/tarife-uyarisi"
 
-export const metadata: Metadata = {
-    title: "İşsizlik Maaşı Hesaplama 2025",
-    description: "2025 işsizlik maaşı hesaplama aracı. Brüt maaşınıza ve çalışma sürenize göre işsizlik ödeneği tutarınızı hesaplayın. Tavan ve taksit bilgileri.",
-    keywords: ["işsizlik maaşı hesaplama 2025", "işsizlik ödeneği", "işsizlik maaşı", "işkur işsizlik maaşı", "2025 işsizlik"]
-}
+export const metadata = buildMetadata({
+    title: "İşsizlik Maaşı Hesaplama 2026",
+    description: "2026 işsizlik maaşı hesaplama aracı. Brüt maaşınıza ve çalışma sürenize göre işsizlik ödeneği tutarınızı, süresini ve tavan sınırını hesaplayın.",
+    keywords: ["işsizlik maaşı hesaplama 2025", "işsizlik ödeneği", "işsizlik maaşı", "işkur işsizlik maaşı", "2025 işsizlik"],
+    path: "/finans/issizlik-maasi-hesaplama",
+})
 
 export default function IssizlikMaasiPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">Finans</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">İşsizlik Maaşı Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "İşsizlik Maaşı Hesaplama 2026",
+                    description: "2026 işsizlik maaşı hesaplama aracı. Brüt maaşınıza ve çalışma sürenize göre işsizlik ödeneği tutarınızı, süresini ve tavan sınırını hesaplayın.",
+                    path: "/finans/issizlik-maasi-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "İşsizlik Maaşı Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">İşsizlik Maaşı Hesaplama 2025</h1>
@@ -28,6 +36,8 @@ export default function IssizlikMaasiPage() {
             <UnemploymentCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+                <TarifeUyarisi yil={2025} konu="işsizlik ödeneği tutarları" kaynakAdi="İŞKUR" kaynakUrl="https://www.iskur.gov.tr/" />
+
                 <h2>İşsizlik Maaşı Nedir?</h2>
                 <p>İşsizlik maaşı, işini kaybeden sigortalı çalışanlara İŞKUR tarafından ödenen maddi destektir. 4447 sayılı İşsizlik Sigortası Kanunu kapsamında, belirli koşulları sağlayan işsizlere ödeme yapılır.</p>
 

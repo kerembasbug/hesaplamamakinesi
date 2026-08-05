@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { KURUMLAR_VERGISI } from "@/lib/constants/tr-2026"
 
 interface CalculationResult {
     annualProfit: number
@@ -28,8 +29,7 @@ export function CorporateTaxCalculator() {
             return
         }
 
-        // 2024 Kurumlar Vergisi Oranı: %25
-        const taxRate = 0.25
+        const taxRate = KURUMLAR_VERGISI.genel
         const corporateTax = profit * taxRate
         const netProfit = profit - corporateTax
 
@@ -167,7 +167,7 @@ export function CorporateTaxCalculator() {
                 <CardContent className="p-4">
                     <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Kurumlar Vergisi Hakkında</h3>
                     <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                        <li>• 2024 yılı için kurumlar vergisi oranı <strong>%25</strong>&apos;tir</li>
+                        <li>• 2026 genel kurumlar vergisi oranı <strong>%25</strong>&apos;tir (finans kuruluşlarında %30, ihracat kazancında %20, üretim kazancında %24)</li>
                         <li>• İhracat, Ar-Ge ve teknoloji geliştirme bölgelerinde indirimli oranlar uygulanabilir</li>
                         <li>• Beyanname Nisan ayının son gününe kadar verilmelidir</li>
                         <li>• Geçici vergi üçer aylık dönemlerde beyan edilir</li>

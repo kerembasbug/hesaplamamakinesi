@@ -1,24 +1,33 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { LengthConverter } from "@/components/calculators/converter/length-converter"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import Link from "next/link"
+import { BirimCeviriciLinkleri } from "@/components/content/birim-cevirici-linkleri"
 
-export const metadata: Metadata = {
-    title: "Uzunluk Dönüştürücü - Metre, Feet, İnç, Mil Çevirici",
-    description: "Online uzunluk birim dönüştürücü. Metre, kilometre, santimetre, milimetre, feet, inç, mil ve yarda arasında hızlı ve kolay çevirme.",
-    keywords: ["uzunluk dönüştürücü", "metre feet çevirici", "inç cm çevirici", "mil km çevirme", "uzunluk birimi çevirme"]
-}
+export const metadata = buildMetadata({
+    title: "Uzunluk Dönüştürücü - Metre, Feet, İnç",
+    description: "Ücretsiz uzunluk birimi dönüştürücü. Metre, kilometre, santimetre, milimetre, feet, inç, mil ve yarda arasında anında ve hatasız çevirme yapın.",
+    keywords: ["uzunluk dönüştürücü", "metre feet çevirici", "inç cm çevirici", "mil km çevirme", "uzunluk birimi çevirme"],
+    path: "/donusturuculer/uzunluk-donusturucu",
+})
 
 export default function UzunlukDonusturucuPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/donusturuculer" className="hover:text-indigo-600 transition-colors">Dönüştürücüler</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Uzunluk Dönüştürücü</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Uzunluk Dönüştürücü",
+                    description: "Online uzunluk birim dönüştürücü. Metre, kilometre, santimetre, milimetre, feet, inç, mil ve yarda arasında hızlı ve kolay çevirme.",
+                    path: "/donusturuculer/uzunluk-donusturucu",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Dönüştürücüler", path: "/donusturuculer" },
+                { name: "Uzunluk Dönüştürücü" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Uzunluk Dönüştürücü</h1>
@@ -36,7 +45,7 @@ export default function UzunlukDonusturucuPage() {
                     tüm bu farklı birimler arasında hızlı ve hatasız geçiş yapmanızı sağlayarak hayatınızı kolaylaştırır.
                 </p>
 
-                <h3>Ölçü Sistemlerinin Tarihçesi ve Farklılıkları</h3>
+                <h2>Ölçü Sistemlerinin Tarihçesi ve Farklılıkları</h2>
                 <p>
                     Günümüzde dünyada kullanılan iki ana ölçü sistemi bulunmaktadır: <strong>Metrik Sistem (SI)</strong> ve
                     <strong>Imperial (İngiliz) Sistemi</strong>. Metrik sistem, 18. yüzyılın sonlarında Fransa&apos;da geliştirilmiş ve
@@ -44,7 +53,7 @@ export default function UzunlukDonusturucuPage() {
                     metrik sistemi kullanırken, Amerika Birleşik Devletleri, Liberya ve Myanmar hala ağırlıklı olarak Imperial sistemini kullanmaktadır.
                 </p>
 
-                <h3>Hangi Birim Hangi Alanda Kullanılır?</h3>
+                <h2>Hangi Birim Hangi Alanda Kullanılır?</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -79,7 +88,7 @@ export default function UzunlukDonusturucuPage() {
                     </table>
                 </div>
 
-                <h3>Temel Uzunluk Dönüşüm Katsayıları</h3>
+                <h2>Temel Uzunluk Dönüşüm Katsayıları</h2>
                 <p>
                     Hesaplama yaparken temel aldığımız bazı sabit oranlar şunlardır:
                 </p>
@@ -91,7 +100,7 @@ export default function UzunlukDonusturucuPage() {
                     <li><strong>1 Deniz Mili (Nautical Mile):</strong> 1.852 metredir.</li>
                 </ul>
 
-                <h3>Uzunluk Dönüştürücü Nasıl Kullanılır?</h3>
+                <h2>Uzunluk Dönüştürücü Nasıl Kullanılır?</h2>
                 <p>
                     Online aracımız kullanımı son derece basittir:
                     1. İlk kutuya dönüştürmek istediğiniz değeri girin.
@@ -100,33 +109,33 @@ export default function UzunlukDonusturucuPage() {
                     4. Sonuç anında ekranınızda belirecek, hiçbir &quot;Hesapla&quot; butonuna basmanıza gerek kalmayacaktır.
                 </p>
 
-                <h3>Özel Alanlarda Uzunluk Birimleri</h3>
-                <h4>Denizcilik ve Havacılık</h4>
+                <h2>Özel Alanlarda Uzunluk Birimleri</h2>
+                <h2>Denizcilik ve Havacılık</h2>
                 <p>
                     Denizcilikte kara milinden farklı olarak &quot;Deniz Mili&quot; kullanılır. Bu birim, Dünya&apos;nın meridyen dairesi
                     üzerindeki 1 dakikalık yayın uzunluğuna eşittir. Bu yüzden navigasyon hesaplamalarında standart kabul edilir.
                 </p>
 
-                <h4>Astronomi ve Uzay</h4>
+                <h2>Astronomi ve Uzay</h2>
                 <p>
                     Kilometrelerin yetersiz kaldığı evrensel boyutlarda &quot;Işık Yılı&quot; veya &quot;Astronomik Birim (AU)&quot; kullanılır.
                     Işık yılı, ışığın boşlukta 1 yılda aldığı mesafedir ve yaklaşık 9.46 trilyon kilometredir.
                 </p>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>10 inç kaç cm eder?</h4>
+                <h3>10 inç kaç cm eder?</h3>
                 <p>
                     1 inç 2.54 cm olduğu için, 10 inç tam olarak 25.4 santimetre eder. Tablet ekranlarının boyutlarını bu yöntemle hesaplayabilirsiniz.
                 </p>
 
-                <h4>Ayak (Feet) birimi neden 30.48 cm&apos;dir?</h4>
+                <h3>Ayak (Feet) birimi neden 30.48 cm&apos;dir?</h3>
                 <p>
                     Tarihsel olarak bir yetişkin erkeğin ayak boyuna odaklı olan bu birim, modern standartlara göre sabitlenmiş ve
                     metrik sistemle uyumlu hale getirilmiştir.
                 </p>
 
-                <h4>Kilometreyi mile nasıl çeviririm?</h4>
+                <h3>Kilometreyi mile nasıl çeviririm?</h3>
                 <p>
                     Kilometre cinsinden değeri 0.62137 ile çarparak mil değerini elde edebilirsiniz. Örneğin 100 km, yaklaşık 62.1 mildir.
                 </p>
@@ -139,6 +148,16 @@ export default function UzunlukDonusturucuPage() {
                 </p>
                 <p>
                     Hemen yukarıdaki aracı kullanarak ilk dönüşümünüzü yapın ve zamandan tasarruf edin!
+                </p>
+                <h2>En Çok Aranan Uzunluk Dönüşümleri</h2>
+                <p>
+                    Aşağıdaki bağlantılar, tek tek hesaplanmış uzunluk dönüşümlerine götürür. Her sayfada
+                    formül, adım adım hesap, komşu değerler tablosu ve görsel skala bulunur.
+                </p>
+                <BirimCeviriciLinkleri kategori="uzunluk" />
+                <p>
+                    Tüm çeviricileri ve dönüşüm tablolarını <Link href="/birim">birim çevirici</Link> sayfasından
+                    görebilirsiniz.
                 </p>
             </article>
         </div>

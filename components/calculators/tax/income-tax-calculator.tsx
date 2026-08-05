@@ -7,15 +7,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-
-// 2024 Gelir Vergisi Dilimleri
-const taxBrackets2024 = [
-    { limit: 110000, rate: 0.15 },
-    { limit: 230000, rate: 0.20 },
-    { limit: 580000, rate: 0.27 },
-    { limit: 3000000, rate: 0.35 },
-    { limit: Infinity, rate: 0.40 }
-]
+import { bordroHesapla } from "@/lib/payroll"
+import {
+    ASGARI_UCRET,
+    DAMGA_VERGISI,
+    GELIR_VERGISI_UCRET,
+    SGK,
+    VERGI_YILI,
+    guncellemeEtiketi,
+} from "@/lib/constants/tr-2026"
 
 interface CalculationResult {
     grossSalary: number
@@ -23,9 +23,13 @@ interface CalculationResult {
     unemploymentEmployee: number
     stampTax: number
     incomeTax: number
+    incomeTaxExemption: number
     netSalary: number
     taxBracket: number
-    cumulativeTax: number
+    yearlyIncomeTax: number
+    yearlyNet: number
+    lastMonthNet: number
+    employerCost: number
 }
 
 export function IncomeTaxCalculator() {
@@ -34,72 +38,31 @@ export function IncomeTaxCalculator() {
     const [copied, setCopied] = useState<string | null>(null)
 
     const calculateIncomeTax = useCallback(() => {
-        const gross = parseFloat(grossSalary.replace(/,/g, "."))
+        const gross = parseFloat(grossSalary.replace(/\./g, "").replace(/,/g, "."))
 
         if (isNaN(gross) || gross <= 0) {
             setResult(null)
             return
         }
 
-        // SGK İşçi Payı (%14)
-        const sgkEmployee = gross * 0.14
-
-        // İşsizlik Sigortası İşçi Payı (%1)
-        const unemploymentEmployee = gross * 0.01
-
-        // SGK Matrahı (brüt - sgk kesintileri)
-        const sgkBase = gross - sgkEmployee - unemploymentEmployee
-
-        // Damga Vergisi (%0.759)
-        const stampTax = gross * 0.00759
-
-        // Gelir Vergisi Matrahı
-        const taxableIncome = sgkBase
-
-        // Kümülatif yıllık gelir için basitleştirilmiş hesaplama (aylık)
-        // Gerçek hesaplamada yıllık kümülatif gelir takip edilmelidir
-        let incomeTax = 0
-        let remainingIncome = taxableIncome * 12 // Yıllık varsayım
-        let currentBracket = 0
-
-        for (const bracket of taxBrackets2024) {
-            if (remainingIncome <= 0) break
-
-            const prevLimit = currentBracket === 0 ? 0 : taxBrackets2024[currentBracket - 1].limit
-            const taxableInBracket = Math.min(remainingIncome, bracket.limit - prevLimit)
-
-            if (taxableInBracket > 0) {
-                incomeTax += taxableInBracket * bracket.rate
-                remainingIncome -= taxableInBracket
-            }
-            currentBracket++
-        }
-
-        // Aylık gelir vergisi
-        const monthlyIncomeTax = incomeTax / 12
-
-        // Hangi dilimde
-        const yearlyIncome = taxableIncome * 12
-        let bracketRate = 15
-        for (let i = 0; i < taxBrackets2024.length; i++) {
-            if (yearlyIncome <= taxBrackets2024[i].limit) {
-                bracketRate = taxBrackets2024[i].rate * 100
-                break
-            }
-        }
-
-        // Net Maaş
-        const netSalary = gross - sgkEmployee - unemploymentEmployee - stampTax - monthlyIncomeTax
+        // 12 ay simüle edilir: gelir vergisi kümülatif matrah büyüdükçe artar,
+        // SGK primleri tavanla sınırlıdır ve asgari ücret istisnası düşülür.
+        const bordro = bordroHesapla(gross)
+        const ocak = bordro.aylar[0]
 
         setResult({
             grossSalary: gross,
-            sgkEmployee: Math.round(sgkEmployee * 100) / 100,
-            unemploymentEmployee: Math.round(unemploymentEmployee * 100) / 100,
-            stampTax: Math.round(stampTax * 100) / 100,
-            incomeTax: Math.round(monthlyIncomeTax * 100) / 100,
-            netSalary: Math.round(netSalary * 100) / 100,
-            taxBracket: bracketRate,
-            cumulativeTax: Math.round(incomeTax * 100) / 100
+            sgkEmployee: ocak.sgkIsci,
+            unemploymentEmployee: ocak.issizlikIsci,
+            stampTax: ocak.damgaVergisi,
+            incomeTax: ocak.gelirVergisi,
+            incomeTaxExemption: ocak.gelirVergisiIstisnasi,
+            netSalary: ocak.net,
+            taxBracket: Math.round(ocak.marjinalOran * 100),
+            yearlyIncomeTax: bordro.yillikGelirVergisi,
+            yearlyNet: bordro.yillikNet,
+            lastMonthNet: bordro.sonAyNet,
+            employerCost: bordro.aylikIsverenMaliyeti,
         })
     }, [grossSalary])
 
@@ -187,13 +150,19 @@ export function IncomeTaxCalculator() {
                                     <span>-{formatCurrency(result.unemploymentEmployee)}</span>
                                 </div>
                                 <div className="flex justify-between text-red-600">
-                                    <span>Damga Vergisi (%0.759)</span>
+                                    <span>Damga Vergisi (binde 7,59)</span>
                                     <span>-{formatCurrency(result.stampTax)}</span>
                                 </div>
                                 <div className="flex justify-between text-red-600">
                                     <span>Gelir Vergisi (%{result.taxBracket} dilimi)</span>
                                     <span>-{formatCurrency(result.incomeTax)}</span>
                                 </div>
+                                {result.incomeTaxExemption > 0 && (
+                                    <div className="flex justify-between text-emerald-600">
+                                        <span>Asgari ücret gelir vergisi istisnası</span>
+                                        <span>+{formatCurrency(result.incomeTaxExemption)}</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -212,9 +181,28 @@ export function IncomeTaxCalculator() {
                             </Button>
                         </div>
 
+                        <div className="grid gap-3 sm:grid-cols-2">
+                            <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                                <p className="text-xs text-slate-500 dark:text-slate-400">Aralık ayı neti</p>
+                                <p className="font-semibold text-slate-900 dark:text-white">{formatCurrency(result.lastMonthNet)}</p>
+                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                    Kümülatif matrah büyüdükçe vergi dilimi yükselir, net maaş yıl içinde düşer.
+                                </p>
+                            </div>
+                            <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                                <p className="text-xs text-slate-500 dark:text-slate-400">Aylık işveren maliyeti</p>
+                                <p className="font-semibold text-slate-900 dark:text-white">{formatCurrency(result.employerCost)}</p>
+                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                    Brüt + işveren SGK (%20,5) + işsizlik (%2), teşviksiz.
+                                </p>
+                            </div>
+                        </div>
+
                         <div className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20">
                             <p className="text-sm text-blue-700 dark:text-blue-300">
-                                <strong>Vergi Dilimi:</strong> Yıllık geliriniz %{result.taxBracket} vergi dilimine karşılık gelmektedir.
+                                <strong>Vergi dilimi:</strong> Ocak ayında %{result.taxBracket} dilimindesiniz.
+                                Yıllık toplam gelir vergisi {formatCurrency(result.yearlyIncomeTax)}, yıllık net{" "}
+                                {formatCurrency(result.yearlyNet)} olur.
                             </p>
                         </div>
                     </CardContent>
@@ -226,14 +214,32 @@ export function IncomeTaxCalculator() {
                     <div className="flex items-start gap-3">
                         <Info className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
                         <div className="text-sm text-slate-600 dark:text-slate-400">
-                            <p className="font-medium text-slate-900 dark:text-white mb-1">2024 Gelir Vergisi Dilimleri</p>
+                            <p className="font-medium text-slate-900 dark:text-white mb-1">
+                                {VERGI_YILI} Gelir Vergisi Dilimleri (ücret gelirleri)
+                            </p>
                             <ul className="space-y-1">
-                                <li>0 - 110.000 TL: %15</li>
-                                <li>110.000 - 230.000 TL: %20</li>
-                                <li>230.000 - 580.000 TL: %27</li>
-                                <li>580.000 - 3.000.000 TL: %35</li>
-                                <li>3.000.000 TL üzeri: %40</li>
+                                {GELIR_VERGISI_UCRET.map((dilim, index) => {
+                                    const alt = index === 0 ? 0 : GELIR_VERGISI_UCRET[index - 1].ustSinir
+                                    const bicim = (n: number) => n.toLocaleString("tr-TR")
+                                    return (
+                                        <li key={dilim.oran}>
+                                            {Number.isFinite(dilim.ustSinir)
+                                                ? `${bicim(alt)} - ${bicim(dilim.ustSinir)} TL`
+                                                : `${bicim(alt)} TL üzeri`}
+                                            : %{Math.round(dilim.oran * 100)}
+                                        </li>
+                                    )
+                                })}
                             </ul>
+                            <p className="mt-3">
+                                Hesaplamaya dahil edilenler: SGK işçi payı %{SGK.calisanSigortaPrimi * 100}, işsizlik
+                                %{SGK.calisanIssizlikPrimi * 100}, damga vergisi binde{" "}
+                                {(DAMGA_VERGISI.ucret * 1000).toLocaleString("tr-TR")}, prime esas kazanç tavanı{" "}
+                                {SGK.pekUstSinirAylik.toLocaleString("tr-TR")} TL ve brüt asgari ücret{" "}
+                                {ASGARI_UCRET.brutAylik.toLocaleString("tr-TR")} TL üzerinden gelir/damga vergisi
+                                istisnası.
+                            </p>
+                            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{guncellemeEtiketi()}</p>
                         </div>
                     </div>
                 </CardContent>

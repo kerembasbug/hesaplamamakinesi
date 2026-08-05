@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { SeventhHouseCalculator } from "@/components/calculators/astrology/seventh-house-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "7. Ev Hesaplama - Evlilik Burcu ve İlişki Analizi 2025",
-    description: "Online 7. ev hesaplama aracı. Doğum haritanızda 7. evinizi öğrenin. Evlilik burcu, ideal partner özellikleri ve ilişki uyumu hesaplayıcı.",
+export const metadata = buildMetadata({
+    title: "7. Ev Hesaplama - Evlilik Burcu 2026",
+    description: "Doğum haritanızda 7. evinizi öğrenin. Evlilik burcu, ideal partner özellikleri ve ilişki uyumu için ücretsiz 7. ev hesaplama aracı.",
     keywords: ["7. ev hesaplama", "yedinci ev astroloji", "evlilik burcu", "7. ev burcu", "partner burcu", "ilişki astrolojisi", "evlilik haritası"],
-    openGraph: {
-        title: "7. Ev Hesaplama - Evlilik ve İlişki Burcu",
-        description: "Doğum haritanızda 7. evinizi ve evlilik burcunuzu hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/astroloji/7-ev-hesaplama",
+})
 
 export default function YedinciEvHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/astroloji" className="hover:text-indigo-600 transition-colors">
-                    Astroloji
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">7. Ev Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "7. Ev Hesaplama",
+                    description: "Online 7. ev hesaplama aracı. Doğum haritanızda 7. evinizi öğrenin. Evlilik burcu, ideal partner özellikleri ve ilişki uyumu hesaplayıcı.",
+                    path: "/astroloji/7-ev-hesaplama",
+                    applicationCategory: "LifestyleApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Astroloji", path: "/astroloji" },
+                { name: "7. Ev Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -53,7 +50,7 @@ export default function YedinciEvHesaplamaPage() {
                     partnerleri temsil eder. Bu ev, bilinçdışı olarak partnerde aradığımız özellikleri gösterir.
                 </p>
 
-                <h3>7. Ev Neyi Temsil Eder?</h3>
+                <h2>7. Ev Neyi Temsil Eder?</h2>
                 <ul>
                     <li><strong>Evlilik ve ciddi ilişkiler:</strong> Hayat partneri seçimi</li>
                     <li><strong>İş ortaklıkları:</strong> Ticari ilişkiler ve anlaşmalar</li>
@@ -62,7 +59,7 @@ export default function YedinciEvHesaplamaPage() {
                     <li><strong>Danışmanlık:</strong> Bire bir ilişkiler</li>
                 </ul>
 
-                <h3>7. Ev Nasıl Hesaplanır?</h3>
+                <h2>7. Ev Nasıl Hesaplanır?</h2>
                 <p>
                     7. ev, yükselen burcunuzun tam karşısında yer alır. Her burç 30 derece olduğundan,
                     yükselen burcunuzun 180 derece karşısındaki burç 7. evinizi gösterir.
@@ -141,7 +138,7 @@ export default function YedinciEvHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>7. Evdeki Gezegenler</h3>
+                <h2>7. Evdeki Gezegenler</h2>
                 <p>7. evde gezegen bulunan kişiler için ilişkiler hayatın önemli bir temasıdır:</p>
                 <ul>
                     <li><strong>Güneş:</strong> Kimliğinizi ilişkiler üzerinden tanımlarsınız</li>
@@ -152,39 +149,39 @@ export default function YedinciEvHesaplamaPage() {
                     <li><strong>Satürn:</strong> Geç evlilik, ciddi ve kalıcı bağlar</li>
                 </ul>
 
-                <h3>7. Ev Yöneticisi</h3>
+                <h2>7. Ev Yöneticisi</h2>
                 <p>
                     7. evinizdeki burcun yönetici gezegeni, ilişkilerinizin nasıl şekilleneceğini gösterir.
                     Bu gezegenin haritanızdaki konumu, partneri nerede veya nasıl bulabileceğinize dair ipuçları verir.
                 </p>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>7. ev burcu ile evlenmeli miyim?</h4>
+                <h3>7. ev burcu ile evlenmeli miyim?</h3>
                 <p>
                     7. ev burcunuz, çekildiğiniz partner özelliklerini gösterir ama bu burçtan biriyle evlenmek
                     zorunlu değildir. Önemli olan partnerin haritasında bu enerjileri taşımasıdır.
                 </p>
 
-                <h4>7. evim boş, evlenmeyecek miyim?</h4>
+                <h3>7. evim boş, evlenmeyecek miyim?</h3>
                 <p>
                     Hayır! 7. evin boş olması evlenmeyeceğiniz anlamına gelmez. Bu durumda 7. evin yönetici
                     gezegenine ve burcuna bakılır.
                 </p>
 
-                <h4>7. ev sadece evliliği mi gösterir?</h4>
+                <h3>7. ev sadece evliliği mi gösterir?</h3>
                 <p>
                     Hayır. 7. ev tüm bire bir ilişkileri, iş ortaklıklarını, danışmanlık ilişkilerini ve
                     açık düşmanları da temsil eder.
                 </p>
 
-                <h4>1. ev ve 7. ev arasındaki fark nedir?</h4>
+                <h3>1. ev ve 7. ev arasındaki fark nedir?</h3>
                 <p>
                     1. ev &quot;ben&quot;i, 7. ev &quot;biz&quot;i temsil eder. 1. ev kendinizi nasıl
                     sunduğunuzu, 7. ev başkalarıyla nasıl ilişki kurduğunuzu gösterir.
                 </p>
 
-                <h3>7. Eve Göre İdeal Partner</h3>
+                <h2>7. Eve Göre İdeal Partner</h2>
                 <p>
                     7. evinizdeki burç, bilinçdışı olarak partnerde aradığınız özellikleri gösterir.
                     Bu özellikler bazen &quot;gölge&quot; yönlerinizi temsil eder - yani kendinizde

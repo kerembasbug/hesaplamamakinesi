@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { AstrologyCalculator } from "@/components/calculators/astrology/astrology-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Lilith Burcu Hesaplama - Kara Ay Analizi",
-    description: "Doğum haritasında Lilith (Kara Ay) burcu hesaplama. İçsel gücünüzü ve bilinçaltınızdaki gölge yanları keşfedin.",
-    keywords: ["lilith burcu hesaplama", "kara ay hesaplama", "lilith hesaplama", "lilith nedir", "astroloji lilith"]
-}
+export const metadata = buildMetadata({
+    title: "Lilith Burcu Hesaplama - Kara Ay",
+    description: "Doğum haritanızda Lilith (Kara Ay) burcu hesaplama aracı. İçsel gücünüzü, bastırdığınız arzuları ve bilinçaltındaki gölge yanları ücretsiz keşfedin.",
+    keywords: ["lilith burcu hesaplama", "kara ay hesaplama", "lilith hesaplama", "lilith nedir", "astroloji lilith"],
+    path: "/astroloji/lilith-hesaplama",
+})
 
 export default function LilithPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/astroloji" className="hover:text-indigo-600 transition-colors">Astroloji</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Lilith Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Lilith Burcu Hesaplama",
+                    description: "Doğum haritasında Lilith (Kara Ay) burcu hesaplama. İçsel gücünüzü ve bilinçaltınızdaki gölge yanları keşfedin.",
+                    path: "/astroloji/lilith-hesaplama",
+                    applicationCategory: "LifestyleApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Astroloji", path: "/astroloji" },
+                { name: "Lilith Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Lilith (Kara Ay) Burcu Hesaplama</h1>
@@ -35,14 +42,14 @@ export default function LilithPage() {
                     belki de toplumdan gizlediği arzularını temsil eder. Doğum haritalarında Lilith, &quot;Kara Ay&quot; olarak da adlandırılır.
                 </p>
 
-                <h3>Lilith&apos;in Doğum Haritasındaki Mesajı</h3>
+                <h2>Lilith&apos;in Doğum Haritasındaki Mesajı</h2>
                 <p>
                     Lilith burcunuz, nerede taviz vermediğinizi, nerede haksızlığa uğradığınızı hissettiğinizi ve en güçlü savunma mekanizmalarınızı
                     nerede kurduğunuzu anlatır. Bu nokta, kişinin &quot;gölge yanı&quot; ile yüzleştiği alandır. Lilith&apos;i anlamak, bastırılmış duyguların
                     yapıcı bir güce dönüştürülmesini sağlar.
                 </p>
 
-                <h3>Lilith Burçlara Göre Temel Temalar</h3>
+                <h2>Lilith Burçlara Göre Temel Temalar</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -80,7 +87,7 @@ export default function LilithPage() {
                     </table>
                 </div>
 
-                <h3>Lilith Evlerde: Sınandığımız Alanlar</h3>
+                <h2>Lilith Evlerde: Sınandığımız Alanlar</h2>
                 <ul>
                     <li><strong>1. Ev:</strong> Kişisel imaj ve dış dünyaya verilen ilk izlenimde gizemli ve çekici bir hava.</li>
                     <li><strong>5. Ev:</strong> Aşk hayatında ve yaratıcılıkta sıra dışı, bazen riskli tercihler.</li>
@@ -88,27 +95,27 @@ export default function LilithPage() {
                     <li><strong>12. Ev:</strong> Gizli düşmanlar, rüyalar ve bilinçaltındaki en kuytu köşelerdeki savaşlar.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular</h3>
+                <h2>Sıkça Sorulan Sorular</h2>
 
-                <h4>Lilith hesaplama için ne gereklidir?</h4>
+                <h3>Lilith hesaplama için ne gereklidir?</h3>
                 <p>
                     Lilith hesaplayıcısı, tam doğum tarihinize ve özellikle doğum saatinize ihtiyaç duyar. Ay&apos;ın yörüngesindeki bu nokta hızlı hareket
                     etmese de, ev yerleşimini belirlemek için dakik bir doğum saati sonuçların doğruluğunu artırır.
                 </p>
 
-                <h4>Lilith kötü bir şey mi?</h4>
+                <h3>Lilith kötü bir şey mi?</h3>
                 <p>
                     Hayır, astrolojide &quot;iyi&quot; veya &quot;kötü&quot; yoktur. Lilith sadece bizim daha ilkel, daha dürüst ve daha bağımsız tarafımızı temsil eder.
                     Bu tarafı reddetmek yerine kabul etmek, kişisel bütünlük için çok önemlidir.
                 </p>
 
-                <h4>Lilith ve Pluto arasındaki ilişki nedir?</h4>
+                <h3>Lilith ve Pluto arasındaki ilişki nedir?</h3>
                 <p>
                     Her ikisi de dönüşüm, krizler ve yeraltı dünyası (bilinçaltı) ile ilgilidir. Ancak Pluto jenerasyonel bir değişim gücüyken, Lilith
                     kişinin bireysel düzeydeki isyanını ve özgünlüğünü temsil eder.
                 </p>
 
-                <h3>Lilith Burcu Hesaplayarak Kendini Tanı</h3>
+                <h2>Lilith Burcu Hesaplayarak Kendini Tanı</h2>
                 <p>
                     Lilith burcunuzu öğrendikten sonra, hayatınızda nerede &quot;hayır&quot; dediğinizde kendinizi daha güçlü hissettiğinizi fark edebilirsiniz.
                     Bu nokta, başkalarının beklentilerinden bağımsız olarak gerçek benliğinizi bulduğunuz yerdir.

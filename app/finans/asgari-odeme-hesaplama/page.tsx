@@ -1,24 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CreditMinPaymentCalculator } from "@/components/calculators/finance/credit-card-min-payment"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { TarifeUyarisi } from "@/components/content/tarife-uyarisi"
 
-export const metadata: Metadata = {
-    title: "Asgari Ödeme Hesaplama - Kredi Kartı Asgari Tutarı",
-    description: "Kredi kartı ekstre borcuna göre asgari ödeme tutarı hesaplama aracı. BDDK'nın belirlediği %20 ve %40 oranlarına göre hesaplayın.",
-    keywords: ["asgari ödeme hesaplama", "kredi kartı asgari hesaplama", "asgari tutar hesaplama", "asgari ödeme nasıl hesaplanır"]
-}
+export const metadata = buildMetadata({
+    title: "Asgari Ödeme Hesaplama - Kredi Kartı",
+    description: "Kredi kartı ekstre borcunuza göre asgari ödeme tutarını hesaplayın. BDDK'nın belirlediği oranlarla limit bazlı asgari tutar hesaplama aracı.",
+    keywords: ["asgari ödeme hesaplama", "kredi kartı asgari hesaplama", "asgari tutar hesaplama", "asgari ödeme nasıl hesaplanır"],
+    path: "/finans/asgari-odeme-hesaplama",
+})
 
 export default function AsgariOdemePage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">Finans</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Asgari Ödeme Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Asgari Ödeme Hesaplama",
+                    description: "Kredi kartı ekstre borcuna göre asgari ödeme tutarı hesaplama aracı. BDDK'nın belirlediği %20 ve %40 oranlarına göre hesaplayın.",
+                    path: "/finans/asgari-odeme-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Asgari Ödeme Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Asgari Ödeme Hesaplama</h1>
@@ -28,6 +36,8 @@ export default function AsgariOdemePage() {
             <CreditMinPaymentCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+                <TarifeUyarisi yil={2025} konu="asgari ödeme oranları" kaynakAdi="BDDK" kaynakUrl="https://www.bddk.org.tr/" />
+
                 <h2>Asgari Ödeme Tutarı Nedir?</h2>
                 <p>
                     Asgari ödeme tutarı, kredi kartı borcunuzun cezai duruma düşmemesi ve kartınızın

@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { RisingSignCalculator } from "@/components/calculators/astrology/rising-sign-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Yükselen Burç Hesaplama - Ascendant Hesaplayıcı 2025",
-    description: "Online yükselen burç hesaplama aracı. Doğum tarihi ve saatinize göre yükselen burcunuzu öğrenin. Ascendant burç özellikleri, element ve yönetici gezegen bilgileri.",
+export const metadata = buildMetadata({
+    title: "Yükselen Burç Hesaplama - Ascendant",
+    description: "Doğum tarihi ve saatinize göre yükselen burcunuzu öğrenin. Ascendant burç özellikleri, element ve yönetici gezegen bilgileriyle ücretsiz hesaplama.",
     keywords: ["yükselen burç hesaplama", "yükselen burç hesapla", "ascendant hesaplama", "yükselen burcum ne", "yükselen burç nasıl hesaplanır", "rising sign calculator"],
-    openGraph: {
-        title: "Yükselen Burç Hesaplama - Ascendant Hesaplayıcı",
-        description: "Doğum tarihi ve saatinize göre yükselen burcunuzu hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/astroloji/yukselen-burc-hesaplama",
+})
 
 export default function YukselenBurcHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/astroloji" className="hover:text-indigo-600 transition-colors">
-                    Astroloji
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Yükselen Burç Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Yükselen Burç Hesaplama",
+                    description: "Online yükselen burç hesaplama aracı. Doğum tarihi ve saatinize göre yükselen burcunuzu öğrenin. Ascendant burç özellikleri, element ve yönetici gezegen bilgileri.",
+                    path: "/astroloji/yukselen-burc-hesaplama",
+                    applicationCategory: "LifestyleApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Astroloji", path: "/astroloji" },
+                { name: "Yükselen Burç Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -54,7 +51,7 @@ export default function YukselenBurcHesaplamaPage() {
                     dünyaya gösterdiğiniz &quot;maske&quot;yi temsil eder.
                 </p>
 
-                <h3>Yükselen Burç Nasıl Hesaplanır?</h3>
+                <h2>Yükselen Burç Nasıl Hesaplanır?</h2>
                 <p>
                     Yükselen burcunuzu hesaplamak için üç bilgiye ihtiyacınız vardır:
                 </p>
@@ -68,7 +65,7 @@ export default function YukselenBurcHesaplamaPage() {
                     aynı güneş burcundaki kişiler farklı yükselen burçlara sahip olabilir.
                 </p>
 
-                <h3>12 Yükselen Burç ve Özellikleri</h3>
+                <h2>12 Yükselen Burç ve Özellikleri</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -156,7 +153,7 @@ export default function YukselenBurcHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Yükselen Burç Neden Önemlidir?</h3>
+                <h2>Yükselen Burç Neden Önemlidir?</h2>
                 <ul>
                     <li><strong>İlk İzlenim:</strong> Tanışmalarda verdiğiniz ilk izlenimi belirler</li>
                     <li><strong>Fiziksel Görünüm:</strong> Vücut tipinizi ve yüz hatlarınızı etkiler</li>
@@ -165,35 +162,35 @@ export default function YukselenBurcHesaplamaPage() {
                     <li><strong>Ev Sistemi:</strong> Doğum haritanızın ev yerleşimlerini belirler</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Yükselen burcum güneş burcumla aynı olabilir mi?</h4>
+                <h3>Yükselen burcum güneş burcumla aynı olabilir mi?</h3>
                 <p>
                     Evet, gün doğumuna yakın saatlerde doğduysanız yükselen burcunuz güneş burcunuzla aynı olabilir.
                     Bu durumda o burcun özelliklerini çok güçlü yansıtırsınız.
                 </p>
 
-                <h4>Doğum saatimi bilmiyorsam ne yapmalıyım?</h4>
+                <h3>Doğum saatimi bilmiyorsam ne yapmalıyım?</h3>
                 <p>
                     Nüfus müdürlüğünden veya doğduğunuz hastaneden doğum belgenizi talep edebilirsiniz.
                     Bazı astrologlar &quot;rektifikasyon&quot; yöntemiyle hayat olaylarınızdan yola çıkarak
                     doğum saatinizi tahmin edebilir.
                 </p>
 
-                <h4>Yükselen burç yaşla değişir mi?</h4>
+                <h3>Yükselen burç yaşla değişir mi?</h3>
                 <p>
                     Hayır, yükselen burcunuz ömür boyu sabit kalır. Ancak, yaşla birlikte yükselen burcunuzun
                     özelliklerini daha bilinçli kullanmayı öğrenebilirsiniz.
                 </p>
 
-                <h4>Güneş burcu mu yükselen burç mu daha önemli?</h4>
+                <h3>Güneş burcu mu yükselen burç mu daha önemli?</h3>
                 <p>
                     İkisi de önemlidir ama farklı alanları temsil eder. Güneş burcu içsel kimliğinizi,
                     yükselen burç dışsal kişiliğinizi gösterir. Kapsamlı bir anlayış için ikisini birlikte
                     değerlendirmek gerekir.
                 </p>
 
-                <h3>Yükselen Burç ve İlişkiler</h3>
+                <h2>Yükselen Burç ve İlişkiler</h2>
                 <p>
                     Yükselen burcunuz, romantik ilişkilerde de önemli bir rol oynar. İnsanlar sizi ilk tanıdıklarında
                     yükselen burcunuzun enerjisini algılarlar. Ayrıca 7. evinizi (karşı yükselen) hesaplamak için de

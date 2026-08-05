@@ -1,35 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { DepositCalculator } from "@/components/calculators/finance/deposit-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Mevduat Faizi Hesaplama - Vadeli Getiri",
-    description: "Online mevduat faizi hesaplama aracı. Vadeli mevduat hesabınızın brüt ve net faiz getirisini, stopaj kesintisini ve vade sonu tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
+    description: "Vadeli mevduat hesabınızın brüt ve net faiz getirisini, stopaj kesintisini ve vade sonu tutarını hesaplayın. Ücretsiz ve anlık sonuç veren araç.",
     keywords: ["mevduat faizi hesaplama", "vadeli mevduat hesaplama", "faiz hesaplama", "mevduat getirisi", "stopaj hesaplama", "banka faizi hesaplama"],
-    openGraph: {
-        title: "Mevduat Faizi Hesaplama - Vadeli Mevduat Getiri Hesaplayıcı",
-        description: "Vadeli mevduat faiz getirinizi kolayca hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/mevduat-faizi-hesaplama",
+})
 
 export default function MevduatFaiziHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Mevduat Faizi Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Mevduat Faizi Hesaplama",
+                    description: "Online mevduat faizi hesaplama aracı. Vadeli mevduat hesabınızın brüt ve net faiz getirisini, stopaj kesintisini ve vade sonu tutarını hesaplayın. Ücretsiz ve anlık sonuçlar.",
+                    path: "/finans/mevduat-faizi-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Mevduat Faizi Hesaplama" },
+            ]} />
 
             {/* Page Title */}
             <div className="mb-8">

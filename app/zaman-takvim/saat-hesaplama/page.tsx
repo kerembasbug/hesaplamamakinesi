@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { TimeDifferenceCalculator } from "@/components/calculators/time/time-difference-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Saat Hesaplama - İki Saat Arası Fark Hesaplayıcı",
-    description: "Online saat farkı hesaplama aracı. İki saat arasındaki farkı dakika, saat ve ondalık saat olarak hesaplayın. Mesai ve çalışma süresi hesaplama.",
-    keywords: ["saat hesaplama", "saat farkı", "çalışma süresi hesaplama", "mesai hesaplama", "saat arasındaki fark"]
-}
+export const metadata = buildMetadata({
+    title: "Saat Hesaplama - İki Saat Arası Fark",
+    description: "Saat farkı hesaplama aracı. İki saat arasındaki farkı saat, dakika ve ondalık saat olarak hesaplayın; mesai ve çalışma süresi takibi için idealdir.",
+    keywords: ["saat hesaplama", "saat farkı", "çalışma süresi hesaplama", "mesai hesaplama", "saat arasındaki fark"],
+    path: "/zaman-takvim/saat-hesaplama",
+})
 
 export default function SaatHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman &amp; Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Saat Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Saat Hesaplama",
+                    description: "Online saat farkı hesaplama aracı. İki saat arasındaki farkı dakika, saat ve ondalık saat olarak hesaplayın. Mesai ve çalışma süresi hesaplama.",
+                    path: "/zaman-takvim/saat-hesaplama",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman &amp; Takvim", path: "/zaman-takvim" },
+                { name: "Saat Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Saat Farkı Hesaplama</h1>

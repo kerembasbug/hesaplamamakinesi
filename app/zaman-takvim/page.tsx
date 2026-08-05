@@ -1,14 +1,18 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { getCategoryBySlug } from "@/config/site-data"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { collectionPageSchema } from "@/lib/schema"
+import { categories } from "@/config/site-data"
 
-export const metadata: Metadata = {
-    title: "Zaman & Takvim Hesaplama Araçları - Tarih, Yaş, Gebelik",
-    description: "Ücretsiz zaman ve takvim hesaplama araçları. Tarih farkı, yaş hesaplama, gebelik hesaplama, gün sayacı ve çalışma saati hesaplama.",
-    keywords: ["tarih hesaplama", "yaş hesaplama", "gebelik hesaplama", "gün hesaplama", "takvim hesaplama"]
-}
+export const metadata = buildMetadata({
+    title: "Zaman ve Takvim Hesaplama Araçları",
+    description: "Ücretsiz zaman ve takvim araçları: tarih farkı, yaş hesaplama, gebelik takibi, iş günü sayısı, saat farkı, zaman dilimi çevirici ve kronometre.",
+    keywords: ["tarih hesaplama", "yaş hesaplama", "gebelik hesaplama", "gün hesaplama", "takvim hesaplama"],
+    path: "/zaman-takvim",
+})
 
 export default function ZamanTakvimPage() {
     const category = getCategoryBySlug("zaman-takvim")
@@ -16,11 +20,19 @@ export default function ZamanTakvimPage() {
 
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">{category.name}</span>
-            </nav>
+            <JsonLd
+                data={collectionPageSchema(
+                    "Zaman & Takvim Hesaplama Araçları",
+                    "Ücretsiz zaman ve takvim hesaplama araçları. Tarih farkı, yaş hesaplama, gebelik hesaplama, gün sayacı ve çalışma saati hesaplama.",
+                    "/zaman-takvim",
+                    (categories.find((c) => c.slug === "zaman-takvim")?.tools ?? [])
+                        .filter((t) => !t.externalUrl)
+                        .map((t) => ({ name: t.name, path: `/zaman-takvim/${t.slug}`, description: t.description }))
+                )}
+            />
+            <Breadcrumb items={[
+                { name: category.name },
+            ]} />
 
             <div className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
@@ -59,58 +71,58 @@ export default function ZamanTakvimPage() {
                     gebelik takibi, çalışma günleri hesaplama gibi hesaplamaları kolaylaştırır.
                 </p>
 
-                <h3>Popüler Zaman Hesaplayıcıları</h3>
+                <h2>Popüler Zaman Hesaplayıcıları</h2>
 
-                <h4>Yaş Hesaplama</h4>
+                <h3>Yaş Hesaplama</h3>
                 <p>
                     Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak öğrenin. Bir sonraki
                     doğum gününüze kaç gün kaldığını da görebilirsiniz.
                 </p>
 
-                <h4>Tarih Farkı (Gün Farkı) Hesaplama</h4>
+                <h3>Tarih Farkı (Gün Farkı) Hesaplama</h3>
                 <p>
                     İki tarih arasındaki farkı gün, hafta, ay veya yıl olarak hesaplayın. Proje
                     planlaması, kira süresi veya önemli günler için kullanışlıdır.
                 </p>
 
-                <h4>Gebelik Hesaplama</h4>
+                <h3>Gebelik Hesaplama</h3>
                 <p>
                     Son adet tarihinize göre gebelik haftanızı, tahmini doğum tarihinizi (DKT) ve
                     bebeğin gelişim aşamasını öğrenin.
                 </p>
 
-                <h4>Çalışma Günleri Hesaplama</h4>
+                <h3>Çalışma Günleri Hesaplama</h3>
                 <p>
                     İki tarih arasındaki iş günü sayısını hesaplayın. Hafta sonları ve resmi tatiller
                     hariç tutularak hesaplama yapılır.
                 </p>
 
-                <h4>Zaman Dilimi Çevirici</h4>
+                <h3>Zaman Dilimi Çevirici</h3>
                 <p>
                     Farklı ülkelerdeki saat dilimlerini karşılaştırın. Uluslararası toplantılar veya
                     seyahat planlaması için idealdir.
                 </p>
 
-                <h4>Kronometre</h4>
+                <h3>Kronometre</h3>
                 <p>
                     Online kronometre ile süre ölçün. Tur kaydetme ve detaylı zaman tutma özellikleri mevcuttur.
                 </p>
 
-                <h3>Sıkça Sorulan Sorular</h3>
+                <h2>Sıkça Sorulan Sorular</h2>
 
-                <h4>Artık yıl nasıl hesaplanır?</h4>
+                <h3>Artık yıl nasıl hesaplanır?</h3>
                 <p>
                     Bir yıl 4&apos;e tam bölünüyorsa artık yıldır. Ancak 100&apos;e bölünüyorsa artık yıl değildir,
-                    400&apos;e de bölünüyorsa yeniden artık yıldır. 2024 artık yıldır (366 gün).
+                    400&apos;e de bölünüyorsa yeniden artık yıldır. 2028 artık yıldır (366 gün); 2026 ise değildir.
                 </p>
 
-                <h4>Gebelik kaç hafta sürer?</h4>
+                <h3>Gebelik kaç hafta sürer?</h3>
                 <p>
                     Normal gebelik süresi son adet tarihinden itibaren 40 hafta (280 gün) olarak kabul edilir.
                     Doğum genellikle 37-42 hafta arasında gerçekleşir.
                 </p>
 
-                <h4>Türkiye hangi zaman diliminde?</h4>
+                <h3>Türkiye hangi zaman diliminde?</h3>
                 <p>
                     Türkiye, 2016&apos;dan beri kalıcı olarak UTC+3 (TRT - Türkiye Saati) zaman dilimini
                     kullanmaktadır. Yaz/kış saati uygulaması yapılmamaktadır.

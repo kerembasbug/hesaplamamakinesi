@@ -1,24 +1,21 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home, Shield } from "lucide-react"
+import { Shield } from "lucide-react"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Gizlilik Politikası | HesaplamaMakinesi",
     description: "HesaplamaMakinesi.com gizlilik politikası. Kişisel verilerinizin nasıl toplandığı, kullanıldığı ve korunduğu hakkında bilgi.",
-    keywords: ["gizlilik politikası", "KVKK", "kişisel veriler", "çerez politikası"]
-}
+    keywords: ["gizlilik politikası", "KVKK", "kişisel veriler", "çerez politikası"],
+    path: "/gizlilik-politikasi",
+})
 
 export default function GizlilikPolitikasiPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Gizlilik Politikası</span>
-            </nav>
+            <Breadcrumb items={[
+                { name: "Gizlilik Politikası" },
+            ]} />
 
             <div className="mb-8 flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/30">

@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { RatioCalculator } from "@/components/calculators/math/ratio-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Oran Orantı Hesaplama - Online Orantı Hesaplayıcı",
-    description: "Online oran orantı hesaplama aracı. A/B = C/D orantı problemlerini kolayca çözün. Matematiksel orantı formülleri ve örnekler.",
-    keywords: ["oran orantı hesaplama", "orantı hesaplama", "oran hesaplama", "orantı çözücü", "matematik oran"]
-}
+export const metadata = buildMetadata({
+    title: "Oran Orantı Hesaplama - Doğru Orantı",
+    description: "Oran orantı hesaplama aracı. A/B = C/D biçimindeki doğru ve ters orantı problemlerini bilinmeyeni bularak çözün; formül ve örneklerle açıklamalı.",
+    keywords: ["oran orantı hesaplama", "orantı hesaplama", "oran hesaplama", "orantı çözücü", "matematik oran"],
+    path: "/matematik-egitim/oran-oranti-hesaplama",
+})
 
 export default function OranOrantiHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/matematik-egitim" className="hover:text-indigo-600 transition-colors">Matematik &amp; Eğitim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Oran Orantı Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Oran Orantı Hesaplama",
+                    description: "Online oran orantı hesaplama aracı. A/B = C/D orantı problemlerini kolayca çözün. Matematiksel orantı formülleri ve örnekler.",
+                    path: "/matematik-egitim/oran-oranti-hesaplama",
+                    applicationCategory: "EducationalApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Matematik &amp; Eğitim", path: "/matematik-egitim" },
+                { name: "Oran Orantı Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Oran Orantı Hesaplama</h1>

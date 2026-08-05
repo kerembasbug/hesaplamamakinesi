@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { StampTaxCalculator } from "@/components/calculators/tax/stamp-tax-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Damga Vergisi Hesaplama - Sözleşme Vergisi Hesaplayıcı 2024",
-    description: "Online damga vergisi hesaplama aracı. Sözleşme, kira kontratı, ihale kararı ve diğer belgeler için damga vergisi hesaplayın. Güncel damga vergisi oranları.",
+export const metadata = buildMetadata({
+    title: "Damga Vergisi Hesaplama 2026",
+    description: "Damga vergisi hesaplama aracı. Sözleşme, kira kontratı ve ihale kararı için 2026 oranlarıyla damga vergisini hesaplayın; maktu tutarlar dahildir.",
     keywords: ["damga vergisi hesaplama", "sözleşme damga vergisi", "kira damga vergisi", "damga vergisi oranları", "belge vergisi"],
-    openGraph: {
-        title: "Damga Vergisi Hesaplama - Sözleşme Vergisi Hesaplayıcı",
-        description: "Sözleşme ve belgeler için damga vergisi hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/vergi-muhasebe/damga-vergisi",
+})
 
 export default function DamgaVergisiPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">
-                    Vergi & Muhasebe
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Damga Vergisi</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Damga Vergisi Hesaplama",
+                    description: "Online damga vergisi hesaplama aracı. Sözleşme, kira kontratı, ihale kararı ve diğer belgeler için damga vergisi hesaplayın. Güncel damga vergisi oranları.",
+                    path: "/vergi-muhasebe/damga-vergisi",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "Damga Vergisi" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -56,7 +53,7 @@ export default function DamgaVergisiPage() {
                     sözleşmeler üzerinden alınan nispi damga vergisidir.
                 </p>
 
-                <h2>2024 Damga Vergisi Oranları</h2>
+                <h2>2026 Damga Vergisi Oranları</h2>
                 <h3>Nispi (Oransal) Damga Vergisi</h3>
                 <table>
                     <thead>

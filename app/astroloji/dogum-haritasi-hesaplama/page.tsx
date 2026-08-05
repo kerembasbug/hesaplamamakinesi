@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { BirthChartCalculator } from "@/components/calculators/astrology/birth-chart-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Doğum Haritası Hesaplama - Yükselen Burç, Ay Burcu",
-    description: "Online doğum haritası hesaplama aracı. Güneş burcu, ay burcu, yükselen burç ve gezegen yerleşimlerinizi öğrenin. Astroloji natal harita hesaplayıcı.",
+export const metadata = buildMetadata({
+    title: "Doğum Haritası Hesaplama - Natal Harita",
+    description: "Doğum haritası hesaplama aracı. Güneş burcu, ay burcu, yükselen burç ve gezegen yerleşimlerinizi ücretsiz natal harita hesaplayıcı ile öğrenin.",
     keywords: ["doğum haritası hesaplama", "yükselen burç hesaplama", "ay burcu hesaplama", "natal harita", "astroloji hesaplama", "gezegen yerleşimleri"],
-    openGraph: {
-        title: "Doğum Haritası Hesaplama",
-        description: "Güneş, ay ve yükselen burcunuzu hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/astroloji/dogum-haritasi-hesaplama",
+})
 
 export default function DogumHaritasiHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/astroloji" className="hover:text-indigo-600 transition-colors">
-                    Astroloji
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Doğum Haritası</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Doğum Haritası Hesaplama",
+                    description: "Online doğum haritası hesaplama aracı. Güneş burcu, ay burcu, yükselen burç ve gezegen yerleşimlerinizi öğrenin. Astroloji natal harita hesaplayıcı.",
+                    path: "/astroloji/dogum-haritasi-hesaplama",
+                    applicationCategory: "LifestyleApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Astroloji", path: "/astroloji" },
+                { name: "Doğum Haritası" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -49,7 +46,7 @@ export default function DogumHaritasiHesaplamaPage() {
                     zorluklarınız ve yaşam yolunuz hakkında içgörüler sunar.
                 </p>
 
-                <h3>Doğum Haritasının Temel Unsurları</h3>
+                <h2>Doğum Haritasının Temel Unsurları</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -94,14 +91,14 @@ export default function DogumHaritasiHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Yükselen Burç Neden Önemli?</h3>
+                <h2>Yükselen Burç Neden Önemli?</h2>
                 <p>
                     <strong>Yükselen burç</strong> (Ascendant), doğduğunuz anda doğu ufkunda yükselen burçtur.
                     Diğer insanların sizi nasıl gördüğünü, ilk izleniminizi ve fiziksel görünümünüzü etkiler.
                     Yükselen burcunuzu hesaplamak için doğum saatinizin bilinmesi gerekir.
                 </p>
 
-                <h3>Dört Element ve Burçlar</h3>
+                <h2>Dört Element ve Burçlar</h2>
                 <ul>
                     <li><strong>🔥 Ateş (Koç, Aslan, Yay):</strong> Enerjik, tutkulu, lider ruhlu</li>
                     <li><strong>🌍 Toprak (Boğa, Başak, Oğlak):</strong> Pratik, güvenilir, kararlı</li>
@@ -109,29 +106,29 @@ export default function DogumHaritasiHesaplamaPage() {
                     <li><strong>💧 Su (Yengeç, Akrep, Balık):</strong> Duygusal, sezgisel, empatik</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Doğum saatimi bilmiyorsam ne yapmalıyım?</h4>
+                <h3>Doğum saatimi bilmiyorsam ne yapmalıyım?</h3>
                 <p>
                     Doğum saati olmadan güneş burcu ve bazı gezegenler hesaplanabilir, ancak yükselen burç ve
                     ev yerleşimleri hesaplanamaz. Doğum saatinizi nüfus müdürlüğünden veya hastane kayıtlarından
                     öğrenebilirsiniz.
                 </p>
 
-                <h4>Ay burcu nasıl hesaplanır?</h4>
+                <h3>Ay burcu nasıl hesaplanır?</h3>
                 <p>
                     Ay, yaklaşık her 2.5 günde bir burç değiştirir. Kesin ay burcu hesaplaması için doğum tarihi,
                     saati ve yeri gereklidir. Ay burcu duygusal doğanızı ve içgüdüsel tepkilerinizi temsil eder.
                 </p>
 
-                <h4>Doğum haritası değişir mi?</h4>
+                <h3>Doğum haritası değişir mi?</h3>
                 <p>
                     Hayır, doğum haritanız doğduğunuz anın fotoğrafıdır ve hiç değişmez. Ancak &quot;transit&quot;
                     denilen güncel gezegen hareketleri, doğum haritanızla etkileşime girerek farklı dönemlerde
                     farklı etkiler yaratır.
                 </p>
 
-                <h3>Doğum Haritası Yorumlama İpuçları</h3>
+                <h2>Doğum Haritası Yorumlama İpuçları</h2>
                 <ul>
                     <li>Sadece güneş burcunuza değil, &quot;Büyük Üçlü&quot;ye (Güneş, Ay, Yükselen) bakın.</li>
                     <li>Haritanızdaki baskın element ve modaliteyi inceleyin.</li>

@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { SleepCalculator } from "@/components/calculators/health/sleep-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Uyku Hesaplama - İdeal Yatma ve Kalkma Saati 2025",
-    description: "Online uyku hesaplayıcı. Uyku döngülerine göre ideal yatma ve kalkma saatlerinizi hesaplayın. Daha dinlenmiş uyanmak için uyku döngüsü hesaplama aracı.",
+export const metadata = buildMetadata({
+    title: "Uyku Hesaplama - Yatma ve Kalkma Saati",
+    description: "Uyku döngülerine göre ideal yatma ve kalkma saatlerinizi hesaplayın. 90 dakikalık döngü hesabıyla daha dinlenmiş uyanmak için ücretsiz araç.",
     keywords: ["uyku hesaplama", "uyku hesaplayıcı", "uyku döngüsü hesaplama", "kaçta yatmalıyım", "kaçta kalkmalıyım", "uyku saati hesaplama", "ideal uyku saati"],
-    openGraph: {
-        title: "Uyku Hesaplama - İdeal Yatma ve Kalkma Saati",
-        description: "Uyku döngülerine göre ideal yatma ve kalkma saatlerinizi hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/saglik-spor/uyku-hesaplama",
+})
 
 export default function UykuHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/saglik-spor" className="hover:text-indigo-600 transition-colors">
-                    Sağlık & Spor
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Uyku Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Uyku Hesaplama",
+                    description: "Online uyku hesaplayıcı. Uyku döngülerine göre ideal yatma ve kalkma saatlerinizi hesaplayın. Daha dinlenmiş uyanmak için uyku döngüsü hesaplama aracı.",
+                    path: "/saglik-spor/uyku-hesaplama",
+                    applicationCategory: "HealthApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Sağlık & Spor", path: "/saglik-spor" },
+                { name: "Uyku Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -54,7 +51,7 @@ export default function UykuHesaplamaPage() {
                     dinlenmiş hissedebilirsiniz.
                 </p>
 
-                <h3>Uyku Aşamaları</h3>
+                <h2>Uyku Aşamaları</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -89,7 +86,7 @@ export default function UykuHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Yaşa Göre İdeal Uyku Süreleri</h3>
+                <h2>Yaşa Göre İdeal Uyku Süreleri</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -134,7 +131,7 @@ export default function UykuHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Kaliteli Uykunun Faydaları</h3>
+                <h2>Kaliteli Uykunun Faydaları</h2>
                 <ul>
                     <li><strong>Fiziksel yenilenme:</strong> Hücreler onarılır, kaslar dinlenir</li>
                     <li><strong>Hafıza güçlenir:</strong> Öğrenilenler uzun süreli hafızaya aktarılır</li>
@@ -145,7 +142,7 @@ export default function UykuHesaplamaPage() {
                     <li><strong>Kalp sağlığı:</strong> Kalp hastalığı riski azalır</li>
                 </ul>
 
-                <h3>Uyku Hesaplama Nasıl Çalışır?</h3>
+                <h2>Uyku Hesaplama Nasıl Çalışır?</h2>
                 <p>
                     Uyku hesaplayıcımız şu formülü kullanır:
                 </p>
@@ -159,7 +156,7 @@ export default function UykuHesaplamaPage() {
                     ideal yatma saatlerini belirliyoruz.
                 </p>
 
-                <h3>Daha İyi Uyku İçin İpuçları</h3>
+                <h2>Daha İyi Uyku İçin İpuçları</h2>
                 <ol>
                     <li><strong>Düzenli saat:</strong> Her gün aynı saatte yatıp kalkın</li>
                     <li><strong>Karanlık oda:</strong> Perde veya göz bandı kullanın</li>
@@ -170,33 +167,33 @@ export default function UykuHesaplamaPage() {
                     <li><strong>Egzersiz:</strong> Düzenli spor yapın ama akşam geç saatlerde değil</li>
                 </ol>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Neden bazen yorgun uyanıyorum?</h4>
+                <h3>Neden bazen yorgun uyanıyorum?</h3>
                 <p>
                     Büyük ihtimalle bir uyku döngüsünün ortasında (özellikle derin uyku aşamasında) uyanıyorsunuz.
                     Uyku hesaplayıcımız tam da bu sorunu çözmek için tasarlandı.
                 </p>
 
-                <h4>90 dakikalık döngü herkes için aynı mı?</h4>
+                <h3>90 dakikalık döngü herkes için aynı mı?</h3>
                 <p>
                     90 dakika ortalama bir değerdir. Bazı insanlarda 80-110 dakika arasında değişebilir.
                     Birkaç hafta boyunca sonuçları takip ederek kendi döngü sürenizi keşfedebilirsiniz.
                 </p>
 
-                <h4>Hafta sonları daha fazla uyumak zararlı mı?</h4>
+                <h3>Hafta sonları daha fazla uyumak zararlı mı?</h3>
                 <p>
                     &quot;Sosyal jet lag&quot; olarak adlandırılan bu durum, biyolojik saatinizi bozabilir.
                     Haftasonları da dahil düzenli uyku saatlerine uymaya çalışın.
                 </p>
 
-                <h4>Şekerleme (kestirme) faydalı mı?</h4>
+                <h3>Şekerleme (kestirme) faydalı mı?</h3>
                 <p>
                     Öğleden sonra 20-30 dakikalık şekerlemeler faydalı olabilir. Ancak 30 dakikayı aşan veya
                     akşam saatlerinde yapılan şekerlemeler gece uykusunu bozabilir.
                 </p>
 
-                <h4>Uyku borcu telafi edilebilir mi?</h4>
+                <h3>Uyku borcu telafi edilebilir mi?</h3>
                 <p>
                     Kısa süreli uyku eksikliği telafi edilebilir, ancak kronik uyku borcu tam olarak
                     telafi edilemez. Düzenli uyku alışkanlığı edinmek en iyisidir.

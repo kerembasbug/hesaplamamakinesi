@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { Stopwatch } from "@/components/calculators/time/stopwatch"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Online Kronometre - Tur Sayaçlı Zamanlayıcı",
     description: "Ücretsiz online kronometre. Tur kayıtlı, hassas zamanlama. Spor, egzersiz, çalışma ve yarışmalar için ideal. Mobil uyumlu.",
-    keywords: ["online kronometre", "kronometre", "tur sayacı", "zamanlayıcı", "stopwatch", "süre ölçer"]
-}
+    keywords: ["online kronometre", "kronometre", "tur sayacı", "zamanlayıcı", "stopwatch", "süre ölçer"],
+    path: "/zaman-takvim/kronometre",
+})
 
 export default function KronometrePage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman &amp; Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Kronometre</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Online Kronometre",
+                    description: "Ücretsiz online kronometre. Tur kayıtlı, hassas zamanlama. Spor, egzersiz, çalışma ve yarışmalar için ideal. Mobil uyumlu.",
+                    path: "/zaman-takvim/kronometre",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman &amp; Takvim", path: "/zaman-takvim" },
+                { name: "Kronometre" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Online Kronometre</h1>

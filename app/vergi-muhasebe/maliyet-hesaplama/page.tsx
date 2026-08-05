@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CostCalculator } from "@/components/calculators/tax/cost-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Maliyet Hesaplama - Ürün Fiyat ve Kar Hesaplayıcı",
-    description: "Online maliyet hesaplama aracı. Ürün ve hizmet maliyetlerini hesaplayın, kar marjı belirleyin ve satış fiyatını otomatik hesaplayın. Birim maliyet hesaplama.",
+export const metadata = buildMetadata({
+    title: "Maliyet Hesaplama - Kâr ve Satış Fiyatı",
+    description: "Maliyet hesaplama aracı. Ürün ve hizmet maliyetinizi hesaplayın, kâr marjı belirleyin ve satış fiyatını otomatik bulun; birim maliyet dahildir.",
     keywords: ["maliyet hesaplama", "kar marjı hesaplama", "satış fiyatı hesaplama", "birim maliyet", "ürün fiyatlandırma", "maliyet analizi"],
-    openGraph: {
-        title: "Maliyet Hesaplama - Ürün Fiyat ve Kar Hesaplayıcı",
-        description: "Ürün maliyetlerini ve satış fiyatını hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/vergi-muhasebe/maliyet-hesaplama",
+})
 
 export default function MaliyetHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">
-                    Vergi & Muhasebe
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Maliyet Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Maliyet Hesaplama",
+                    description: "Online maliyet hesaplama aracı. Ürün ve hizmet maliyetlerini hesaplayın, kar marjı belirleyin ve satış fiyatını otomatik hesaplayın. Birim maliyet hesaplama.",
+                    path: "/vergi-muhasebe/maliyet-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "Maliyet Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">

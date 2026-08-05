@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { PregnancyCalculator } from "@/components/calculators/time/pregnancy-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Gebelik Hesaplama - Doğum Tarihi ve Hafta Hesaplayıcı",
-    description: "Online gebelik hesaplama aracı. Son adet tarihine göre tahmini doğum tarihi, gebelik haftası ve trimester hesaplama.",
-    keywords: ["gebelik hesaplama", "doğum tarihi hesaplama", "hamilelik haftası", "gebelik haftası hesaplama", "bebek bekleme"]
-}
+export const metadata = buildMetadata({
+    title: "Gebelik Hesaplama - Doğum Tarihi",
+    description: "Gebelik hesaplama aracı. Son adet tarihinize göre tahmini doğum tarihini, kaçıncı gebelik haftasında olduğunuzu ve trimester bilginizi öğrenin.",
+    keywords: ["gebelik hesaplama", "doğum tarihi hesaplama", "hamilelik haftası", "gebelik haftası hesaplama", "bebek bekleme"],
+    path: "/zaman-takvim/gebelik-hesaplama",
+})
 
 export default function GebelikHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman & Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Gebelik Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Gebelik Hesaplama",
+                    description: "Online gebelik hesaplama aracı. Son adet tarihine göre tahmini doğum tarihi, gebelik haftası ve trimester hesaplama.",
+                    path: "/zaman-takvim/gebelik-hesaplama",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman & Takvim", path: "/zaman-takvim" },
+                { name: "Gebelik Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Gebelik Hesaplama</h1>
@@ -36,7 +43,7 @@ export default function GebelikHesaplamaPage() {
                     olduğunuzu ve bebeğin gelişim aşamasını gösterir.
                 </p>
 
-                <h3>Trimesterler ve Fetal Gelişim</h3>
+                <h2>Trimesterler ve Fetal Gelişim</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -66,7 +73,7 @@ export default function GebelikHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Gebelik Haftalarına Göre Önemli Taşlar</h3>
+                <h2>Gebelik Haftalarına Göre Önemli Taşlar</h2>
                 <ul>
                     <li><strong>4. hafta:</strong> Embriyo rahime yerleşir.</li>
                     <li><strong>8. hafta:</strong> Kalp düzenli atmaya başlar.</li>
@@ -76,27 +83,27 @@ export default function GebelikHesaplamaPage() {
                     <li><strong>37. hafta:</strong> Bebek &quot;term&quot; kabul edilir.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Son adet tarihimi hatırlamıyorsam ne yapmalıyım?</h4>
+                <h3>Son adet tarihimi hatırlamıyorsam ne yapmalıyım?</h3>
                 <p>
                     Erken dönem ultrason, gebelik yaşını en doğru şekilde belirleyebilir. İlk trimester ultrasonu ±5 gün
                     hata payıyla gebelik haftasını hesaplar. Doktorunuzla görüşmeniz önerilir.
                 </p>
 
-                <h4>Tahmini doğum tarihi kesin mi?</h4>
+                <h3>Tahmini doğum tarihi kesin mi?</h3>
                 <p>
                     Hayır, bebeklerin sadece %5&apos;i tam tahmini tarihte doğar. Normal doğum 37-42 hafta arasındadır.
                     Yani tahmini tarihten 2 hafta önce veya 2 hafta sonra doğum normal kabul edilir.
                 </p>
 
-                <h4>İkiz gebeliklerde hesaplama farklı mı?</h4>
+                <h3>İkiz gebeliklerde hesaplama farklı mı?</h3>
                 <p>
                     İkiz gebelikler genellikle daha erken (36-38 hafta civarı) doğumla sonuçlanır. Risklerin artması nedeniyle
                     daha sık takip gerektirir.
                 </p>
 
-                <h3>Gebelik Döneminde Önemli Tavsiyeler</h3>
+                <h2>Gebelik Döneminde Önemli Tavsiyeler</h2>
                 <ul>
                     <li><strong>Folik asit:</strong> Özellikle ilk trimesterde günlük 400 mcg folik asit alın.</li>
                     <li><strong>Düzenli kontrol:</strong> Doktor randevularını aksatmayın.</li>
@@ -106,7 +113,7 @@ export default function GebelikHesaplamaPage() {
                     <li><strong>Kafein:</strong> Günlük 200 mg&apos;ı (yaklaşık 1-2 fincan kahve) aşmayın.</li>
                 </ul>
 
-                <h3>Önemli Not</h3>
+                <h2>Önemli Not</h2>
                 <p>
                     Bu hesaplama tahmini bir değerdir ve tıbbi tavsiye yerine geçmez. Kesin gebelik haftası ve doğum tarihi
                     için düzenli ultrason muayenesi ve doktor takibi önerilir.

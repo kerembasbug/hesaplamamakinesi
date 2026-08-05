@@ -1,35 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { InflationCalculator } from "@/components/calculators/finance/inflation-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Enflasyon Hesaplama - Satın Alma Gücü Kaybı Hesaplayıcı",
-    description: "Online enflasyon hesaplama aracı. Paranızın enflasyona göre değer kaybını ve gelecekteki satın alma gücünü hesaplayın. Reel değer hesaplayıcı.",
+export const metadata = buildMetadata({
+    title: "Enflasyon Hesaplama - Değer Kaybı",
+    description: "Enflasyon hesaplama aracı. Paranızın yıllar içindeki değer kaybını ve gelecekteki satın alma gücünü hesaplayın. Reel değer hesaplayıcı ücretsizdir.",
     keywords: ["enflasyon hesaplama", "satın alma gücü", "para değer kaybı", "enflasyon etkisi", "reel değer hesaplama", "enflasyon oranı"],
-    openGraph: {
-        title: "Enflasyon Hesaplama - Satın Alma Gücü Kaybı Hesaplayıcı",
-        description: "Paranızın enflasyona göre değer kaybını hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/enflasyon-hesaplama",
+})
 
 export default function EnflasyonHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Enflasyon Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Enflasyon Hesaplama",
+                    description: "Online enflasyon hesaplama aracı. Paranızın enflasyona göre değer kaybını ve gelecekteki satın alma gücünü hesaplayın. Reel değer hesaplayıcı.",
+                    path: "/finans/enflasyon-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Enflasyon Hesaplama" },
+            ]} />
 
             {/* Page Title */}
             <div className="mb-8">

@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { IdealWeightCalculator } from "@/components/calculators/health/ideal-weight-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "İdeal Kilo Hesaplama - Boy Kilo Hesaplayıcı",
     description: "Online ideal kilo hesaplama aracı. Boyunuza ve cinsiyetinize göre ideal kilonuzu hesaplayın. Devine, Robinson, Miller ve Hamwi formülleri.",
     keywords: ["ideal kilo hesaplama", "boy kilo hesaplama", "ideal kilo", "kilo hesaplama", "sağlıklı kilo"],
-}
+    path: "/saglik-spor/ideal-kilo-hesaplama",
+})
 
 export default function IdealKiloHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/saglik-spor" className="hover:text-indigo-600 transition-colors">Sağlık & Spor</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">İdeal Kilo Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "İdeal Kilo Hesaplama",
+                    description: "Online ideal kilo hesaplama aracı. Boyunuza ve cinsiyetinize göre ideal kilonuzu hesaplayın. Devine, Robinson, Miller ve Hamwi formülleri.",
+                    path: "/saglik-spor/ideal-kilo-hesaplama",
+                    applicationCategory: "HealthApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Sağlık & Spor", path: "/saglik-spor" },
+                { name: "İdeal Kilo Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">İdeal Kilo Hesaplama</h1>
@@ -36,7 +43,7 @@ export default function IdealKiloHesaplamaPage() {
                     size en dengeli sonucu sunar.
                 </p>
 
-                <h3>İdeal Kilo Hesaplamasında Kullanılan Bilimsel Formüller</h3>
+                <h2>İdeal Kilo Hesaplamasında Kullanılan Bilimsel Formüller</h2>
                 <p>
                     Tarihsel süreçte farklı bilim insanları, vücut kütlesini tahmin etmek için çeşitli algoritmalar geliştirmiştir. Aracımız şu formülleri temel alır:
                 </p>
@@ -69,14 +76,14 @@ export default function IdealKiloHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Cinsiyet Faktörü: Neden Erkek ve Kadın Sonuçları Farklı?</h3>
+                <h2>Cinsiyet Faktörü: Neden Erkek ve Kadın Sonuçları Farklı?</h2>
                 <p>
                     Biyolojik olarak erkekler, kadınlara oranla daha yüksek kas kütlesine ve kemik yoğunluğuna sahiptir. Kadın vücudu ise
                     doğurganlık ve hormonal denge gereği daha fazla yağ dokusu barındırır. Bu nedenle aynı boydaki bir erkek ile bir kadının
                     ideal kilo değerleri arasında genellikle %5 ile %10 arasında bir fark bulunur.
                 </p>
 
-                <h3>İdeal Kiloya Ulaşmak ve Korumak İçin 5 Altın Kural</h3>
+                <h2>İdeal Kiloya Ulaşmak ve Korumak İçin 5 Altın Kural</h2>
                 <ul>
                     <li><strong>Sürdürülebilirlik:</strong> Haftada 5 kilo verdiren &quot;şok&quot; diyetlerden kaçının. Sağlıklı olan haftada 0.5 - 1 kg kayıptır.</li>
                     <li><strong>Kas Kütlesini Korun:</strong> Kilo verirken sadece yağdan gitmesi için protein alımını dengeli tutun ve direnç egzersizleri yapın.</li>
@@ -85,21 +92,21 @@ export default function IdealKiloHesaplamaPage() {
                     <li><strong>Porsiyon Kontrolü:</strong> Ne yediğiniz kadar ne kadar yediğiniz de önemlidir. Tabaklarınızı küçülterek psikolojik doygunluğa ulaşın.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>İdeal kilomun altındaysam ne yapmalıyım?</h4>
+                <h3>İdeal kilomun altındaysam ne yapmalıyım?</h3>
                 <p>
                     Zayıflık da en az obezite kadar ciddi sağlık sorunlarına (anemi, bağışıklık düşüklüğü) yol açabilir. Sağlıklı bir şekilde kilo almak için
                     besin değeri yüksek, hacmi küçük gıdalarla (kuruyemiş, zeytinyağı, tam tahıllar) beslenmenizi zenginleştirmelisiniz.
                 </p>
 
-                <h4>Yaş ilerledikçe ideal kilo değişir mi?</h4>
+                <h3>Yaş ilerledikçe ideal kilo değişir mi?</h3>
                 <p>
                     Evet, yaşlandıkça metabolizma hızı yavaşlar ve vücut kompozisyonu değişir. Uzmanlar 60 yaş sonrası hafif &quot;kilolu&quot; görünmenin
                     kemik sağlığı için koruyucu olabileceğini belirtmektedir.
                 </p>
 
-                <h4>Hesaplama ne kadar doğru?</h4>
+                <h3>Hesaplama ne kadar doğru?</h3>
                 <p>
                     Aracımız bilimsel formülleri kullanır ancak bir &quot;tanı&quot; koymaz. En doğru analiz için vücut yağ oranınızı profesyonel bir tartı ile
                     ölçtürmeniz ve bir diyetisyen eşliğinde değerlendirmeniz önerilir.

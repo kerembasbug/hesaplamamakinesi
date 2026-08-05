@@ -4,32 +4,54 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Footer } from "@/components/layout/footer";
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationSchema, webSiteSchema } from "@/lib/schema";
+import { METADATA_BASE } from "@/lib/seo";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site-config";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: METADATA_BASE,
   title: {
-    default: "HesaplamaMakinesi - Türkiye'nin Hesaplama Platformu",
-    template: "%s | HesaplamaMakinesi"
+    default: `${SITE_NAME} - ${SITE_TAGLINE}`,
+    template: `%s | ${SITE_NAME}`
   },
-  description: "Türkiye'nin en kapsamlı online hesaplama platformu. Finans, vergi, sağlık, matematik ve daha fazlası için ücretsiz hesaplama araçları.",
+  description: SITE_DESCRIPTION,
   keywords: ["hesaplama", "kdv hesaplama", "kredi hesaplama", "vergi hesaplama", "hesap makinesi"],
-  authors: [{ name: "HesaplamaMakinesi" }],
-  creator: "HesaplamaMakinesi",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
-    url: "https://hesaplamamakinesi.com",
-    siteName: "HesaplamaMakinesi",
-    title: "HesaplamaMakinesi - Türkiye'nin Hesaplama Platformu",
-    description: "Türkiye'nin en kapsamlı online hesaplama platformu.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} - ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -40,6 +62,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      <head>
+        <JsonLd data={[organizationSchema(), webSiteSchema()]} />
+      </head>
       <body className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-slate-950`}>
         <div className="relative min-h-screen flex flex-col">
           <Header />

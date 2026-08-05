@@ -1,34 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { OtvCalculator } from "@/components/calculators/tax/otv-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { TarifeUyarisi } from "@/components/content/tarife-uyarisi"
 
-export const metadata: Metadata = {
-    title: "ÖTV Hesaplama - Araç ÖTV Hesaplayıcı 2024",
+export const metadata = buildMetadata({
+    title: "ÖTV Hesaplama 2026 - Araç ÖTV Oranları",
     description: "Online ÖTV hesaplama aracı. Araç alırken ödeyeceğiniz ÖTV ve toplam satış fiyatını hesaplayın. Motor hacmi ve yakıt tipine göre güncel ÖTV oranları.",
     keywords: ["ötv hesaplama", "araç ötv", "özel tüketim vergisi", "araba vergisi hesaplama", "ötv oranları", "araç vergi hesaplama"],
-    openGraph: {
-        title: "ÖTV Hesaplama - Araç ÖTV Hesaplayıcı",
-        description: "Araç ÖTV ve toplam satış fiyatını hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/vergi-muhasebe/otv-hesaplama",
+})
 
 export default function OtvHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">
-                    Vergi & Muhasebe
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">ÖTV Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "ÖTV Hesaplama",
+                    description: "Online ÖTV hesaplama aracı. Araç alırken ödeyeceğiniz ÖTV ve toplam satış fiyatını hesaplayın. Motor hacmi ve yakıt tipine göre güncel ÖTV oranları.",
+                    path: "/vergi-muhasebe/otv-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "ÖTV Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -42,6 +40,8 @@ export default function OtvHesaplamaPage() {
             <OtvCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+                <TarifeUyarisi yil={2024} konu="ÖTV oranları ve matrah dilimleri" kaynakAdi="Gelir İdaresi Başkanlığı" kaynakUrl="https://www.gib.gov.tr/" />
+
                 <h2>ÖTV Nedir?</h2>
                 <p>
                     ÖTV (Özel Tüketim Vergisi), belirli mal grupları üzerinden bir defaya mahsus olarak

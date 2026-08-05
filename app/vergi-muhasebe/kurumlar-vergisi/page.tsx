@@ -1,34 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CorporateTaxCalculator } from "@/components/calculators/tax/corporate-tax-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { GuncellemeNotu, KurumlarVergisiTablosu } from "@/components/content/vergi-tablolari"
 
-export const metadata: Metadata = {
-    title: "Kurumlar Vergisi Hesaplama - Şirket Vergi Hesaplayıcı 2024",
-    description: "Online kurumlar vergisi hesaplama aracı. Şirket kazancı üzerinden ödenecek kurumlar vergisini hesaplayın. 2024 kurumlar vergisi oranı %25.",
-    keywords: ["kurumlar vergisi hesaplama", "şirket vergisi", "kurumlar vergisi oranı", "şirket kazanç vergisi", "kurumlar vergisi 2024"],
-    openGraph: {
-        title: "Kurumlar Vergisi Hesaplama - Şirket Vergi Hesaplayıcı",
-        description: "Şirket kazancı üzerinden ödenecek kurumlar vergisini hesaplayın.",
-        type: "website",
-    }
-}
+export const metadata = buildMetadata({
+    title: "Kurumlar Vergisi Hesaplama 2026",
+    description: "Kurumlar vergisi hesaplama aracı. Şirket kazancınız üzerinden ödenecek vergiyi 2026 oranlarıyla hesaplayın; ihracat ve üretim indirimleri dahildir.",
+    keywords: ["kurumlar vergisi hesaplama", "şirket vergisi", "kurumlar vergisi oranı", "şirket kazanç vergisi", "kurumlar vergisi 2026"],
+    path: "/vergi-muhasebe/kurumlar-vergisi",
+})
 
 export default function KurumlarVergisiPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">
-                    Vergi & Muhasebe
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Kurumlar Vergisi</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Kurumlar Vergisi Hesaplama",
+                    description: "Kurumlar vergisi hesaplama aracı. Şirket kazancınız üzerinden ödenecek vergiyi 2026 oranlarıyla hesaplayın; ihracat ve üretim indirimleri dahildir.",
+                    path: "/vergi-muhasebe/kurumlar-vergisi",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "Kurumlar Vergisi" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -50,7 +48,7 @@ export default function KurumlarVergisiPage() {
                     Kurumlar Vergisi Kanunu ile düzenlenmiştir.
                 </p>
                 <p>
-                    2024 yılı itibarıyla kurumlar vergisi oranı <strong>%25</strong> olarak
+                    2026 yılı itibarıyla genel kurumlar vergisi oranı <strong>%25</strong> olarak
                     uygulanmaktadır. Bu oran, şirketin elde ettiği safi kurum kazancı üzerinden
                     hesaplanır.
                 </p>
@@ -150,6 +148,15 @@ export default function KurumlarVergisiPage() {
                     <li>Bölgesel teşvik uygulamaları</li>
                     <li>KOBİ&apos;ler için özel indirimler</li>
                 </ul>
+                <h3>2026 Kurumlar Vergisi Oranları</h3>
+                <KurumlarVergisiTablosu />
+                <p>
+                    Genel oran %25&apos;tir. Banka, sigorta ve diğer finans kuruluşları %30 öder. İhracattan elde
+                    edilen kazançlara 5 puan indirim uygulanır ve oran %20&apos;ye iner; sanayi sicil belgesine sahip
+                    olup fiilen üretim yapan kurumların üretim kazançlarında ise 1 puan indirimle %24 uygulanır.
+                    İlk kez halka açılan kurumlar beş yıl boyunca 2 puanlık ek indirimden yararlanır.
+                </p>
+                <GuncellemeNotu kaynakAdi="Gelir İdaresi Başkanlığı" kaynakUrl="https://www.gib.gov.tr/" />
             </article>
         </div>
     )

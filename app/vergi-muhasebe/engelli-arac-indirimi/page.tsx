@@ -1,24 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { DisabledVehicleCalculator } from "@/components/calculators/tax/disabled-vehicle-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { TarifeUyarisi } from "@/components/content/tarife-uyarisi"
 
-export const metadata: Metadata = {
-    title: "Engelli Araç İndirimi Hesaplama 2025 - ÖTV Muafiyeti Hesaplayıcı",
-    description: "%40 ve %90 engelli araç indirimi hesaplama. ÖTV ve KDV muafiyeti ile araç fiyatı hesaplayın. 2025 güncel oranlar.",
-    keywords: ["engelli araç indirimi hesaplama", "40 engelli araç indirimi", "90 engelli araç indirimi", "engelli ötv muafiyeti", "engelli araç fiyatı"]
-}
+export const metadata = buildMetadata({
+    title: "Engelli Araç İndirimi - ÖTV Muafiyeti",
+    description: "Engelli araç ÖTV ve KDV muafiyeti hesaplama aracı. %40 ve %90 engel oranına göre araç fiyatındaki indirimi 2026 limitleriyle hesaplayın.",
+    keywords: ["engelli araç indirimi hesaplama", "40 engelli araç indirimi", "90 engelli araç indirimi", "engelli ötv muafiyeti", "engelli araç fiyatı"],
+    path: "/vergi-muhasebe/engelli-arac-indirimi",
+})
 
 export default function EngelliAracPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/vergi-muhasebe" className="hover:text-indigo-600 transition-colors">Vergi & Muhasebe</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Engelli Araç İndirimi</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Engelli Araç İndirimi Hesaplama 2025",
+                    description: "%40 ve %90 engelli araç indirimi hesaplama. ÖTV ve KDV muafiyeti ile araç fiyatı hesaplayın. 2025 güncel oranlar.",
+                    path: "/vergi-muhasebe/engelli-arac-indirimi",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Vergi & Muhasebe", path: "/vergi-muhasebe" },
+                { name: "Engelli Araç İndirimi" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Engelli Araç İndirimi Hesaplama 2025</h1>
@@ -28,6 +36,8 @@ export default function EngelliAracPage() {
             <DisabledVehicleCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+                <TarifeUyarisi yil={2025} konu="ÖTV muafiyeti üst limiti" kaynakAdi="Gelir İdaresi Başkanlığı" kaynakUrl="https://www.gib.gov.tr/" />
+
                 <h2>Engelli Araç İndirimi Nedir?</h2>
                 <p>Engelli bireylerin araç alımında ÖTV (Özel Tüketim Vergisi) ve bazı durumlarda KDV muafiyeti sağlayan devlet teşvikidir.</p>
 

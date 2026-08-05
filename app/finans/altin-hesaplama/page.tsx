@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { GoldCalculator } from "@/components/calculators/finance/gold-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Altın Hesaplama - Gram Altın Çevirici 2025",
+export const metadata = buildMetadata({
+    title: "Altın Hesaplama - Gram Altın Çevirici",
     description: "Online altın hesaplama aracı. Gram altın, çeyrek altın, yarım altın ve tam altın fiyatlarını TL'ye çevirin. Güncel altın fiyatları ile hesaplama.",
     keywords: ["altın hesaplama", "gram altın hesaplama", "altın fiyatı", "çeyrek altın fiyatı", "altın çevirici", "altın hesapla"],
-    openGraph: {
-        title: "Altın Hesaplama - Gram Altın Çevirici",
-        description: "Altın fiyatlarını TL cinsinden hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/altin-hesaplama",
+})
 
 export default function AltinHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Altın Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Altın Hesaplama",
+                    description: "Online altın hesaplama aracı. Gram altın, çeyrek altın, yarım altın ve tam altın fiyatlarını TL'ye çevirin. Güncel altın fiyatları ile hesaplama.",
+                    path: "/finans/altin-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Altın Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -99,14 +96,14 @@ export default function AltinHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Gram Altın vs Ziynet Altın</h3>
+                <h2>Gram Altın vs Ziynet Altın</h2>
                 <p>
                     <strong>Gram altın</strong> yatırım için idealdir çünkü saf altın içerir ve işçilik maliyeti düşüktür.
                     <strong>Ziynet altınlar</strong> (çeyrek, yarım, tam) ise hediye amaçlı tercih edilir ve işçilik
                     maliyeti nedeniyle gram bazında daha pahalıdır.
                 </p>
 
-                <h3>Altın Yatırımı İpuçları</h3>
+                <h2>Altın Yatırımı İpuçları</h2>
                 <ul>
                     <li><strong>Uzun vadeli düşünün:</strong> Altın kısa vadeli dalgalanmalara açıktır.</li>
                     <li><strong>Güvenilir yerden alın:</strong> Darphane sertifikalı ürünleri tercih edin.</li>
@@ -115,27 +112,27 @@ export default function AltinHesaplamaPage() {
                     <li><strong>Dijital altın:</strong> Banka altın hesapları fiziki saklama derdi olmadan yatırım imkanı sunar.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Altın alırken vergi ödenir mi?</h4>
+                <h3>Altın alırken vergi ödenir mi?</h3>
                 <p>
                     Altın alım satımında KDV yoktur. Ancak kuyumcularda alış ve satış fiyatı arasındaki fark
                     (spread) önemli bir maliyet unsuru olabilir.
                 </p>
 
-                <h4>En karlı altın yatırımı hangisi?</h4>
+                <h3>En karlı altın yatırımı hangisi?</h3>
                 <p>
                     Yatırım amaçlı gram altın veya banka altın hesabı daha avantajlıdır. Ziynet altınlarda
                     işçilik maliyeti satışta geri alınamaz.
                 </p>
 
-                <h4>Altın fiyatları neye göre değişir?</h4>
+                <h3>Altın fiyatları neye göre değişir?</h3>
                 <p>
                     Uluslararası ons altın fiyatı (USD cinsinden), dolar/TL kuru, yurtiçi arz-talep dengesi
                     ve jeopolitik gelişmeler altın fiyatlarını etkileyen başlıca faktörlerdir.
                 </p>
 
-                <h3>Altın Saklama Yöntemleri</h3>
+                <h2>Altın Saklama Yöntemleri</h2>
                 <ul>
                     <li><strong>Evde kasada:</strong> Sigorta yaptırmanız önerilir.</li>
                     <li><strong>Banka kasası:</strong> Güvenli ama kira maliyeti var.</li>

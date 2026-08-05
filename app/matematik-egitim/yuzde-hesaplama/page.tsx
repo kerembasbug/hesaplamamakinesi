@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { PercentageCalculator } from "@/components/calculators/math/percentage-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Yüzde Hesaplama - Online Yüzde Hesaplayıcı",
     description: "Online yüzde hesaplama aracı. Yüzde değeri, yüzde oranı, yüzde artış/azalış hesaplama. İndirim hesaplama, kar marjı hesaplama.",
-    keywords: ["yüzde hesaplama", "yüzde hesapla", "indirim hesaplama", "yüzde artış", "yüzde azalış"]
-}
+    keywords: ["yüzde hesaplama", "yüzde hesapla", "indirim hesaplama", "yüzde artış", "yüzde azalış"],
+    path: "/matematik-egitim/yuzde-hesaplama",
+})
 
 export default function YuzdeHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/matematik-egitim" className="hover:text-indigo-600 transition-colors">Matematik & Eğitim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Yüzde Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Yüzde Hesaplama",
+                    description: "Online yüzde hesaplama aracı. Yüzde değeri, yüzde oranı, yüzde artış/azalış hesaplama. İndirim hesaplama, kar marjı hesaplama.",
+                    path: "/matematik-egitim/yuzde-hesaplama",
+                    applicationCategory: "EducationalApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Matematik & Eğitim", path: "/matematik-egitim" },
+                { name: "Yüzde Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Yüzde Hesaplama</h1>
@@ -39,7 +46,7 @@ export default function YuzdeHesaplamaPage() {
                     yüzde oranını hesaplama ve yüzde değişimini (artış/azalış) belirleme.
                 </p>
 
-                <h3>Temel Yüzde Hesaplama Formülleri</h3>
+                <h2>Temel Yüzde Hesaplama Formülleri</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -74,7 +81,7 @@ export default function YuzdeHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>İndirim Hesaplama: Pratik Örnekler</h3>
+                <h2>İndirim Hesaplama: Pratik Örnekler</h2>
                 <p>
                     Alışverişte en sık kullanılan yüzde işlemi indirim hesaplamadır. İşte adım adım nasıl yapılacağı:
                 </p>
@@ -88,7 +95,7 @@ export default function YuzdeHesaplamaPage() {
                     <strong>Kısa formül:</strong> İndirimli Fiyat = Fiyat × (1 - İndirim Oranı) → 500 × 0.70 = 350 TL
                 </p>
 
-                <h3>İş Hayatında Yüzde Kullanımı</h3>
+                <h2>İş Hayatında Yüzde Kullanımı</h2>
                 <ul>
                     <li><strong>Kar Marjı:</strong> (Satış Fiyatı - Maliyet) / Satış Fiyatı × 100</li>
                     <li><strong>Büyüme Oranı:</strong> (Bu Yıl - Geçen Yıl) / Geçen Yıl × 100</li>
@@ -97,33 +104,33 @@ export default function YuzdeHesaplamaPage() {
                     <li><strong>Komisyon Hesaplama:</strong> Satış Tutarı × Komisyon Oranı</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Bir sayıya yüzde nasıl eklenir?</h4>
+                <h3>Bir sayıya yüzde nasıl eklenir?</h3>
                 <p>
                     Sayıyı (1 + yüzde oranı) ile çarpın. Örneğin 100&apos;e %20 eklemek için: 100 × 1.20 = 120.
                     Bu yöntem KDV ekleme veya fiyat artışı hesaplamak için idealdir.
                 </p>
 
-                <h4>Bir sayıdan yüzde nasıl çıkarılır?</h4>
+                <h3>Bir sayıdan yüzde nasıl çıkarılır?</h3>
                 <p>
                     Sayıyı (1 - yüzde oranı) ile çarpın. Örneğin 100&apos;den %20 çıkarmak için: 100 × 0.80 = 80.
                     Bu yöntem indirimli fiyat hesaplamak için kullanışlıdır.
                 </p>
 
-                <h4>%20 artış ve sonra %20 azalış aynı değeri verir mi?</h4>
+                <h3>%20 artış ve sonra %20 azalış aynı değeri verir mi?</h3>
                 <p>
                     Hayır! 100&apos;e %20 artış = 120, sonra %20 azalış = 96. Başlangıç değerine dönmezsiniz.
                     Bunun sebebi, ikinci işlemin farklı bir baz üzerinden yapılmasıdır.
                 </p>
 
-                <h4>Ardışık yüzde değişimleri nasıl hesaplanır?</h4>
+                <h3>Ardışık yüzde değişimleri nasıl hesaplanır?</h3>
                 <p>
                     Her bir değişimi sırayla uygulayın. Örneğin önce %10 artış, sonra %20 artış:
                     100 × 1.10 × 1.20 = 132. Toplam artış %32&apos;dir (%10 + %20 = %30 değil!).
                 </p>
 
-                <h3>Yüzde Hesaplamada Dikkat Edilmesi Gerekenler</h3>
+                <h2>Yüzde Hesaplamada Dikkat Edilmesi Gerekenler</h2>
                 <ul>
                     <li>Yüzde her zaman bir referans değere (baz) göredir; bazı baz değiştirmeden karşılaştırma yapmayın.</li>
                     <li>Ardışık yüzde değişimlerini toplamak yanlış sonuç verir; çarparak hesaplayın.</li>

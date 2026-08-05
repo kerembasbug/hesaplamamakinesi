@@ -1,35 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { RoiCalculator } from "@/components/calculators/finance/roi-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Yatırım Getirisi (ROI) Hesaplama - Karlılık Hesaplayıcı",
-    description: "Online ROI hesaplama aracı. Yatırımınızın getirisini yüzde olarak hesaplayın. Kar-zarar analizi, yatırım performansı ölçümü için ücretsiz hesaplayıcı.",
+export const metadata = buildMetadata({
+    title: "ROI Hesaplama - Yatırım Getirisi",
+    description: "ROI hesaplama aracı. Yatırımınızın getirisini yüzde olarak hesaplayın; kâr-zarar analizi ve yatırım performansı ölçümü için ücretsiz hesaplayıcı.",
     keywords: ["roi hesaplama", "yatırım getirisi", "karlılık hesaplama", "return on investment", "yatırım kar hesaplama", "yatırım performansı"],
-    openGraph: {
-        title: "Yatırım Getirisi (ROI) Hesaplama - Karlılık Hesaplayıcı",
-        description: "Yatırımınızın getirisini yüzde olarak hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/yatirim-getirisi",
+})
 
 export default function YatirimGetirisiPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Yatırım Getirisi (ROI)</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Yatırım Getirisi (ROI) Hesaplama",
+                    description: "Online ROI hesaplama aracı. Yatırımınızın getirisini yüzde olarak hesaplayın. Kar-zarar analizi, yatırım performansı ölçümü için ücretsiz hesaplayıcı.",
+                    path: "/finans/yatirim-getirisi",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Yatırım Getirisi (ROI)" },
+            ]} />
 
             {/* Page Title */}
             <div className="mb-8">

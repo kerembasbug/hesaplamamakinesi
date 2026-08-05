@@ -1,14 +1,18 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { getCategoryBySlug } from "@/config/site-data"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { collectionPageSchema } from "@/lib/schema"
+import { categories } from "@/config/site-data"
 
-export const metadata: Metadata = {
-    title: "Vergi & Muhasebe Hesaplamaları",
-    description: "KDV, gelir vergisi, ÖTV, kurumlar vergisi ve diğer vergi hesaplama araçları. Ücretsiz online vergi hesaplayıcıları.",
-    keywords: ["vergi hesaplama", "kdv hesaplama", "gelir vergisi", "ötv hesaplama", "muhasebe"]
-}
+export const metadata = buildMetadata({
+    title: "Vergi ve Muhasebe Hesaplamaları",
+    description: "KDV, gelir vergisi, ÖTV, MTV, damga vergisi ve kurumlar vergisi hesaplama araçları. 2026 güncel oranlarla ücretsiz online vergi hesaplayıcıları.",
+    keywords: ["vergi hesaplama", "kdv hesaplama", "gelir vergisi", "ötv hesaplama", "muhasebe"],
+    path: "/vergi-muhasebe",
+})
 
 export default function VergiMuhasebePage() {
     const category = getCategoryBySlug("vergi-muhasebe")
@@ -20,17 +24,19 @@ export default function VergiMuhasebePage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link
-                    href="/"
-                    className="flex items-center gap-1 hover:text-indigo-600 transition-colors"
-                >
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">{category.name}</span>
-            </nav>
+            <JsonLd
+                data={collectionPageSchema(
+                    "Vergi & Muhasebe Hesaplamaları",
+                    "KDV, gelir vergisi, ÖTV, kurumlar vergisi ve diğer vergi hesaplama araçları. Ücretsiz online vergi hesaplayıcıları.",
+                    "/vergi-muhasebe",
+                    (categories.find((c) => c.slug === "vergi-muhasebe")?.tools ?? [])
+                        .filter((t) => !t.externalUrl)
+                        .map((t) => ({ name: t.name, path: `/vergi-muhasebe/${t.slug}`, description: t.description }))
+                )}
+            />
+            <Breadcrumb items={[
+                { name: category.name },
+            ]} />
 
             {/* Page Header */}
             <div className="mb-8">
@@ -77,55 +83,55 @@ export default function VergiMuhasebePage() {
                     türleri için güncel oranlarla hesaplama yapabilirsiniz.
                 </p>
 
-                <h3>Popüler Vergi Hesaplayıcıları</h3>
+                <h2>Popüler Vergi Hesaplayıcıları</h2>
 
-                <h4>KDV Hesaplama</h4>
+                <h2>KDV Hesaplama</h2>
                 <p>
                     Katma Değer Vergisi (KDV) hesaplama aracımız ile fiyatlara KDV ekleme veya KDV dahil fiyattan
                     KDV çıkarma işlemlerini kolayca yapabilirsiniz. Türkiye&apos;de %1, %10 ve %20 olmak üzere üç farklı
                     KDV oranı uygulanmaktadır.
                 </p>
 
-                <h4>Gelir Vergisi Hesaplama</h4>
+                <h2>Gelir Vergisi Hesaplama</h2>
                 <p>
-                    2024, 2025 ve 2026 yılı güncel gelir vergisi dilimleri ile ücret ve serbest meslek geliriniz
+                    2026 yılı güncel gelir vergisi dilimleri ile ücret ve serbest meslek geliriniz
                     üzerinden ödenecek vergiyi hesaplayın. Brütten nete, netten brüte hesaplama yapabilirsiniz.
                 </p>
 
-                <h4>MTV Hesaplama</h4>
+                <h2>MTV Hesaplama</h2>
                 <p>
                     Motorlu Taşıtlar Vergisi (MTV), araç yaşı, motor hacmi ve yakıt türüne göre değişir.
                     Aracınız için ödemeniz gereken yıllık MTV tutarını hesaplayın.
                 </p>
 
-                <h4>ÖTV Hesaplama</h4>
+                <h2>ÖTV Hesaplama</h2>
                 <p>
                     Özel Tüketim Vergisi (ÖTV), otomobil, motosiklet, alkollü içecekler ve tütün ürünleri
                     gibi mallara uygulanan bir vergidir. Araç alımlarında ÖTV matrahını ve vergisini hesaplayın.
                 </p>
 
-                <h3>Türkiye Vergi Sistemi Hakkında</h3>
+                <h2>Türkiye Vergi Sistemi Hakkında</h2>
                 <p>
                     Türkiye&apos;de vergi sistemi dolaylı ve dolaysız vergilerden oluşur. Dolaysız vergiler arasında
                     gelir vergisi ve kurumlar vergisi, dolaylı vergiler arasında KDV ve ÖTV yer alır.
                     Vergi beyannameleri genellikle aylık veya üç aylık dönemlerde verilir.
                 </p>
 
-                <h3>Sıkça Sorulan Sorular</h3>
+                <h2>Sıkça Sorulan Sorular</h2>
 
-                <h4>KDV oranları nelerdir?</h4>
+                <h3>KDV oranları nelerdir?</h3>
                 <p>
                     Türkiye&apos;de üç farklı KDV oranı uygulanır: %1 (temel gıda, gazete), %10 (tekstil, turizm)
                     ve %20 (genel oran). Her mal ve hizmet kategorisi için farklı oranlar geçerlidir.
                 </p>
 
-                <h4>Gelir vergisi dilimleri nasıl çalışır?</h4>
+                <h3>Gelir vergisi dilimleri nasıl çalışır?</h3>
                 <p>
                     Gelir vergisi artan oranlı bir sistemle hesaplanır. Gelirinizin belirli dilimlerine farklı
-                    oranlar uygulanır. 2024 yılında en düşük dilim %15, en yüksek dilim %40&apos;tır.
+                    oranlar uygulanır. 2026 yılında en düşük dilim %15, en yüksek dilim %40&apos;tır.
                 </p>
 
-                <h4>Damga vergisi nedir?</h4>
+                <h3>Damga vergisi nedir?</h3>
                 <p>
                     Damga vergisi, sözleşmeler, makbuzlar ve resmi belgeler üzerinden alınan bir vergidir.
                     Oran, belge türüne göre değişir ve genellikle binde (‰) cinsinden ifade edilir.

@@ -6,132 +6,60 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { bordroHesapla, nettenBrute } from "@/lib/payroll"
+import { guncellemeEtiketi } from "@/lib/constants/tr-2026"
+
+const AYLAR = [
+    "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+    "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık",
+]
 
 export function SalaryCalculator() {
     const [amount, setAmount] = useState<string>("")
     const [calcType, setCalcType] = useState<"netToGross" | "grossToNet">("grossToNet")
-    const [maritalStatus, setMaritalStatus] = useState<"single" | "married">("single")
+    const [month, setMonth] = useState<string>("1")
     const [result, setResult] = useState<{
         gross: number
         net: number
         sgk: number
         issizlik: number
         gelirVergisi: number
+        gelirVergisiIstisnasi: number
         damgaVergisi: number
         totalDeductions: number
+        marjinalOran: number
+        isverenMaliyeti: number
+        yillikNet: number
     } | null>(null)
 
-    // 2025 değerleri
-    const MINIMUM_WAGE = 22104 // Brüt asgari ücret
-    const SGK_MATRAH_TAVANI = 220500 // Aylık tavan
-
     const calculate = () => {
-        const inputAmount = parseFloat(amount) || 0
+        const inputAmount = parseFloat(amount.replace(/\./g, "").replace(/,/g, ".")) || 0
         if (inputAmount <= 0) {
             setResult(null)
             return
         }
 
-        let grossSalary: number
-        let netSalary: number
+        const ay = Number(month)
+        // Brüt maaş sabit kabul edilip 12 ay simüle edilir; seçilen ayın satırı
+        // gösterilir. Gelir vergisi kümülatif matraha bağlı olduğu için Ocak ile
+        // Aralık netleri farklıdır.
+        const gross = calcType === "grossToNet" ? inputAmount : nettenBrute(inputAmount, ay)
+        const bordro = bordroHesapla(gross)
+        const satir = bordro.aylar[ay - 1] ?? bordro.aylar[0]
 
-        // SGK oranları
-        const sgkOrani = 0.14 // %14 işçi payı
-        const issizlikOrani = 0.01 // %1 işçi payı
-
-        // Gelir vergisi dilimleri (2025 tahmini)
-        const calculateIncomeTax = (matrah: number): number => {
-            if (matrah <= 110000) return matrah * 0.15
-            if (matrah <= 230000) return 16500 + (matrah - 110000) * 0.20
-            if (matrah <= 580000) return 40500 + (matrah - 230000) * 0.27
-            if (matrah <= 3000000) return 135000 + (matrah - 580000) * 0.35
-            return 982000 + (matrah - 3000000) * 0.40
-        }
-
-        // Damga vergisi
-        const damgaOrani = 0.00759 // Binde 7.59
-
-        if (calcType === "grossToNet") {
-            grossSalary = inputAmount
-
-            // SGK Kesintisi (tavana kadar)
-            const sgkMatrahi = Math.min(grossSalary, SGK_MATRAH_TAVANI)
-            const sgkKesinti = sgkMatrahi * sgkOrani
-            const issizlikKesinti = sgkMatrahi * issizlikOrani
-
-            // Gelir vergisi matrahı
-            const gelirVergisiMatrahi = grossSalary - sgkKesinti - issizlikKesinti
-
-            // Aylık gelir vergisi (kümülatif hesaplama basitleştirilmiş)
-            const yillikMatrah = gelirVergisiMatrahi * 12
-            const yillikVergi = calculateIncomeTax(yillikMatrah)
-            const aylikGelirVergisi = yillikVergi / 12
-
-            // Asgari ücret istisnası (asgari ücret vergiden muaf)
-            const asgariNetUcret = MINIMUM_WAGE * (1 - sgkOrani - issizlikOrani)
-            const vergiIstisnasi = calculateIncomeTax(asgariNetUcret * 12) / 12
-            const netGelirVergisi = Math.max(0, aylikGelirVergisi - vergiIstisnasi)
-
-            // Damga vergisi
-            const damgaVergisi = grossSalary * damgaOrani
-
-            // Net maaş
-            netSalary = grossSalary - sgkKesinti - issizlikKesinti - netGelirVergisi - damgaVergisi
-
-            setResult({
-                gross: grossSalary,
-                net: netSalary,
-                sgk: sgkKesinti,
-                issizlik: issizlikKesinti,
-                gelirVergisi: netGelirVergisi,
-                damgaVergisi: damgaVergisi,
-                totalDeductions: sgkKesinti + issizlikKesinti + netGelirVergisi + damgaVergisi
-            })
-        } else {
-            // Net'ten brüt hesaplama (iteratif yaklaşım)
-            netSalary = inputAmount
-            grossSalary = netSalary * 1.4 // Başlangıç tahmini
-
-            for (let i = 0; i < 20; i++) {
-                const sgkMatrahi = Math.min(grossSalary, SGK_MATRAH_TAVANI)
-                const sgkKesinti = sgkMatrahi * sgkOrani
-                const issizlikKesinti = sgkMatrahi * issizlikOrani
-                const gelirVergisiMatrahi = grossSalary - sgkKesinti - issizlikKesinti
-                const yillikMatrah = gelirVergisiMatrahi * 12
-                const yillikVergi = calculateIncomeTax(yillikMatrah)
-                const aylikGelirVergisi = yillikVergi / 12
-                const asgariNetUcret = MINIMUM_WAGE * (1 - sgkOrani - issizlikOrani)
-                const vergiIstisnasi = calculateIncomeTax(asgariNetUcret * 12) / 12
-                const netGelirVergisi = Math.max(0, aylikGelirVergisi - vergiIstisnasi)
-                const damgaVergisi = grossSalary * damgaOrani
-                const calculatedNet = grossSalary - sgkKesinti - issizlikKesinti - netGelirVergisi - damgaVergisi
-
-                if (Math.abs(calculatedNet - netSalary) < 0.01) break
-                grossSalary += (netSalary - calculatedNet)
-            }
-
-            const sgkMatrahi = Math.min(grossSalary, SGK_MATRAH_TAVANI)
-            const sgkKesinti = sgkMatrahi * sgkOrani
-            const issizlikKesinti = sgkMatrahi * issizlikOrani
-            const gelirVergisiMatrahi = grossSalary - sgkKesinti - issizlikKesinti
-            const yillikMatrah = gelirVergisiMatrahi * 12
-            const yillikVergi = calculateIncomeTax(yillikMatrah)
-            const aylikGelirVergisi = yillikVergi / 12
-            const asgariNetUcret = MINIMUM_WAGE * (1 - sgkOrani - issizlikOrani)
-            const vergiIstisnasi = calculateIncomeTax(asgariNetUcret * 12) / 12
-            const netGelirVergisi = Math.max(0, aylikGelirVergisi - vergiIstisnasi)
-            const damgaVergisi = grossSalary * damgaOrani
-
-            setResult({
-                gross: grossSalary,
-                net: netSalary,
-                sgk: sgkKesinti,
-                issizlik: issizlikKesinti,
-                gelirVergisi: netGelirVergisi,
-                damgaVergisi: damgaVergisi,
-                totalDeductions: sgkKesinti + issizlikKesinti + netGelirVergisi + damgaVergisi
-            })
-        }
+        setResult({
+            gross,
+            net: satir.net,
+            sgk: satir.sgkIsci,
+            issizlik: satir.issizlikIsci,
+            gelirVergisi: satir.gelirVergisi,
+            gelirVergisiIstisnasi: satir.gelirVergisiIstisnasi,
+            damgaVergisi: satir.damgaVergisi,
+            totalDeductions: satir.sgkIsci + satir.issizlikIsci + satir.gelirVergisi + satir.damgaVergisi,
+            marjinalOran: satir.marjinalOran,
+            isverenMaliyeti: bordro.aylikIsverenMaliyeti,
+            yillikNet: bordro.yillikNet,
+        })
     }
 
     const formatCurrency = (value: number) => {
@@ -166,14 +94,15 @@ export function SalaryCalculator() {
                             </Select>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="marital">Medeni Durum</Label>
-                            <Select value={maritalStatus} onValueChange={(v) => setMaritalStatus(v as typeof maritalStatus)}>
-                                <SelectTrigger id="marital">
+                            <Label htmlFor="month">Hesaplanan Ay</Label>
+                            <Select value={month} onValueChange={setMonth}>
+                                <SelectTrigger id="month">
                                     <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="single">Bekar</SelectItem>
-                                    <SelectItem value="married">Evli</SelectItem>
+                                    {AYLAR.map((ad, i) => (
+                                        <SelectItem key={ad} value={String(i + 1)}>{ad}</SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
                         </div>
@@ -185,8 +114,8 @@ export function SalaryCalculator() {
                         </Label>
                         <Input
                             id="amount"
-                            type="number"
-                            placeholder={calcType === "grossToNet" ? "35000" : "28000"}
+                            inputMode="decimal"
+                            placeholder={calcType === "grossToNet" ? "50.000" : "40.000"}
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                         />
@@ -244,11 +173,34 @@ export function SalaryCalculator() {
                                     <span>Damga Vergisi</span>
                                     <span className="text-red-600">- {formatCurrency(result.damgaVergisi)}</span>
                                 </div>
+                                {result.gelirVergisiIstisnasi > 0 && (
+                                    <div className="flex justify-between p-2 bg-white dark:bg-slate-800 rounded">
+                                        <span>Asgari ücret gelir vergisi istisnası</span>
+                                        <span className="text-emerald-600">+ {formatCurrency(result.gelirVergisiIstisnasi)}</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between p-3 bg-red-100 dark:bg-red-900 rounded font-semibold">
                                     <span>Toplam Kesinti</span>
                                     <span className="text-red-700 dark:text-red-300">- {formatCurrency(result.totalDeductions)}</span>
                                 </div>
                             </div>
+
+                            <div className="grid gap-2 pt-2 text-sm md:grid-cols-3">
+                                <div className="rounded bg-white p-3 dark:bg-slate-800">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">Vergi dilimi</p>
+                                    <p className="font-semibold">%{Math.round(result.marjinalOran * 100)}</p>
+                                </div>
+                                <div className="rounded bg-white p-3 dark:bg-slate-800">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">Yıllık toplam net</p>
+                                    <p className="font-semibold">{formatCurrency(result.yillikNet)}</p>
+                                </div>
+                                <div className="rounded bg-white p-3 dark:bg-slate-800">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400">İşveren maliyeti</p>
+                                    <p className="font-semibold">{formatCurrency(result.isverenMaliyeti)}</p>
+                                </div>
+                            </div>
+
+                            <p className="pt-2 text-xs text-slate-500 dark:text-slate-400">{guncellemeEtiketi()}</p>
                         </div>
                     </CardContent>
                 </Card>

@@ -1,34 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { LgsCalculator } from "@/components/calculators/education/lgs-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "LGS Puan Hesaplama 2026",
     description: "2026 LGS puan hesaplama aracı. Türkçe, Matematik, Fen, Sosyal, Din Kültürü ve Yabancı Dil netlerinize göre LGS puanınızı hesaplayın. Yüzdelik dilim tahmini.",
     keywords: ["lgs puan hesaplama 2026", "lgs hesaplama", "lgs net hesaplama", "lgs puan hesaplayıcı", "liselere geçiş sistemi", "lgs 2026"],
-    openGraph: {
-        title: "LGS Puan Hesaplama 2026 - Liselere Geçiş Sistemi",
-        description: "2026 LGS sınavı için puan ve yüzdelik dilim hesaplayıcı.",
-        type: "website",
-    }
-}
+    path: "/matematik-egitim/lgs-puan-hesaplama",
+})
 
 export default function LgsHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/matematik-egitim" className="hover:text-indigo-600 transition-colors">
-                    Matematik & Eğitim
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">LGS Puan Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "LGS Puan Hesaplama 2026",
+                    description: "2026 LGS puan hesaplama aracı. Türkçe, Matematik, Fen, Sosyal, Din Kültürü ve Yabancı Dil netlerinize göre LGS puanınızı hesaplayın. Yüzdelik dilim tahmini.",
+                    path: "/matematik-egitim/lgs-puan-hesaplama",
+                    applicationCategory: "EducationalApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Matematik & Eğitim", path: "/matematik-egitim" },
+                { name: "LGS Puan Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">

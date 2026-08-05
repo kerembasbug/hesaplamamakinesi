@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { RayicBedelCalculator } from "@/components/calculators/finance/rayic-bedel-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Rayiç Bedel Hesaplama - Gayrimenkul Değeri",
     description: "Ev, arsa ve konut için rayiç bedel hesaplama aracı. Piyasa değerine göre tahmini belediye rayiç bedelini ve emsal kira bedelini bulun.",
-    keywords: ["rayiç bedel hesaplama", "rayiç bedeli hesaplama", "ev rayiç bedel sorgulama", "belediye rayiç bedel", "konut rayiç bedeli"]
-}
+    keywords: ["rayiç bedel hesaplama", "rayiç bedeli hesaplama", "ev rayiç bedel sorgulama", "belediye rayiç bedel", "konut rayiç bedeli"],
+    path: "/finans/rayic-bedel-hesaplama",
+})
 
 export default function RayicBedelPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">Finans</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Rayiç Bedel Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Rayiç Bedel Hesaplama",
+                    description: "Ev, arsa ve konut için rayiç bedel hesaplama aracı. Piyasa değerine göre tahmini belediye rayiç bedelini ve emsal kira bedelini bulun.",
+                    path: "/finans/rayic-bedel-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Rayiç Bedel Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Rayiç Bedel Hesaplama</h1>
@@ -41,6 +48,34 @@ export default function RayicBedelPage() {
 
                 <h2>Emsal Kira Bedeli Nasıl Hesaplanır?</h2>
                 <p>Gelir Vergisi Kanunu'na göre emsal kira bedeli, gayrimenkulün emlak vergisi değerinin (rayiç bedelinin) %5'idir. Bu değerin altında kira beyan edilmesi durumunda vergi incelemesi yapılabilir.</p>
+
+                <h2>Rayiç Bedel ile Piyasa Değeri Arasındaki Fark</h2>
+                <p>
+                    Rayiç bedel, belediyelerin emlak vergisine esas olmak üzere belirlediği <strong>resmî</strong>
+                    değerdir. Piyasa değeri ise bir gayrimenkulün alıcı ve satıcı arasında serbestçe oluşan
+                    fiyatıdır. Türkiye&apos;de rayiç bedel çoğunlukla piyasa değerinin belirgin altında kalır;
+                    bu iki rakamı karıştırmak hem vergi hesabında hem de tapu işlemlerinde soruna yol açar.
+                </p>
+                <p>
+                    Tapu devrinde beyan edilen değer rayiç bedelin altında olamaz. Düşük beyan, tapu harcı
+                    kaybı olarak tespit edildiğinde fark ve ceza tahsil edilir.
+                </p>
+
+                <h2>Rayiç Bedeli Nereden Öğrenilir?</h2>
+                <ul>
+                    <li>Gayrimenkulün bağlı olduğu belediyenin emlak servisinden yazılı olarak alınabilir.</li>
+                    <li>Birçok büyükşehir belediyesi e-belediye üzerinden sorgulama imkânı sunar.</li>
+                    <li>Değerler dört yılda bir yeniden belirlenir, ara yıllarda yeniden değerleme oranıyla artırılır.</li>
+                    <li>Arsa ve arazide metrekare birim değeri, binalarda ayrıca yapı sınıfı ve yaş dikkate alınır.</li>
+                </ul>
+
+                <h2>Rayiç Bedelin Kullanıldığı İşlemler</h2>
+                <p>
+                    Emlak vergisi matrahı, tapu harcı alt sınırı, veraset ve intikal vergisi, kamulaştırma
+                    bedeline itiraz ve kentsel dönüşüm hesaplarında rayiç bedel esas alınır. Bu yüzden alım
+                    satım öncesi rayiç bedeli öğrenmek yalnızca vergi değil, pazarlık açısından da bilgi verir:
+                    ilan fiyatı ile rayiç arasındaki makas, bölgedeki değer artışının göstergesidir.
+                </p>
             </article>
         </div>
     )

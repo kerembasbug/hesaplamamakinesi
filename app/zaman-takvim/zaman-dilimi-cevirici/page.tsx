@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { TimezoneConverter } from "@/components/calculators/time/timezone-converter"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Zaman Dilimi Çevirici - Dünya Saatleri Hesaplayıcı",
-    description: "Online zaman dilimi çevirici. İstanbul, New York, Londra, Tokyo ve diğer şehirler arasında saat farkını hesaplayın. Canlı dünya saatleri.",
-    keywords: ["zaman dilimi çevirici", "saat farkı hesaplama", "dünya saatleri", "timezone converter", "şehirler arası saat farkı"]
-}
+export const metadata = buildMetadata({
+    title: "Zaman Dilimi Çevirici - Dünya Saatleri",
+    description: "Zaman dilimi çevirici. İstanbul, New York, Londra, Tokyo ve diğer şehirler arasındaki saat farkını hesaplayın; canlı dünya saatleri gösterilir.",
+    keywords: ["zaman dilimi çevirici", "saat farkı hesaplama", "dünya saatleri", "timezone converter", "şehirler arası saat farkı"],
+    path: "/zaman-takvim/zaman-dilimi-cevirici",
+})
 
 export default function ZamanDilimiCeviriciPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman &amp; Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Zaman Dilimi Çevirici</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Zaman Dilimi Çevirici",
+                    description: "Online zaman dilimi çevirici. İstanbul, New York, Londra, Tokyo ve diğer şehirler arasında saat farkını hesaplayın. Canlı dünya saatleri.",
+                    path: "/zaman-takvim/zaman-dilimi-cevirici",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman &amp; Takvim", path: "/zaman-takvim" },
+                { name: "Zaman Dilimi Çevirici" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Zaman Dilimi Çevirici</h1>

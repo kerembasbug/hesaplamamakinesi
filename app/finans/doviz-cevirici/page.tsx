@@ -1,35 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CurrencyConverter } from "@/components/calculators/finance/currency-converter"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Döviz Çevirici - Online Döviz Kuru Hesaplama",
     description: "Online döviz çevirici. Dolar, Euro, Sterlin ve diğer para birimleri arasında anlık döviz çevirimi yapın. TL karşılığı döviz kurları.",
     keywords: ["döviz çevirici", "döviz hesaplama", "dolar kuru", "euro kuru", "döviz çevirme", "para birimi çevirici", "kur hesaplama"],
-    openGraph: {
-        title: "Döviz Çevirici - Online Döviz Kuru Hesaplama",
-        description: "Döviz kurları arasında hızlı çeviri yapın.",
-        type: "website",
-    }
-}
+    path: "/finans/doviz-cevirici",
+})
 
 export default function DovizCeviriciPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Döviz Çevirici</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Döviz Çevirici",
+                    description: "Online döviz çevirici. Dolar, Euro, Sterlin ve diğer para birimleri arasında anlık döviz çevirimi yapın. TL karşılığı döviz kurları.",
+                    path: "/finans/doviz-cevirici",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Döviz Çevirici" },
+            ]} />
 
             {/* Page Title */}
             <div className="mb-8">

@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { AreaCalculator } from "@/components/calculators/math/area-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Alan Hesaplama - Dikdörtgen, Daire, Üçgen",
     description: "Online geometrik alan hesaplama aracı. Dikdörtgen, daire, üçgen ve yamuk alanını kolayca hesaplayın. Formüller ve örneklerle detaylı rehber.",
-    keywords: ["alan hesaplama", "dikdörtgen alan", "daire alan", "üçgen alan", "geometri hesaplama", "yamuk alan"]
-}
+    keywords: ["alan hesaplama", "dikdörtgen alan", "daire alan", "üçgen alan", "geometri hesaplama", "yamuk alan"],
+    path: "/matematik-egitim/alan-hesaplama",
+})
 
 export default function AlanHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/matematik-egitim" className="hover:text-indigo-600 transition-colors">Matematik &amp; Eğitim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Alan Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Alan Hesaplama",
+                    description: "Online geometrik alan hesaplama aracı. Dikdörtgen, daire, üçgen ve yamuk alanını kolayca hesaplayın. Formüller ve örneklerle detaylı rehber.",
+                    path: "/matematik-egitim/alan-hesaplama",
+                    applicationCategory: "EducationalApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Matematik &amp; Eğitim", path: "/matematik-egitim" },
+                { name: "Alan Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Alan Hesaplama</h1>

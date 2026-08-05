@@ -1,24 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { WorkdaysCalculator } from "@/components/calculators/time/workdays-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { TarifeUyarisi } from "@/components/content/tarife-uyarisi"
 
-export const metadata: Metadata = {
-    title: "Çalışma Günleri Hesaplama - İş Günü Sayısı Hesaplayıcı",
-    description: "Online çalışma günleri hesaplama aracı. İki tarih arasındaki iş günü sayısını hesaplayın. Hafta sonlarını dahil etme veya hariç tutma seçeneği.",
-    keywords: ["çalışma günleri hesaplama", "iş günü hesaplama", "hafta içi gün sayısı", "iş günü sayacı", "mesai günü hesaplama"]
-}
+export const metadata = buildMetadata({
+    title: "Çalışma Günleri Hesaplama - İş Günü",
+    description: "İki tarih arasındaki iş günü sayısını hesaplayın. Hafta sonlarını ve resmî tatilleri dahil etme veya hariç tutma seçenekleriyle ücretsiz araç.",
+    keywords: ["çalışma günleri hesaplama", "iş günü hesaplama", "hafta içi gün sayısı", "iş günü sayacı", "mesai günü hesaplama"],
+    path: "/zaman-takvim/calisma-gunleri-hesaplama",
+})
 
 export default function CalismaGunleriHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman &amp; Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Çalışma Günleri Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Çalışma Günleri Hesaplama",
+                    description: "Online çalışma günleri hesaplama aracı. İki tarih arasındaki iş günü sayısını hesaplayın. Hafta sonlarını dahil etme veya hariç tutma seçeneği.",
+                    path: "/zaman-takvim/calisma-gunleri-hesaplama",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman &amp; Takvim", path: "/zaman-takvim" },
+                { name: "Çalışma Günleri Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Çalışma Günleri Hesaplama</h1>
@@ -28,6 +36,8 @@ export default function CalismaGunleriHesaplamaPage() {
             <WorkdaysCalculator />
 
             <article className="mt-12 prose prose-slate dark:prose-invert max-w-none">
+                <TarifeUyarisi yil={2025} konu="resmî tatil listesi" kaynakAdi="Resmî Gazete" kaynakUrl="https://www.resmigazete.gov.tr/" />
+
                 <h2>Çalışma Günü Nedir?</h2>
                 <p>
                     Çalışma günü (iş günü), genellikle Pazartesi&apos;den Cuma&apos;ya kadar olan günlerdir.

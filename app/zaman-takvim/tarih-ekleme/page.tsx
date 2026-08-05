@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { DateAddCalculator } from "@/components/calculators/time/date-add-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Tarih Ekleme/Çıkarma - Tarihe Gün, Ay, Yıl Ekleme",
-    description: "Online tarih ekleme ve çıkarma hesaplayıcısı. Bir tarihe gün, ay veya yıl ekleyin veya çıkarın. Sonuç tarihini anında öğrenin.",
-    keywords: ["tarih ekleme", "tarihe gün ekleme", "tarih hesaplama", "kaç gün sonra hangi tarih", "tarihten çıkarma"]
-}
+export const metadata = buildMetadata({
+    title: "Tarih Ekleme ve Çıkarma Hesaplama",
+    description: "Bir tarihe gün, hafta, ay veya yıl ekleyin ya da çıkarın. Sözleşme bitişi, teslim tarihi ve süre takibi için sonucu anında gösteren ücretsiz araç.",
+    keywords: ["tarih ekleme", "tarihe gün ekleme", "tarih hesaplama", "kaç gün sonra hangi tarih", "tarihten çıkarma"],
+    path: "/zaman-takvim/tarih-ekleme",
+})
 
 export default function TarihEklemePage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/zaman-takvim" className="hover:text-indigo-600 transition-colors">Zaman &amp; Takvim</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Tarih Ekleme/Çıkarma</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Tarih Ekleme/Çıkarma",
+                    description: "Online tarih ekleme ve çıkarma hesaplayıcısı. Bir tarihe gün, ay veya yıl ekleyin veya çıkarın. Sonuç tarihini anında öğrenin.",
+                    path: "/zaman-takvim/tarih-ekleme",
+                    applicationCategory: "UtilitiesApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Zaman &amp; Takvim", path: "/zaman-takvim" },
+                { name: "Tarih Ekleme/Çıkarma" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Tarih Ekleme ve Çıkarma</h1>
@@ -57,10 +64,10 @@ export default function TarihEklemePage() {
                 <table>
                     <thead><tr><th>Başlangıç</th><th>İşlem</th><th>Sonuç</th></tr></thead>
                     <tbody>
-                        <tr><td>1 Ocak 2025</td><td>+ 90 gün</td><td>1 Nisan 2025</td></tr>
-                        <tr><td>15 Haziran 2025</td><td>+ 6 ay</td><td>15 Aralık 2025</td></tr>
-                        <tr><td>1 Mart 2025</td><td>- 1 yıl</td><td>1 Mart 2024</td></tr>
-                        <tr><td>28 Şubat 2024</td><td>+ 1 yıl</td><td>28 Şubat 2025</td></tr>
+                        <tr><td>1 Ocak 2026</td><td>+ 90 gün</td><td>1 Nisan 2026</td></tr>
+                        <tr><td>15 Haziran 2026</td><td>+ 6 ay</td><td>15 Aralık 2026</td></tr>
+                        <tr><td>1 Mart 2026</td><td>- 1 yıl</td><td>1 Mart 2025</td></tr>
+                        <tr><td>28 Şubat 2028</td><td>+ 1 yıl</td><td>28 Şubat 2029</td></tr>
                     </tbody>
                 </table>
 

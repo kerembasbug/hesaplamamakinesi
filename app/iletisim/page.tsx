@@ -1,25 +1,22 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home, Mail, MessageSquare, MapPin, Clock } from "lucide-react"
+import { Mail, MessageSquare, MapPin, Clock } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
 
-export const metadata: Metadata = {
-    title: "İletişim | HesaplamaMakinesi",
-    description: "HesaplamaMakinesi.com ile iletişime geçin. Sorularınız, önerileriniz veya geri bildirimleriniz için bize ulaşın.",
-    keywords: ["iletişim", "bize ulaşın", "destek", "geri bildirim", "soru sor"]
-}
+export const metadata = buildMetadata({
+    title: "İletişim",
+    description: "HesaplamaMakinesi.com ile iletişime geçin. Hesaplama araçlarıyla ilgili sorularınız, hata bildirimleriniz ve yeni araç önerileriniz için bize yazın.",
+    keywords: ["iletişim", "bize ulaşın", "destek", "geri bildirim", "soru sor"],
+    path: "/iletisim",
+})
 
 export default function IletisimPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">İletişim</span>
-            </nav>
+            <Breadcrumb items={[
+                { name: "İletişim" },
+            ]} />
 
             <div className="mb-8 flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/30">

@@ -1,27 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CalorieCalculator } from "@/components/calculators/health/calorie-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Kalori İhtiyacı Hesaplama - Günlük Kalori Hesaplayıcı",
-    description: "Online kalori ihtiyacı hesaplama aracı. Yaş, kilo, boy ve aktivite seviyenize göre günlük kalori ihtiyacınızı hesaplayın. BMR ve TDEE hesaplama.",
+export const metadata = buildMetadata({
+    title: "Kalori İhtiyacı Hesaplama - TDEE",
+    description: "Günlük kalori ihtiyacı hesaplama aracı. Yaş, kilo, boy ve aktivite seviyenize göre BMR ve TDEE değerlerinizi ücretsiz ve anında hesaplayın.",
     keywords: ["kalori hesaplama", "günlük kalori", "kalori ihtiyacı", "bmr hesaplama", "tdee hesaplama", "metabolizma hızı"],
-}
+    path: "/saglik-spor/kalori-hesaplama",
+})
 
 export default function KaloriHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/saglik-spor" className="hover:text-indigo-600 transition-colors">Sağlık & Spor</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Kalori Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Kalori İhtiyacı Hesaplama",
+                    description: "Online kalori ihtiyacı hesaplama aracı. Yaş, kilo, boy ve aktivite seviyenize göre günlük kalori ihtiyacınızı hesaplayın. BMR ve TDEE hesaplama.",
+                    path: "/saglik-spor/kalori-hesaplama",
+                    applicationCategory: "HealthApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Sağlık & Spor", path: "/saglik-spor" },
+                { name: "Kalori Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Kalori İhtiyacı Hesaplama</h1>
@@ -43,7 +47,7 @@ export default function KaloriHesaplamaPage() {
                     size kişiselleştirilmiş bir sonuç sunar.
                 </p>
 
-                <h3>BMR (Bazal Metabolizma Hızı) Nedir?</h3>
+                <h2>BMR (Bazal Metabolizma Hızı) Nedir?</h2>
                 <p>
                     BMR, vücudunuzun tamamen dinlenme halindeyken (uyku sırasında bile) temel yaşamsal fonksiyonları sürdürmek için harcadığı
                     minimum kalori miktarıdır. Solunum, kalp atışı, sindirim, hücre onarımı gibi faaliyetler BMR&apos;ye dahildir.
@@ -72,7 +76,7 @@ export default function KaloriHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>TDEE (Günlük Toplam Enerji Harcaması) Nedir?</h3>
+                <h2>TDEE (Günlük Toplam Enerji Harcaması) Nedir?</h2>
                 <p>
                     TDEE, BMR değerinizin aktivite seviyenize göre çarpılmasıyla elde edilen, gün boyunca toplam harcadığınız kalori miktarıdır.
                     Kilo vermek için TDEE&apos;nin altında, kilo almak için TDEE&apos;nin üstünde kalori almanız gerekir.
@@ -85,7 +89,7 @@ export default function KaloriHesaplamaPage() {
                     <li><strong>Çok Aktif (×1.9):</strong> Profesyonel sporcu veya ağır fiziksel iş.</li>
                 </ul>
 
-                <h3>Makro Besin Öğeleri ve Kalori Değerleri</h3>
+                <h2>Makro Besin Öğeleri ve Kalori Değerleri</h2>
                 <p>
                     Besinlerin kalorisi üç ana makro besin öğesinden gelir:
                 </p>
@@ -118,28 +122,28 @@ export default function KaloriHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Kilo Yönetimi: Kalori Açığı ve Fazlası</h3>
+                <h2>Kilo Yönetimi: Kalori Açığı ve Fazlası</h2>
                 <ul>
                     <li><strong>Kilo Vermek:</strong> TDEE&apos;den günlük 500 kcal eksiği yaratmak, haftada yaklaşık 0.5 kg kayıp sağlar.</li>
                     <li><strong>Kilo Korumak:</strong> TDEE kadar kalori almak kilonuzu sabit tutar.</li>
                     <li><strong>Kilo Almak:</strong> TDEE&apos;den günlük 300-500 kcal fazlası, sağlıklı kilo artışı sağlar.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Günde kaç kalori almalıyım?</h4>
+                <h3>Günde kaç kalori almalıyım?</h3>
                 <p>
                     Bu tamamen yaşınıza, cinsiyetinize, kilonuza, boyunuza ve aktivite seviyenize bağlıdır. Ortalama olarak yetişkin bir kadın
                     1800-2200 kcal, yetişkin bir erkek 2200-2800 kcal arasında ihtiyaç duyar. Aracımız size kişisel değerinizi hesaplar.
                 </p>
 
-                <h4>Egzersiz yapmadan kalori açığı yaratsam kilo verir miyim?</h4>
+                <h3>Egzersiz yapmadan kalori açığı yaratsam kilo verir miyim?</h3>
                 <p>
                     Evet, kilo kaybı temel olarak kalori açığına bağlıdır. Ancak egzersiz hem kalori harcamanızı artırır hem de kas kütlenizi
                     koruyarak metabolizmanızın yavaşlamasını önler.
                 </p>
 
-                <h3>Sağlıklı Kalori Tüketimi İçin 7 Altın Kural</h3>
+                <h2>Sağlıklı Kalori Tüketimi İçin 7 Altın Kural</h2>
                 <ul>
                     <li>Öğün atlamayın; özellikle kahvaltı metabolizmayı harekete geçirir.</li>
                     <li>İşlenmiş gıdalar yerine tam tahıllar, taze meyve ve sebzeyi tercih edin.</li>

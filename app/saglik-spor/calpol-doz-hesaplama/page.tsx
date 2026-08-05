@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { CalpolDoseCalculator } from "@/components/calculators/health/calpol-dose-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Calpol Doz Hesaplama - Çocuklar İçin Parasetamol Dozu",
-    description: "Çocuklar ve bebekler için kg bazlı Calpol doz hesaplama aracı. Çocuğunuzun kilosuna göre 120mg ve 250mg Calpol ölçeğini güvenle bulun.",
-    keywords: ["calpol doz hesaplama", "çocuk ateş düşürücü doz hesaplama", "kiloya göre calpol dozu", "bebek parasetamol hesaplama", "calpol 120 mg doz"]
-}
+export const metadata = buildMetadata({
+    title: "Calpol Doz Hesaplama - Çocuk Dozu",
+    description: "Çocuklar ve bebekler için kilo bazlı Calpol doz hesaplama aracı. 120 mg ve 250 mg şurup ölçeğini bulun; dozaj için mutlaka hekiminize danışın.",
+    keywords: ["calpol doz hesaplama", "çocuk ateş düşürücü doz hesaplama", "kiloya göre calpol dozu", "bebek parasetamol hesaplama", "calpol 120 mg doz"],
+    path: "/saglik-spor/calpol-doz-hesaplama",
+})
 
 export default function CalpolDozPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/saglik-spor" className="hover:text-indigo-600 transition-colors">Sağlık & Spor</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Calpol Doz Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Calpol Doz Hesaplama",
+                    description: "Çocuklar ve bebekler için kg bazlı Calpol doz hesaplama aracı. Çocuğunuzun kilosuna göre 120mg ve 250mg Calpol ölçeğini güvenle bulun.",
+                    path: "/saglik-spor/calpol-doz-hesaplama",
+                    applicationCategory: "HealthApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Sağlık & Spor", path: "/saglik-spor" },
+                { name: "Calpol Doz Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Calpol (Parasetamol) Dozu Hesaplama</h1>

@@ -1,14 +1,18 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { getCategoryBySlug } from "@/config/site-data"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { collectionPageSchema } from "@/lib/schema"
+import { categories } from "@/config/site-data"
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
     title: "Finans Hesaplayıcıları - Kredi, Faiz, Yatırım",
     description: "Ücretsiz finans hesaplama araçları. Kredi hesaplama, mevduat faizi, bileşik faiz, döviz çevirici, yatırım getirisi ve enflasyon hesaplama araçları.",
-    keywords: ["finans hesaplama", "kredi hesaplama", "faiz hesaplama", "döviz çevirici", "yatırım hesaplama"]
-}
+    keywords: ["finans hesaplama", "kredi hesaplama", "faiz hesaplama", "döviz çevirici", "yatırım hesaplama"],
+    path: "/finans",
+})
 
 export default function FinansPage() {
     const category = getCategoryBySlug("finans")
@@ -20,14 +24,19 @@ export default function FinansPage() {
     return (
         <div className="max-w-4xl mx-auto">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">{category.name}</span>
-            </nav>
+            <JsonLd
+                data={collectionPageSchema(
+                    "Finans Hesaplayıcıları",
+                    "Ücretsiz finans hesaplama araçları. Kredi hesaplama, mevduat faizi, bileşik faiz, döviz çevirici, yatırım getirisi ve enflasyon hesaplama araçları.",
+                    "/finans",
+                    (categories.find((c) => c.slug === "finans")?.tools ?? [])
+                        .filter((t) => !t.externalUrl)
+                        .map((t) => ({ name: t.name, path: `/finans/${t.slug}`, description: t.description }))
+                )}
+            />
+            <Breadcrumb items={[
+                { name: category.name },
+            ]} />
 
             {/* Page Header */}
             <div className="mb-8">
@@ -77,7 +86,7 @@ export default function FinansPage() {
                     yatırımlarınızın getirisini analiz edebilirsiniz.
                 </p>
 
-                <h3>Neden Finans Hesaplama Araçları Kullanmalısınız?</h3>
+                <h2>Neden Finans Hesaplama Araçları Kullanmalısınız?</h2>
                 <ul>
                     <li><strong>Kredi Planlaması:</strong> Ev, araba veya ihtiyaç kredisi almadan önce aylık taksit yükünüzü görün</li>
                     <li><strong>Tasarruf Yönetimi:</strong> Mevduat faizi hesaplama ile birikimlerinizin getirisini planlayın</li>
@@ -85,9 +94,9 @@ export default function FinansPage() {
                     <li><strong>Enflasyon Koruması:</strong> Paranızın reel değerini korumak için enflasyon etkisini anlayın</li>
                 </ul>
 
-                <h3>Popüler Finans Hesaplayıcılarımız</h3>
+                <h2>Popüler Finans Hesaplayıcılarımız</h2>
 
-                <h4>Kredi Hesaplama</h4>
+                <h2>Kredi Hesaplama</h2>
                 <p>
                     Konut kredisi, taşıt kredisi veya ihtiyaç kredisi başvurusu yapmadan önce kredi hesaplama aracımızı kullanın.
                     Faiz oranı, vade süresi ve kredi tutarını girerek aylık taksit miktarınızı, toplam ödeyeceğiniz tutarı ve
@@ -95,27 +104,27 @@ export default function FinansPage() {
                     bütçenize en uygun seçeneği belirleyebilirsiniz.
                 </p>
 
-                <h4>Mevduat Faizi Hesaplama</h4>
+                <h2>Mevduat Faizi Hesaplama</h2>
                 <p>
                     Vadeli mevduat hesabı açmayı düşünüyorsanız, mevduat faizi hesaplama aracımız ile yatıracağınız paranın
                     vade sonunda ne kadar getiri sağlayacağını hesaplayabilirsiniz. Brüt ve net getiri tutarlarını, stopaj
                     kesintisini görebilir ve farklı vade seçeneklerini karşılaştırabilirsiniz.
                 </p>
 
-                <h4>Bileşik Faiz Hesaplama</h4>
+                <h2>Bileşik Faiz Hesaplama</h2>
                 <p>
                     Uzun vadeli yatırımların gücünü keşfedin! Bileşik faiz hesaplama aracımız, düzenli olarak yatırım
                     yaptığınızda paranızın zaman içinde nasıl büyüyeceğini gösterir. Einstein&apos;ın &quot;dünyanın sekizinci
                     harikası&quot; olarak tanımladığı bileşik faizin etkisini hesaplayın.
                 </p>
 
-                <h4>Döviz Çevirici</h4>
+                <h2>Döviz Çevirici</h2>
                 <p>
                     Güncel döviz kurları ile anlık çeviri yapın. Dolar, Euro, Sterlin ve diğer para birimleri arasında
                     hızlı dönüşüm sağlayın. Kurlar birden fazla kaynaktan alınarak güncellenir.
                 </p>
 
-                <h3>Finansal Planlama İpuçları</h3>
+                <h2>Finansal Planlama İpuçları</h2>
                 <ul>
                     <li><strong>50/30/20 Kuralı:</strong> Gelirinizin %50&apos;sini ihtiyaçlara, %30&apos;unu isteklere, %20&apos;sini tasarrufa ayırın</li>
                     <li><strong>Acil Durum Fonu:</strong> En az 3-6 aylık giderinizi karşılayacak bir acil durum fonu oluşturun</li>
@@ -123,28 +132,28 @@ export default function FinansPage() {
                     <li><strong>Bileşik Faiz:</strong> Erken yaşta yatırıma başlayın, bileşik faizin gücünden yararlanın</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular</h3>
+                <h2>Sıkça Sorulan Sorular</h2>
 
-                <h4>Kredi faiz oranları nasıl belirlenir?</h4>
+                <h3>Kredi faiz oranları nasıl belirlenir?</h3>
                 <p>
                     Kredi faiz oranları, Merkez Bankası politika faizi, piyasa koşulları, kredi türü, vade süresi ve
                     müşterinin kredi geçmişi gibi faktörlere göre belirlenir. Düşük faiz oranı için kredi notunuzu
                     yüksek tutmanız önemlidir.
                 </p>
 
-                <h4>Mevduat faizi stopajı nedir?</h4>
+                <h3>Mevduat faizi stopajı nedir?</h3>
                 <p>
                     Mevduat faizi stopajı, vadeli mevduat getirisi üzerinden kesilen vergidir. 2024 yılı itibarıyla
                     TL mevduatlarda %15, döviz mevduatlarında %25 oranında stopaj uygulanmaktadır.
                 </p>
 
-                <h4>ROI (Yatırım Getirisi) nasıl hesaplanır?</h4>
+                <h3>ROI (Yatırım Getirisi) nasıl hesaplanır?</h3>
                 <p>
                     ROI = ((Yatırımdan Elde Edilen Gelir - Yatırım Maliyeti) / Yatırım Maliyeti) x 100 formülü ile
                     hesaplanır. Pozitif ROI karlı bir yatırımı, negatif ROI zarar eden bir yatırımı ifade eder.
                 </p>
 
-                <h4>Enflasyon paranın değerini nasıl etkiler?</h4>
+                <h3>Enflasyon paranın değerini nasıl etkiler?</h3>
                 <p>
                     Enflasyon, paranın satın alma gücünü düşürür. Örneğin yıllık %30 enflasyon ortamında, 100 TL&apos;nin
                     reel değeri bir yıl sonra yaklaşık 77 TL&apos;ye düşer. Bu nedenle tasarruflarınızı enflasyonun

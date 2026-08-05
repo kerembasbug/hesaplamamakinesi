@@ -1,24 +1,21 @@
-import { Metadata } from "next"
 import Link from "next/link"
-import { ChevronRight, Home, FileText } from "lucide-react"
+import { FileText } from "lucide-react"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
 
-export const metadata: Metadata = {
-    title: "Kullanım Şartları | HesaplamaMakinesi",
-    description: "HesaplamaMakinesi.com kullanım şartları ve koşulları. Web sitesini kullanmadan önce bu şartları okumanızı öneriyoruz.",
-    keywords: ["kullanım şartları", "kullanım koşulları", "yasal uyarı", "sorumluluk reddi"]
-}
+export const metadata = buildMetadata({
+    title: "Kullanım Şartları",
+    description: "HesaplamaMakinesi.com kullanım şartları ve koşulları. Sitedeki hesaplama araçlarını kullanmadan önce sorumluluk sınırlarını ve kuralları okuyun.",
+    keywords: ["kullanım şartları", "kullanım koşulları", "yasal uyarı", "sorumluluk reddi"],
+    path: "/kullanim-sartlari",
+})
 
 export default function KullanimSartlariPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Kullanım Şartları</span>
-            </nav>
+            <Breadcrumb items={[
+                { name: "Kullanım Şartları" },
+            ]} />
 
             <div className="mb-8 flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/30">

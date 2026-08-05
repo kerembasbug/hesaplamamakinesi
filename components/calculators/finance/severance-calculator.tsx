@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { guncelKidemTavani, guncellemeEtiketi } from "@/lib/constants/tr-2026"
 
 export function SeveranceCalculator() {
     const [salary, setSalary] = useState<string>("")
@@ -19,8 +20,9 @@ export function SeveranceCalculator() {
         ihbarDays: number
     } | null>(null)
 
-    // 2025 Kıdem tazminatı tavanı (güncel değer yaklaşık)
-    const KIDEM_CEILING = 35058.58
+    // Kıdem tazminatı tavanı yılda iki kez güncellenir; geçerli tavan
+    // lib/constants/tr-2026.ts üzerinden okunur.
+    const KIDEM_CEILING = guncelKidemTavani()
 
     const calculateIhbarDays = (totalMonths: number): number => {
         if (totalMonths < 6) return 14 // 0-6 ay: 2 hafta
@@ -154,6 +156,7 @@ export function SeveranceCalculator() {
                                     <p className="text-xs text-slate-500 mt-1">
                                         Tavan: {formatCurrency(KIDEM_CEILING)}
                                     </p>
+                                    <p className="text-xs text-slate-400 mt-1">{guncellemeEtiketi()}</p>
                                 </div>
                             )}
                             {(calculationType === "ihbar" || calculationType === "both") && (

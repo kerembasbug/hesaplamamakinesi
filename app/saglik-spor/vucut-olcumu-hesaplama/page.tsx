@@ -1,24 +1,31 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { BodyMeasurementCalculator } from "@/components/calculators/health/body-measurement-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
 
-export const metadata: Metadata = {
-    title: "Bel Kalça Oranı Hesaplama - Vücut Ölçüm Hesaplayıcı",
-    description: "Online bel kalça oranı hesaplama aracı. Bel ve kalça çevrenizi ölçerek sağlık riskinizi değerlendirin. Kardiyovasküler hastalık riski analizi.",
+export const metadata = buildMetadata({
+    title: "Bel Kalça Oranı Hesaplama - WHR",
+    description: "Bel kalça oranı (WHR) hesaplama aracı. Bel ve kalça çevrenizi girerek sağlık riski sınıfınızı ve kardiyovasküler risk değerlendirmenizi görün.",
     keywords: ["bel kalça oranı", "vücut ölçümü hesaplama", "bel çevresi", "kalça ölçümü", "obezite riski"],
-}
+    path: "/saglik-spor/vucut-olcumu-hesaplama",
+})
 
 export default function VucutOlcumuPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors"><Home className="h-4 w-4" />Ana Sayfa</Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/saglik-spor" className="hover:text-indigo-600 transition-colors">Sağlık & Spor</Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Vücut Ölçümü</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Bel Kalça Oranı Hesaplama",
+                    description: "Online bel kalça oranı hesaplama aracı. Bel ve kalça çevrenizi ölçerek sağlık riskinizi değerlendirin. Kardiyovasküler hastalık riski analizi.",
+                    path: "/saglik-spor/vucut-olcumu-hesaplama",
+                    applicationCategory: "HealthApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Sağlık & Spor", path: "/saglik-spor" },
+                { name: "Vücut Ölçümü" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Bel-Kalça Oranı Hesaplama</h1>
@@ -40,7 +47,7 @@ export default function VucutOlcumuPage() {
                     daha az zararlıdır.
                 </p>
 
-                <h3>Sağlıklı Bel-Kalça Oranı Değerleri</h3>
+                <h2>Sağlıklı Bel-Kalça Oranı Değerleri</h2>
                 <div className="overflow-x-auto my-6">
                     <table className="min-w-full border-collapse border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -68,7 +75,7 @@ export default function VucutOlcumuPage() {
                     </table>
                 </div>
 
-                <h3>Bel Çevresi Tek Başına Ne Anlama Gelir?</h3>
+                <h2>Bel Çevresi Tek Başına Ne Anlama Gelir?</h2>
                 <p>
                     Dünya Sağlık Örgütü&apos;ne göre tek başına bel çevresi de kritik bir sağlık göstergesidir:
                 </p>
@@ -77,7 +84,7 @@ export default function VucutOlcumuPage() {
                     <li><strong>Kadınlarda:</strong> 80 cm üzeri artmış risk, 88 cm üzeri yüksek risk</li>
                 </ul>
 
-                <h3>Doğru Ölçüm Nasıl Yapılır?</h3>
+                <h2>Doğru Ölçüm Nasıl Yapılır?</h2>
                 <ul>
                     <li><strong>Bel ölçümü:</strong> Kaburgaların alt kenarı ile kalça kemiğinin üst noktası arasındaki en dar bölgeden, nefes verdikten sonra ölçün.</li>
                     <li><strong>Kalça ölçümü:</strong> Kalçanın en geniş bölgesinden, ayaklar bitişik durumda ölçün.</li>
@@ -85,26 +92,26 @@ export default function VucutOlcumuPage() {
                     <li>Şeridi sıkı veya gevşek değil, cilde paralel tutun.</li>
                 </ul>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>BKO mu VKİ mi daha güvenilir?</h4>
+                <h3>BKO mu VKİ mi daha güvenilir?</h3>
                 <p>
                     Her iki ölçüm de farklı bilgiler verir. VKİ genel vücut kütlesini, BKO ise yağın nerede toplandığını gösterir.
                     Karın yağlanması metabolik hastalıklar için daha kritik olduğundan, BKO kardiyovasküler risk için daha güvenilirdir.
                 </p>
 
-                <h4>Göbek yağını nasıl eritebilirim?</h4>
+                <h3>Göbek yağını nasıl eritebilirim?</h3>
                 <p>
                     Lokal yağ yakımı mümkün değildir; genel vücut yağı azaldıkça karın yağı da azalır. Kalori açığı, kardiyovasküler egzersiz
                     ve direnç antrenmanı kombinasyonu en etkili yöntemdir.
                 </p>
 
-                <h4>Hamileyken bu ölçümler geçerli mi?</h4>
+                <h3>Hamileyken bu ölçümler geçerli mi?</h3>
                 <p>
                     Hayır, gebelik döneminde karın çevresi doğal olarak arttığı için bu ölçümler anlamsızdır. Gebelik sonrası ölçüme başlanabilir.
                 </p>
 
-                <h3>Karın Yağını Azaltmak İçin 5 Etkili Strateji</h3>
+                <h2>Karın Yağını Azaltmak İçin 5 Etkili Strateji</h2>
                 <ul>
                     <li><strong>Rafine karbonhidratları azaltın:</strong> Beyaz ekmek, şeker ve işlenmiş gıdalar yerine tam tahıl tercih edin.</li>
                     <li><strong>Protein alımını artırın:</strong> Protein tokluk sağlar ve kas kütlesini korur.</li>

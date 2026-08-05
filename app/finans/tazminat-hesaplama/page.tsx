@@ -1,34 +1,32 @@
-import { Metadata } from "next"
-import Link from "next/link"
-import { ChevronRight, Home } from "lucide-react"
 import { SeveranceCalculator } from "@/components/calculators/finance/severance-calculator"
+import { buildMetadata } from "@/lib/seo"
+import { Breadcrumb } from "@/components/layout/breadcrumb"
+import { JsonLd } from "@/components/seo/json-ld"
+import { calculatorSchema } from "@/lib/schema"
+import { GuncellemeNotu } from "@/components/content/vergi-tablolari"
 
-export const metadata: Metadata = {
-    title: "Tazminat Hesaplama - Kıdem ve İhbar Tazminatı 2025",
-    description: "Online kıdem tazminatı ve ihbar tazminatı hesaplama aracı. Brüt maaş ve çalışma süresine göre alacağınız tazminat tutarını hesaplayın. 2025 güncel kıdem tavanı.",
+export const metadata = buildMetadata({
+    title: "Tazminat Hesaplama - Kıdem ve İhbar",
+    description: "Kıdem ve ihbar tazminatı hesaplama aracı. Brüt maaş ve çalışma sürenize göre alacağınız tazminatı 2026 kıdem tavanıyla güncel olarak hesaplayın.",
     keywords: ["tazminat hesaplama", "kıdem tazminatı hesaplama", "ihbar tazminatı hesaplama", "işten ayrılma tazminatı", "kıdem tazminatı 2025", "işçi hakları"],
-    openGraph: {
-        title: "Tazminat Hesaplama - Kıdem ve İhbar Tazminatı",
-        description: "Kıdem ve ihbar tazminatı tutarlarınızı hesaplayın.",
-        type: "website",
-    }
-}
+    path: "/finans/tazminat-hesaplama",
+})
 
 export default function TazminatHesaplamaPage() {
     return (
         <div className="max-w-4xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
-                <Link href="/" className="flex items-center gap-1 hover:text-indigo-600 transition-colors">
-                    <Home className="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <Link href="/finans" className="hover:text-indigo-600 transition-colors">
-                    Finans
-                </Link>
-                <ChevronRight className="h-4 w-4" />
-                <span className="text-slate-900 dark:text-white font-medium">Tazminat Hesaplama</span>
-            </nav>
+            <JsonLd
+                data={calculatorSchema({
+                    name: "Tazminat Hesaplama",
+                    description: "Kıdem ve ihbar tazminatı hesaplama aracı. Brüt maaş ve çalışma sürenize göre alacağınız tazminatı 2026 kıdem tavanıyla hesaplayın.",
+                    path: "/finans/tazminat-hesaplama",
+                    applicationCategory: "FinanceApplication",
+                })}
+            />
+            <Breadcrumb items={[
+                { name: "Finans", path: "/finans" },
+                { name: "Tazminat Hesaplama" },
+            ]} />
 
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -49,7 +47,7 @@ export default function TazminatHesaplamaPage() {
                     devlet tarafından belirlenen tavan sınırını aşamaz.
                 </p>
 
-                <h3>Kıdem Tazminatı Şartları</h3>
+                <h2>Kıdem Tazminatı Şartları</h2>
                 <ul>
                     <li>En az 1 yıl aynı işyerinde çalışmış olmak</li>
                     <li>İşveren tarafından haksız yere işten çıkarılmak</li>
@@ -58,10 +56,10 @@ export default function TazminatHesaplamaPage() {
                     <li>İş sözleşmesinin işveren tarafından feshi (haklı fesih hariç)</li>
                 </ul>
 
-                <h3>2025 Kıdem Tazminatı Tavanı</h3>
+                <h2>2025 Kıdem Tazminatı Tavanı</h2>
                 <p>
                     Kıdem tazminatı tavanı, devlet memurlarına ödenen en yüksek emekli ikramiyesine göre belirlenir.
-                    2025 yılı için tavan tutarı yaklaşık <strong>35.058,58 TL</strong>&apos;dir. Brüt maaşınız bu tutarın
+                    2026 yılının ikinci yarısı (1 Temmuz – 31 Aralık) için tavan tutarı <strong>73.729,87 TL</strong>, ilk yarısı için <strong>64.948,77 TL</strong>&apos;dir. Brüt maaşınız bu tutarın
                     üzerindeyse, hesaplama tavan üzerinden yapılır.
                 </p>
 
@@ -105,34 +103,35 @@ export default function TazminatHesaplamaPage() {
                     </table>
                 </div>
 
-                <h3>Sıkça Sorulan Sorular (SSS)</h3>
+                <h2>Sıkça Sorulan Sorular (SSS)</h2>
 
-                <h4>Kıdem tazminatından vergi kesilir mi?</h4>
+                <h3>Kıdem tazminatından vergi kesilir mi?</h3>
                 <p>
                     Kıdem tazminatından gelir vergisi ve damga vergisi kesilmez. Ancak ihbar tazminatından
                     gelir vergisi ve damga vergisi kesintisi yapılır.
                 </p>
 
-                <h4>İstifa edersem tazminat alabilir miyim?</h4>
+                <h3>İstifa edersem tazminat alabilir miyim?</h3>
                 <p>
                     Normal istifa durumunda kıdem tazminatı alamazsınız. Ancak evlilik nedeniyle istifa
                     (kadın çalışanlar için evlenmeden itibaren 1 yıl içinde), askerlik, emeklilik veya
                     haklı nedenle fesih durumlarında kıdem tazminatı alabilirsiniz.
                 </p>
 
-                <h4>Tazminat ne zaman ödenir?</h4>
+                <h3>Tazminat ne zaman ödenir?</h3>
                 <p>
                     Kıdem tazminatı, iş akdinin feshi tarihinde derhal ödenmesi gereken bir alacaktır.
                     Gecikmesi halinde mevduata uygulanan en yüksek faiz uygulanır.
                 </p>
 
-                <h3>Dikkat Edilmesi Gerekenler</h3>
+                <h2>Dikkat Edilmesi Gerekenler</h2>
                 <ul>
                     <li>Kıdem tazminatı hesaplamasına ikramiye, prim ve sürekli ödenen ek kazançlar dahildir.</li>
                     <li>İşveren kıdem tazminatını taksitle ödeyemez, peşin ödemesi gerekir.</li>
                     <li>Kıdem tazminatı hakkı 5 yıllık zamanaşımına tabidir.</li>
                     <li>İşe iade davasını kazanan işçi, boşta geçen süre için de tazminat talep edebilir.</li>
                 </ul>
+                <GuncellemeNotu kaynakAdi="Çalışma ve Sosyal Güvenlik Bakanlığı" kaynakUrl="https://www.csgb.gov.tr/" />
             </article>
         </div>
     )
