@@ -217,3 +217,47 @@ export function authoritySource(category: UnitCategory): { label: string; url: s
         url: "https://www.bipm.org/en/si-base-units/metre",
     }
 }
+
+/* ------------------------------------------------ mutfak ölçüsü bağlamsal notu */
+
+/**
+ * Yalnızca mutfak miktarı olan birkaç gram/kg sayfasında, tarifte bardak ve
+ * kaşıkla verilen ölçülere köprü kuran tek bir cümle. Bilinçli olarak şablon
+ * geneline, menüye ya da alt bilgiye YAYILMAZ; yeni sayfa eklemek için buraya
+ * elle ve sayfaya özgü bir cümle yazılır.
+ */
+export const MUTFAK_OLCU_URL = "https://pratikevim.com/pratik-bilgiler/"
+
+export type MutfakNotu = { once: string; baglanti: string; sonra: string }
+
+const MUTFAK_NOTLARI: Record<string, MutfakNotu> = {
+    "1-kg-kac-gram": {
+        once: "Tarifler çoğu zaman gram yerine su bardağı ve kaşık kullanır. 1 su bardağı elenmiş unun yaklaşık 120–130 gram, toz şekerin 180–200 gram geldiği gibi karşılıkları Pratik Evim'deki ",
+        baglanti: "mutfak ölçü tablosu",
+        sonra: " tek sayfada topluyor.",
+    },
+    "2-kg-kac-gram": {
+        once: "2 kiloluk bir paket unu tariflere bölerken asıl gereken bilgi, bir su bardağına kaç gram un girdiğidir; elenmiş ve sıkıştırılmamış unda bu yaklaşık 120–130 gramdır. Diğer malzemelerin bardak ve kaşık karşılıkları için Pratik Evim'deki ",
+        baglanti: "mutfak ölçü tablosu",
+        sonra: " kullanılabilir.",
+    },
+    "100-gram-kac-kg": {
+        once: "Tartınız yoksa küçük miktarları kaşıkla ölçebilirsiniz: 1 yemek kaşığı su yaklaşık 15 gramdır, ancak un ve şeker gibi kuru malzemelerde bu değer değişir. Malzemeye göre kaşık ve bardak karşılıklarını gösteren bir ",
+        baglanti: "mutfak ölçü tablosu",
+        sonra: " Pratik Evim'de yer alıyor.",
+    },
+    "250-gram-kac-kg": {
+        once: "250 gram, tariflerde en sık geçen miktarlardan biridir ve çoğu zaman bardakla ölçülür: yaklaşık 2 su bardağı elenmiş un ya da 1 ile 1,5 su bardağı arası toz şeker bu ağırlığa denk gelir. Başka malzemeler için bardak ve kaşık karşılıklarını gösteren bir ",
+        baglanti: "mutfak ölçü tablosu",
+        sonra: " Pratik Evim'de yer alıyor.",
+    },
+    "500-gram-kac-kg": {
+        once: "Yarım kiloluk bir paket unu bardakla ölçmek isterseniz yaklaşık 4 su bardağı elenmiş un eder; unu bardağa bastırarak doldurursanız bu sayı azalır. Bardak, kaşık ve malzeme bazında karşılıklar için Pratik Evim'deki ",
+        baglanti: "mutfak ölçü tablosu",
+        sonra: " hazır bir başvuru kaynağıdır.",
+    },
+}
+
+export function mutfakOlcuNotu(slug: string): MutfakNotu | null {
+    return MUTFAK_NOTLARI[slug] ?? null
+}

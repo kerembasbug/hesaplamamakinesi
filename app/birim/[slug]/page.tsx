@@ -28,6 +28,8 @@ import {
     hubFaqItems,
     hubTitle,
     isLinear,
+    MUTFAK_OLCU_URL,
+    mutfakOlcuNotu,
     unitTitleLabel,
     valueDescription,
     valueTitle,
@@ -105,6 +107,7 @@ function ValuePage({ resolved, slug }: { resolved: Extract<Resolved, { type: "va
     const factor = convert(category, from, to, 1)
     const reverseFactor = convert(category, to, from, 1)
     const title = valueTitle(ctx, value)
+    const mutfakNotu = mutfakOlcuNotu(slug)
 
     return (
         <div className="max-w-4xl mx-auto">
@@ -288,6 +291,15 @@ function ValuePage({ resolved, slug }: { resolved: Extract<Resolved, { type: "va
 
                 <h2>Günlük Hayatta {trNumber(value)} {unitTitleLabel(from)}</h2>
                 <p>{pair.gunlukHayat(value, result)}</p>
+                {mutfakNotu && (
+                    <p>
+                        {mutfakNotu.once}
+                        <a href={MUTFAK_OLCU_URL} target="_blank" rel="noopener">
+                            {mutfakNotu.baglanti}
+                        </a>
+                        {mutfakNotu.sonra}
+                    </p>
+                )}
 
                 <h2>
                     {trNumber(value)} {unitTitleLabel(from)} Kaç {unitTitleLabel(to)}? Sıkça Sorulan Sorular
