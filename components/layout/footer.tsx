@@ -101,6 +101,12 @@ export function Footer() {
                     </p>
                     <div className="flex items-center gap-6">
                         <Link
+                            href="/hakkimizda"
+                            className="text-slate-400 hover:text-indigo-400 transition-colors"
+                        >
+                            Hakkımızda
+                        </Link>
+                        <Link
                             href="/gizlilik-politikasi"
                             className="text-slate-400 hover:text-indigo-400 transition-colors"
                         >

@@ -24,6 +24,7 @@ function entry(
 export default function sitemap(): MetadataRoute.Sitemap {
     const staticPages: MetadataRoute.Sitemap = [
         entry("/", 1, "daily"),
+        entry("/hakkimizda", 0.4, "yearly", LEGAL_UPDATED_AT),
         entry("/iletisim", 0.4, "yearly", LEGAL_UPDATED_AT),
         entry("/gizlilik-politikasi", 0.2, "yearly", LEGAL_UPDATED_AT),
         entry("/kullanim-sartlari", 0.2, "yearly", LEGAL_UPDATED_AT),

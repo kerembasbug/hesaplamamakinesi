@@ -55,7 +55,20 @@ export default function GizlilikPolitikasiPage() {
                     <li><strong>Zorunlu Çerezler:</strong> Sitenin temel işlevleri için gerekli</li>
                     <li><strong>Analitik Çerezler:</strong> Ziyaretçi istatistikleri için (Google Analytics)</li>
                     <li><strong>Tercih Çerezleri:</strong> Tema tercihi gibi ayarlarınız için</li>
+                    <li><strong>Reklam Çerezleri:</strong> Google AdSense reklamları için (aşağıda açıklanmıştır)</li>
                 </ul>
+
+                <h3>2.3 Reklamlar (Google AdSense)</h3>
+                <p>
+                    Sitemizde Google AdSense tarafından sunulan reklamlar gösterilebilir. Google ve reklam
+                    ortakları, bu siteye ve diğer sitelere yaptığınız ziyaretlere göre reklam göstermek için
+                    çerez (DoubleClick çerezi dahil) kullanır. Kişiselleştirilmiş reklamları{" "}
+                    <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Reklam Ayarları</a>
+                    {" "}sayfasından kapatabilirsiniz; Google&apos;ın iş ortağı sitelerdeki verileri nasıl kullandığı{" "}
+                    <a href="https://policies.google.com/technologies/partner-sites?hl=tr" target="_blank" rel="noopener noreferrer">policies.google.com</a>
+                    {" "}adresinde açıklanmıştır. Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre&apos;den gelen
+                    ziyaretçilere reklam çerezi kurulmadan önce onay sorulur.
+                </p>
 
                 <h2>3. Bilgilerin Kullanımı</h2>
                 <p>Toplanan bilgiler aşağıdaki amaçlarla kullanılmaktadır:</p>
