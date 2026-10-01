@@ -9,6 +9,11 @@ import { organizationSchema, webSiteSchema } from "@/lib/schema";
 import { METADATA_BASE } from "@/lib/seo";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site-config";
 
+// Google AdSense (Auto ads). Loaded only in production builds so local dev and
+// previews never generate impressions on the publisher account.
+const ADSENSE_CLIENT = "ca-pub-2275530363739994";
+const ADSENSE_ENABLED = process.env.NODE_ENV === "production";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -64,6 +69,16 @@ export default function RootLayout({
     <html lang="tr">
       <head>
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
+        {ADSENSE_ENABLED && (
+          <>
+            <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
+            <script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+              crossOrigin="anonymous"
+            />
+          </>
+        )}
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-slate-950`}>
         <div className="relative min-h-screen flex flex-col">
