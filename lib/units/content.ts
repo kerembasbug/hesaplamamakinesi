@@ -106,6 +106,15 @@ export function valueTitle(ctx: UnitContext, value: number): string {
     return `${trNumber(value)} ${unitTitleLabel(ctx.from)} Kaç ${unitTitleLabel(ctx.to)}?`
 }
 
+/**
+ * Arama sonucu başlığı: soruya cevabı da ekler ("225 Pound Kaç kg? = 102,1 kg").
+ * H1 `valueTitle` olarak kalır; bu yalnız <title>/OG içindir.
+ */
+export function valueSeoTitle(ctx: UnitContext, value: number): string {
+    const result = convert(ctx.category, ctx.from, ctx.to, value)
+    return `${valueTitle(ctx, value)} = ${formatShort(result)} ${ctx.to.kisaltma}`
+}
+
 export function valueDescription(ctx: UnitContext, value: number): string {
     const result = convert(ctx.category, ctx.from, ctx.to, value)
     const base = `${trNumber(value)} ${ctx.from.kisaltma} kaç ${ctx.to.kisaltma} eder? Cevap: ${formatShort(result)} ${ctx.to.kisaltma}. Formül, adım adım hesap, dönüşüm tablosu ve ücretsiz ${ctx.from.ad}–${ctx.to.ad} çevirici bu sayfada.`

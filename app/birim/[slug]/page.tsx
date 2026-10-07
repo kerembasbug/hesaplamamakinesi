@@ -32,6 +32,7 @@ import {
     mutfakOlcuNotu,
     unitTitleLabel,
     valueDescription,
+    valueSeoTitle,
     valueTitle,
 } from "@/lib/units/content"
 
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: PageProps) {
     const ctx = { category: resolved.category, from: resolved.from, to: resolved.to, pair: resolved.pair }
 
     if (resolved.type === "value") {
-        const title = valueTitle(ctx, resolved.value)
+        const title = valueSeoTitle(ctx, resolved.value)
         return buildMetadata({
             title,
             description: valueDescription(ctx, resolved.value),
