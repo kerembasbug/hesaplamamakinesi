@@ -14,6 +14,13 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site-
 const ADSENSE_CLIENT = "ca-pub-2275530363739994";
 const ADSENSE_ENABLED = process.env.NODE_ENV === "production";
 
+// GA4 (mülk 546077767). Yalnız üretimde; bot korumalı: otomasyon tarayıcısı
+// (navigator.webdriver), başsız Chrome ya da kare/anormal ekranda (1280x1200,
+// 1366x1366, 1600x1600) etiket hiç yüklenmez — 24 Ekim 2026 raporunun bot bulgusu.
+const GA4_ID = "G-QHFE6YQXWV";
+const GA4_ENABLED = process.env.NODE_ENV === "production";
+const GA4_SNIPPET = `(function(){var id='${GA4_ID}';var w=screen.width,h=screen.height;if(navigator.webdriver||w===h||(w===1280&&h===1200)||/HeadlessChrome/i.test(navigator.userAgent))return;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config',id);var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);})();`;
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -69,6 +76,7 @@ export default function RootLayout({
     <html lang="tr">
       <head>
         <JsonLd data={[organizationSchema(), webSiteSchema()]} />
+        {GA4_ENABLED && <script dangerouslySetInnerHTML={{ __html: GA4_SNIPPET }} />}
         {ADSENSE_ENABLED && (
           <>
             <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
